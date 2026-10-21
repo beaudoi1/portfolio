@@ -10,7 +10,7 @@ layout: base.njk
   </header>
 
   {%- if hero %}
-  <div class="cs-hero">{% image hero, heroAlt, "(min-width: 72rem) 68rem, 100vw", [800, 1200, 1600, 2400] %}</div>
+  <div class="cs-hero">{% zoomImage hero, heroAlt, "(min-width: 72rem) 68rem, 100vw", [800, 1200, 1600, 2400] %}</div>
   {%- endif %}
 
   <div class="panel">
@@ -43,7 +43,7 @@ layout: base.njk
     {%- endif %}
   </div>
 
-  <div class="cs-layout" style="margin-top:1.5rem">
+  <div class="cs-layout{% if toc %} cs-layout--toc{% endif %}" style="margin-top:1.5rem">
     {%- if toc %}
     <nav class="cs-toc panel" aria-labelledby="toc-heading">
       <h2 id="toc-heading">On this page</h2>

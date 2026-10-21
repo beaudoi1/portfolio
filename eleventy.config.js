@@ -18,7 +18,7 @@ const IMG_OPTIONS = {
   sharpAvifOptions: { quality: 60 },
 };
 
-async function imageHtml(src, alt, sizes = "100vw", widths = [480, 800, 1200, 1600], cls = "") {
+async function imageHtml(src, alt, sizes = "100vw", widths = [480, 800, 1200, 1600], cls = "", withFull = false) {
   if (alt === undefined) throw new Error(`Missing alt text for ${src}`);
   let metadata;
   try {
@@ -29,13 +29,23 @@ async function imageHtml(src, alt, sizes = "100vw", widths = [480, 800, 1200, 16
     console.error(`[image] ${src}: ${e.message}`);
     throw e;
   }
-  return Image.generateHTML(metadata, {
+  const html = Image.generateHTML(metadata, {
     alt,
     sizes,
     loading: "lazy",
     decoding: "async",
     ...(cls && { class: cls }),
   });
+  if (!withFull) return html;
+  // Largest copy in the fallback format (JPEG or PNG): what the zoom view shows.
+  const fallback = metadata.jpeg || metadata.png;
+  return { html, full: fallback[fallback.length - 1].url };
+}
+
+// An image that can be popped out and zoomed. Without JavaScript, "Enlarge" just opens the full-size file.
+async function zoomableHtml(src, alt, sizes, widths) {
+  const { html, full } = await imageHtml(src, alt, sizes, widths, "", true);
+  return `<div class="zoomable">${html}<a class="zoom-btn" href="${full}" data-zoom aria-label="Enlarge image"><svg aria-hidden="true" viewBox="0 0 20 20" width="16" height="16"><path d="M12 3h5v5M8 17H3v-5M17 3l-6 6M3 17l6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="zoom-btn__text">Enlarge</span></a></div>`;
 }
 
 export default function (eleventyConfig) {
@@ -65,6 +75,10 @@ export default function (eleventyConfig) {
     if (isBuild() && this.page.outputPath?.endsWith(".html") && content.includes(UNAPPROVED)) {
       blocked.add(this.page.inputPath);
     }
+    // A broken async template prints this instead of the image. Never publish it.
+    if (this.page.outputPath?.endsWith(".html") && content.includes("[object Promise]")) {
+      throw new Error(`${this.page.inputPath} rendered "[object Promise]": an async shortcode was called the wrong way.`);
+    }
     return content;
   });
   eleventyConfig.on("eleventy.after", () => {
@@ -91,16 +105,18 @@ export default function (eleventyConfig) {
   // ---- Responsive images
   // {% image "img/research/x.jpg", "Alt text", "(min-width: 60rem) 50vw, 100vw" %}
   // Pass alt "" only for purely decorative images.
-  eleventyConfig.addShortcode("image", imageHtml);
+  eleventyConfig.addShortcode("image", async (...args) => imageHtml(...args.slice(0, 5)));
+  // {% zoomImage "img/x.jpg", "Alt text", "sizes", [widths] %}: an image with the Enlarge button.
+  eleventyConfig.addShortcode("zoomImage", zoomableHtml);
 
   // {% figure "img/x.png", "Alt text", "Caption (HTML allowed)", "light", true %}
   // variant: "" | "light" | "phone" | "wide". full=true adds an "Open full size" link.
   eleventyConfig.addShortcode("figure", async function (src, alt, caption = "", variant = "", full = false) {
     const sizes = variant === "phone" ? "(min-width: 48rem) 20rem, 80vw" : "(min-width: 48rem) 42rem, 100vw";
-    const img = await imageHtml(src, alt, sizes, [480, 800, 1200]);
+    // `full` is kept for older calls; every figure can now be enlarged.
+    const img = await zoomableHtml(src, alt, sizes, [480, 800, 1200]);
     const cls = "figure" + (variant ? ` figure--${variant}` : "");
-    const link = full ? ` <a class="figure__full" href="/${src}">Open full size<span class="visually-hidden"> image</span></a>` : "";
-    const cap = caption || link ? `<figcaption>${caption}${link}</figcaption>` : "";
+    const cap = caption ? `<figcaption>${caption}</figcaption>` : "";
     return `<figure class="${cls}">${img}${cap}</figure>`;
   });
 
@@ -121,8 +137,6 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/css": "css" });
   eleventyConfig.addPassthroughCopy({ "src/files": "files" });
   eleventyConfig.addPassthroughCopy({ "src/media": "media" });
-  // Originals for "Open full size" links.
-  eleventyConfig.addPassthroughCopy({ "src/img/rinkside": "img/rinkside" });
   eleventyConfig.addWatchTarget("src/css/");
 
   return {
