@@ -10,6 +10,7 @@ export default {
   // Set to the PDF's path (e.g. "/files/aaron-beaudoin-resume.pdf") once the new resume is in src/files/.
   resume: "/files/Aaron_Beaudoin_UX_Resume.pdf",
   nav: [
+    { label: "Home", url: "/" },
     { label: "Design", url: "/design/" },
     { label: "Research", url: "/research/" },
     { label: "About", url: "/about/" },

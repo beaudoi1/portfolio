@@ -162,6 +162,48 @@ a:hover { color: var(--accent-strong); text-decoration-thickness: 0.14em; }
   border-radius: 0.5rem;
 }
 .nav a:hover { color: var(--accent-strong); background: var(--panel); }
+/* Phone-size hamburger menu (only once the script has run; otherwise the full menu shows). */
+.nav-toggle { display: none; }
+@media (max-width: 47.99rem) {
+  .has-nav-toggle .site-header__inner { flex-wrap: nowrap; }
+  .has-nav-toggle .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0 0.85rem;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--line-strong);
+    border-radius: 0.5rem;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .has-nav-toggle .nav-toggle:hover { color: var(--accent-strong); border-color: var(--accent); }
+  .nav-toggle__icon { display: inline-grid; gap: 4px; width: 1.1rem; }
+  .nav-toggle__icon span { display: block; height: 2px; background: currentColor; border-radius: 1px; transition: transform 0.2s, opacity 0.2s; }
+  .nav-toggle[aria-expanded="true"] .nav-toggle__icon span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .nav-toggle__icon span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] .nav-toggle__icon span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  .has-nav-toggle .nav {
+    display: none;
+    position: absolute;
+    left: 0; right: 0; top: 100%;
+    z-index: 50;
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5rem var(--gutter) 1rem;
+    background: var(--bg);
+    box-shadow: 0 12px 24px rgb(0 0 0 / 0.5);
+    border-bottom: 1px solid var(--line);
+  }
+  .has-nav-toggle .nav.is-open { display: flex; }
+  .has-nav-toggle .nav a { width: 100%; padding-inline: 0.5rem; font-size: 1.125rem; }
+  .site-header { position: relative; }
+}
+@media (forced-colors: active) { .nav-toggle__icon span { background: CanvasText; } }
+
 .nav a[aria-current="page"] {
   color: var(--accent);
   text-decoration: underline;
