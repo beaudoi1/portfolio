@@ -11,8 +11,8 @@ STiX Crafthouse was a sports bar I co-founded in Olde Town Arvada, just outside 
 As an owner, I ran our whole online presence. I designed the logo and every flyer and post we put out. I also ran our Facebook, Instagram, X, and Untappd accounts: making the content, posting on a regular schedule, and talking with the people who followed us.
 
 {% figure "img/stix/stix-logo.png",
-  "STiX Crafthouse logo: the word STiX in teal block letters over a maroon mountain outline, with CRAFTHOUSE underneath.",
-  "The STiX Crafthouse logo." %}
+  "STiX Crafthouse logo: the word STiX in blue letters, with two hockey sticks forming the X, inside a maroon mountain outline, with CRAFTHOUSE in maroon underneath.",
+  "The STiX Crafthouse logo.", "light" %}
 
 ## Event flyers
 

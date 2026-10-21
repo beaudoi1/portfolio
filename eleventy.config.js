@@ -22,7 +22,9 @@ async function imageHtml(src, alt, sizes = "100vw", widths = [480, 800, 1200, 16
   if (alt === undefined) throw new Error(`Missing alt text for ${src}`);
   let metadata;
   try {
-    metadata = await Image(path.join("src", src), { ...IMG_OPTIONS, widths: [...widths, "auto"] });
+    // PNGs keep their transparency: PNG fallback instead of JPEG.
+    const formats = src.endsWith(".png") ? ["avif", "webp", "png"] : IMG_OPTIONS.formats;
+    metadata = await Image(path.join("src", src), { ...IMG_OPTIONS, formats, widths: [...widths, "auto"] });
   } catch (e) {
     console.error(`[image] ${src}: ${e.message}`);
     throw e;

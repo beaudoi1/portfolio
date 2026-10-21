@@ -37,5 +37,6 @@ export default [
     image: "img/stix/stix-logo.png",
     imageAlt: "",
     imageContain: true,
+    imageLight: true,
   },
 ];

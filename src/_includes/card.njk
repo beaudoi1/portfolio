@@ -3,7 +3,7 @@
     `c` has title, url, and optional image, imageAlt, imageContain, summary,
     summaryProposed, statusLabel, status, platform. -#}
 <article class="card{% if featured %} card--feature{% endif %}">
-  <div class="card__media{% if c.imageContain %} card__media--contain{% endif %}{% if c.imageTop %} card__media--top{% endif %}">
+  <div class="card__media{% if c.imageContain %} card__media--contain{% endif %}{% if c.imageTop %} card__media--top{% endif %}{% if c.imageLight %} card__media--light{% endif %}">
     {%- ifAsync c.image -%}
       {#- Alt is usually "" here: the title link already names the card. -#}
       {% image c.image, c.imageAlt or "", "(min-width: 52rem) 40rem, 100vw", [480, 800, 1200] %}
