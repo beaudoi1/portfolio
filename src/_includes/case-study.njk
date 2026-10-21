@@ -1,0 +1,48 @@
+---
+layout: base.njk
+---
+{% copyBanner copyProposed %}
+<div class="wrap">
+  <header class="page-head">
+    {%- if eyebrow %}<p class="eyebrow">{{ eyebrow }}</p>{% endif %}
+    <h1>{{ title }}</h1>
+    {%- if lede %}<p class="lede">{{ lede | safe }}</p>{% endif %}
+  </header>
+
+  {%- if hero %}
+  <div class="cs-hero">{% image hero, heroAlt, "(min-width: 72rem) 68rem, 100vw", [800, 1200, 1600, 2400] %}</div>
+  {%- endif %}
+
+  <div class="panel">
+    {%- if meta %}
+    <dl class="cs-meta">
+      {%- for m in meta %}
+      <div><dt>{{ m.label }}</dt><dd>{{ m.value | safe }}</dd></div>
+      {%- endfor %}
+    </dl>
+    {%- endif %}
+    {%- if links %}
+    <div class="button-row">
+      {%- for l in links %}
+      <a class="button{% if not loop.first %} button--ghost{% endif %}" href="{{ l.url }}">{{ l.label }}</a>
+      {%- endfor %}
+    </div>
+    {%- endif %}
+  </div>
+
+  <div class="cs-layout" style="margin-top:1.5rem">
+    {%- if toc %}
+    <nav class="cs-toc panel" aria-labelledby="toc-heading">
+      <h2 id="toc-heading">On this page</h2>
+      <ol>
+        {%- for t in toc %}<li><a href="#{{ t.id }}">{{ t.label }}</a></li>{% endfor %}
+      </ol>
+    </nav>
+    {%- endif %}
+    <div class="panel cs-body">
+      <div class="prose">
+        {{ content | safe }}
+      </div>
+    </div>
+  </div>
+</div>

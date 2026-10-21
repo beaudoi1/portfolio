@@ -1,0 +1,458 @@
+---
+layout: case-study.njk
+title: Rinkside
+eyebrow: UX case study · B2C
+description: "Rinkside case study: a hockey app for finding ice sessions near you and running your team, from research to prototype to a working alpha. By Aaron Beaudoin."
+lede: "Find ice sessions near you and keep your team's schedule, RSVPs, and scores in one place. No more checking five rink websites, or waiting on a captain to retype the league schedule."
+hero: img/rinkside/hero-alpha.jpg
+heroAlt: "Three screens from the Rinkside alpha: Explore with a map of nearby rinks, Home with the next team game and In/Out RSVP buttons, and a team page with record, standing, standings and stats."
+meta:
+  - label: My role
+    value: "Solo designer and founder. I did the research, UX, prototype, and product direction. I built the app with Claude Code."
+  - label: Timeline
+    value: "June 2026 – now"
+  - label: Platforms
+    value: "Android app (alpha) · iOS app (TestFlight) · Web app (coming soon)"
+  - label: Tools
+    value: "Figma · FigJam · Google Forms · HTML/CSS/JS prototype · Claude Code · Claude API · Expo / React Native · Next.js · Supabase · Clerk · Vercel"
+  - label: Status
+    value: "Alpha (step 1 of 4). Testing with two hockey teams in progress."
+links:
+  - label: Try the prototype
+    url: https://beaudoi1.github.io/rinkside-prototype/rinkside-welcome.html
+  - label: Open the web app
+    url: https://app.rinksideapp.com
+  - label: Rinkside for skaters
+    url: https://consumer.rinksideapp.com
+toc:
+  - { id: problem, label: The problem }
+  - { id: research, label: Research }
+  - { id: personas, label: Personas & journey }
+  - { id: ideation, label: Ideation }
+  - { id: wireframes, label: Wireframes & prototype }
+  - { id: testing, label: Usability testing }
+  - { id: iterations, label: Iterations }
+  - { id: accessibility, label: Accessibility }
+  - { id: final, label: "Final design: the alpha" }
+  - { id: takeaways, label: Takeaways }
+---
+
+
+<section aria-labelledby="problem">
+  <h2 id="problem"><span class="eyebrow">01</span>The problem</h2>
+
+  <p>I play adult league and drop-in hockey in Colorado. Finding ice time means checking a different website for every rink, logging in to see if there's room, and often still being told to call. I wanted one place where a skater can see every session they can actually book, right now.</p>
+
+  <h3>The problems I set out to fix</h3>
+  <ol>
+    <li><strong>You can't see what's available.</strong> Most rink systems hide open spots behind a login, or show them with no way to book.</li>
+    <li><strong>There's no single source of truth.</strong> Rinks publish times that conflict with each other, then tell you to phone.</li>
+    <li><strong>Casual skaters get left out.</strong> Drop-in is often members-only, and pricing assumes you're signing up for a season.</li>
+    <li><strong>Team schedules depend on a volunteer.</strong> A captain retypes every ice time by hand, so games sit at "To be determined."</li>
+  </ol>
+
+  <div class="callout">
+    <p class="callout__title">Problem statement</p>
+    <p>Adult recreational skaters need to see which sessions they can actually book right now, because every system I studied hides availability behind a login or shows it with no way to act on it.</p>
+  </div>
+
+  <h3>Who it's for</h3>
+  <p>Adult drop-in and league players, parents booking for kids, and casual skaters who just want to get on the ice.</p>
+
+  <h3>Constraints</h3>
+  <ul>
+    <li>Solo project with no budget for paid tools or research participants.</li>
+    <li>A small research sample, from my own network.</li>
+    <li>No rink had signed on yet, so all rink data came from public listings.</li>
+    <li>Waivers and legal text need a lawyer, so the design leaves room for them instead of writing them.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="research">
+  <h2 id="research"><span class="eyebrow">02</span>Research</h2>
+
+  <h3>What I wanted to learn</h3>
+  <ul>
+    <li>Is there a real need, and who has it?</li>
+    <li>How do people find out when they can skate, and how do they sign up?</li>
+    <li>Where does the booking journey break?</li>
+    <li>What do rinks need for this to work?</li>
+  </ul>
+
+  <h3>How I found out, and why</h3>
+  <ul>
+    <li><strong>A hands-on study of real booking systems.</strong> I tried to book drop-in hockey on my phone at three Denver-area rinks, each on different software, and screenshotted every step. I wanted to see exactly where it breaks, not just hear about it.</li>
+    <li><strong>Interviews</strong> with adult players, team captains, parents of youth skaters, and a casual skater, to hear the problem in their words.</li>
+    <li><strong>A survey</strong> (8 responses) to check whether what I heard held up beyond the interviews.</li>
+  </ul>
+  <p>I started with only my own experience as a player, and my early personas were guesses. I needed real data before designing anything. Everyone I interviewed or surveyed agreed to take part and answered voluntarily. Names and identifying details are left out here.</p>
+
+  {% figure "img/rinkside/as-is-study.png",
+    "Summary of the as-is study: zero of three rinks let a motivated adult complete a booking on a phone. Three columns trace the steps at Edge Ice Arena, Apex Center and Big Bear, with dead ends marked in red.",
+    "<strong>The as-is study:</strong> three rinks, three platforms, zero completed bookings on a phone.",
+    "", true %}
+
+  <h3>What hurt the most</h3>
+  <ol>
+    <li><strong>Availability is hidden or useless.</strong> Booking friction scored 3.1 out of 5 in the survey, the highest of anything I asked about. At one rink, booking a single session took 13 taps. Half the players I surveyed (4 of 8) had driven to a rink and found the session full, cancelled, or different from what they expected.</li>
+    <li><strong>The schedule depends on a volunteer.</strong> Captains retype ice times by hand, so games show "To be determined."</li>
+    <li><strong>Parents are already bridging apps by hand,</strong> copying schedules from the official platform into a team app.</li>
+  </ol>
+
+  <h3>In their words</h3>
+  <ul class="quote-list" role="list">
+    <li><blockquote><p>"It would be great if I could see all the availability for local rinks in one place, like when I want to get movie tickets."</p><cite>Participant 2, adult league player</cite></blockquote></li>
+    <li><blockquote><p>"Convenience with registration would supersede commute time."</p><cite>Parent 1</cite></blockquote></li>
+    <li><blockquote><p>"Parents sometimes just copy all scheduling info into BenchApp for ease of use and common ground."</p><cite>Parent 3</cite></blockquote></li>
+    <li><blockquote><p>"Almost didn't go — the sessions were full."</p><cite>Casual skater</cite></blockquote></li>
+  </ul>
+
+  <h3>What the research told me</h3>
+  <ul>
+    <li><strong>People want "movie tickets for ice."</strong> Four separate people described the same idea without being asked.</li>
+    <li><strong>Friction scares off newcomers more than regulars.</strong> Committed players push through. First-timers give up. That makes it a growth problem, not just an annoyance.</li>
+    <li><strong>Manual schedule entry is where teams fall apart.</strong></li>
+  </ul>
+
+  <h3>Competitive audit</h3>
+  <p>I compared the booking platforms rinks use (CommunityPass, rec.us, EZFacility, SportsEngine, DaySmart Dash), BenchApp for team coordination, and similar apps like Volo Sports.</p>
+  <ul>
+    <li>None of them show sessions from more than one rink.</li>
+    <li>Even the best one shows sessions you can't book, including ones that have already ended.</li>
+    <li>No ice-specific app combines the official schedule with team attendance. Volo does, but only at its own venues.</li>
+  </ul>
+  {% figure "img/rinkside/competitive-matrix.png",
+    "Feature matrix comparing seven competitors and Rinkside across 15 capabilities. Rinkside is the only column with every row checked, including aggregating multiple rinks and showing availability before login.",
+    "<strong>Feature matrix.</strong> Everyone builds for the rink. Nobody builds for the skater.",
+    "", true %}
+</section>
+
+<section aria-labelledby="personas">
+  <h2 id="personas"><span class="eyebrow">03</span>Personas &amp; journey map</h2>
+  <p>Both personas are built from interviews. Their names and ages are made up. Their frustrations are real.</p>
+
+  <div class="persona-grid">
+    <article class="persona" aria-labelledby="p-easton">
+      <h3 id="p-easton">Easton, 31</h3>
+      <p>Plays in a Tuesday-night adult league, plus drop-in stick &amp; puck. Very comfortable with apps.</p>
+      <h4>Goals</h4>
+      <ul>
+        <li>See his team's schedule and confirm he's coming, fast.</li>
+        <li>Find last-minute drop-in when he wants extra ice.</li>
+        <li>Not get surprised by a rink change or a Zamboni delay.</li>
+      </ul>
+      <h4>Frustrations</h4>
+      <ul>
+        <li>No way to know if a nearby drop-in has room without calling.</li>
+        <li>His captain types every game in by hand, so future games say "To be determined."</li>
+        <li>When the league changes a time, the team app still shows the old one.</li>
+        <li>Teammates don't say if they're in until the last minute.</li>
+      </ul>
+      <h4>In his words</h4>
+      <p>"It would be great if I could see all the availability for local rinks in one place, like when I want to get movie tickets." <span class="card__meta">(Participant 2)</span></p>
+    </article>
+
+    <article class="persona" aria-labelledby="p-maria">
+      <h3 id="p-maria">Maria, 38</h3>
+      <p>Works full time. Parent of one or two kids, ages 4–14, who skate at several rinks with different associations.</p>
+      <h4>Goals</h4>
+      <ul>
+        <li>Sign the kids up without hunting across organizations.</li>
+        <li>Know right away if a session is full or cancelled.</li>
+        <li>Keep track of who's skating when.</li>
+      </ul>
+      <h4>Frustrations</h4>
+      <ul>
+        <li>Four or more separate organizations every season.</li>
+        <li>Registration sites crash when spots open.</li>
+        <li>Messages only reach one parent.</li>
+        <li>Entering the same info into multiple apps.</li>
+      </ul>
+      <h4>In her words</h4>
+      <p>"Convenience with registration would supersede commute time."</p>
+    </article>
+  </div>
+
+  <h3>The journey today</h3>
+  <p>A Google search lands on a rink's homepage, not its schedule. Then a login wall, a dead end, and "call to confirm." Most people give up or pick up the phone.</p>
+  {% figure "img/rinkside/journey-as-is.png",
+    "As-is journey map for booking drop-in hockey across three rinks, in seven stages from trigger to book. The mood line drops through investigate, navigate and authenticate, and pain points cluster at the login and booking steps.",
+    "<strong>As-is journey:</strong> 13+ taps and three different websites, with the lowest point at the login wall.",
+    "", true %}
+
+  <h3>The journey I designed for</h3>
+  <p>Open the app and see every nearby session today in one list, with live spot counts. Book in a few taps, no membership needed.</p>
+  {% figure "img/rinkside/journey-to-be.png",
+    "To-be journey map for the same task in Rinkside: taps drop from 13 or more to 5, domains from 3 to 1, and the mood line rises steadily from trigger to repeat.",
+    "<strong>To-be journey:</strong> the same task in 5 taps, in one place.",
+    "", true %}
+</section>
+
+<section aria-labelledby="ideation">
+  <h2 id="ideation"><span class="eyebrow">04</span>Ideation</h2>
+
+  <h3>How might we…</h3>
+  <ul>
+    <li>…show a skater, on one screen, every session they can actually book today?</li>
+    <li>…let someone try ice for the first time without a membership or a season commitment?</li>
+    <li>…turn a 13-tap, three-website task into a few taps in one place?</li>
+    <li>…make a team's schedule show up without anyone typing it in?</li>
+  </ul>
+
+  <h3>Eight ways to answer one question</h3>
+  <p>I sketched eight different main screens, all answering "when can I skate, and is there room?"</p>
+  {% figure "img/rinkside/concept-sketches.png",
+    "Eight wireframe concepts in a grid: chronological list (selected), map first, calendar grid (rejected), Tonight single answer, swipe deck (rejected), search first, rink first (rejected), and personalized feed (deferred).",
+    "<strong>The eight concepts.</strong> The chronological list won.",
+    "", true %}
+
+  <h3>What I picked, and why</h3>
+  <p>A <strong>chronological list of sessions</strong> as the backbone, with a "Tonight" card on top, a map you can switch to, and search always within reach. It answers the question directly, it's the easiest to scan, and it still works when a rink has only a few sessions listed.</p>
+
+  <h3>What I dropped</h3>
+  <ul>
+    <li><strong>Calendar grid.</strong> It's what the current systems do, and it's dense and hard to read on a phone.</li>
+    <li><strong>Swipe deck.</strong> Fun, but wrong for a quick, practical task.</li>
+    <li><strong>Rink first.</strong> It repeats the mental model that's already failing people.</li>
+    <li><strong>Replacing BenchApp outright.</strong> Teams already like it for chat and polls. Asking a whole roster to switch apps is a big ask, so Rinkside works alongside it.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="wireframes">
+  <h2 id="wireframes"><span class="eyebrow">05</span>Wireframes &amp; prototype</h2>
+
+  <h3>How the app is organized</h3>
+  <p>Six tabs: Home, My Schedule, My Teams, Explore, Saved, and Profile. Every screen follows the same order: one hero item, a scannable list, then filters. I merged "Rinks" and "Activities" into one Explore tab with a toggle, because research showed people getting lost between competing tabs.</p>
+  {% figure "img/rinkside/sitemap.png",
+    "Sitemap: onboarding leads to six primary tabs (Home, My Schedule, My Teams, Explore, Saved, Profile), each with second-level screens, and Checkout reached from Session Detail.",
+    "<strong>Sitemap.</strong> Nothing is more than three taps from Home.",
+    "", true %}
+
+  <h3>From lo-fi to hi-fi</h3>
+  <p>I wireframed in Figma, then built the hi-fi prototype as clickable HTML so every screen could be wired together and tested on a real phone.</p>
+
+  <h4>Home</h4>
+  <ul class="compare" role="list">
+    <li>{% figure "img/rinkside/lofi-home.png", "Lo-fi Home wireframe: greeting, check-in strip, my schedule card, rinks near me, my teams and activities near me, with a five-tab bar.", "Lo-fi wireframe", "phone" %}</li>
+    <li>{% figure "img/rinkside/hifi-home.png", "Hi-fi Home screen: Find your next session, a search bar, a green Check In card for tonight's session, recurring sessions and My schedule.", "Hi-fi prototype", "phone" %}</li>
+  </ul>
+
+  <h4>Explore</h4>
+  <ul class="compare" role="list">
+    <li>{% figure "img/rinkside/lofi-explore.png", "Lo-fi Explore wireframe: search, an Activities / Rinks / Leagues toggle, and a list of session cards.", "Lo-fi wireframe", "phone" %}</li>
+    <li>{% figure "img/rinkside/hifi-explore.png", "Hi-fi Explore screen: the Activities / Rinks / Leagues toggle, filter chips, a Live now card and sessions with spots left.", "Hi-fi prototype", "phone" %}</li>
+  </ul>
+
+  <h4>Checkout</h4>
+  <ul class="compare" role="list">
+    <li>{% figure "img/rinkside/lofi-checkout.png", "Lo-fi Checkout wireframe: booking for you, an I'm a goalie toggle noting goalies play free, a price breakdown and a Pay $12.99 and Book button.", "Lo-fi wireframe", "phone" %}</li>
+    <li>{% figure "img/rinkside/hifi-checkout.png", "Hi-fi Checkout: Stick and Puck with 8 spots left, who's going, an I'm a goalie toggle, session price $12.00 plus a $0.99 fee for $12.99 total.", "Hi-fi prototype", "phone" %}</li>
+  </ul>
+
+  <p>The built app, at phone and desktop size, is under <a href="#final">Final design</a>.</p>
+</section>
+
+<section aria-labelledby="testing">
+  <h2 id="testing"><span class="eyebrow">06</span>Usability testing</h2>
+
+  <div class="callout callout--progress">
+    <p class="callout__title">In progress</p>
+    <p>I chose to build a working alpha first and test with the real app instead of a prototype. Two hockey teams are using it now, and I'm collecting their feedback over the next few weeks. I'll add the results here.</p>
+  </div>
+
+  <h3>The plan</h3>
+  <ul>
+    <li><strong>Watching people use it (3–5 people, about 30 minutes each).</strong> I give someone a task, like "find out if there's an open session tonight and how many spots are left," and ask them to think out loud while I watch where they hesitate.</li>
+    <li><strong>A follow-up survey (8–10 people)</strong> with a standard usability score, so I can compare rounds.</li>
+  </ul>
+  <p>The tasks check whether the problems from research are actually solved: Can you tell if a session has room within 10 seconds? Do you hit any dead ends? Can you join your team from an invite and answer In or Out? Booking, cancelling, and the goalie fee come later. The alpha sends people to the rink's own sign-up page until rinks join (see Final design).</p>
+  <p>Feedback from the alpha comes in through the app's built-in feedback form.</p>
+
+  <h3>Early signal</h3>
+  <p>Before the alpha, two people tried the prototype informally. Both said, separately, that it was <strong>too dark</strong>. One also said it was "easy to use, very clear to navigate." Two people saying the same thing unprompted was enough for me to act on (see Iterations).</p>
+</section>
+
+<section aria-labelledby="iterations">
+  <h2 id="iterations"><span class="eyebrow">07</span>Iterations</h2>
+  <p>So far, these changes came from research findings, an accessibility audit, and early feedback. Changes from the alpha testing will be added after it wraps up.</p>
+
+  <ul class="change-list" role="list">
+    <li>
+      <p class="change__what">Checkout: goalies play free</p>
+      <p>The first checkout wireframe treated everyone the same. I rebuilt it with an "I'm a goalie" toggle that waives the fee, and separate spot counts for skaters and goalies.</p>
+      <p class="change__why">Why: research showed rinks let goalies skate free and track them separately.</p>
+    </li>
+    <li>
+      <p class="change__what">Check-in: from "show at the door" to self check-in</p>
+      <p>I planned a confirmation screen to show staff at the door. I changed it to a check-in button in the app.</p>
+      <p class="change__why">Why: none of the four real check-in processes I observed involved showing a phone.</p>
+    </li>
+    <li>
+      <p class="change__what">Notifications: let people choose</p>
+      <p>I planned text messages only. I changed it so each person picks how they hear from the app.</p>
+      <p class="change__why">Why: my third parent interview split the preference: two wanted texts, one wanted email.</p>
+    </li>
+    <li>
+      <p class="change__what">Theme: from dark-only to three themes</p>
+      <p>The prototype was dark-only. The alpha ships with Light, Dark, and Warm themes, and each one is checked against WCAG contrast.</p>
+      <p class="change__why">Why: both informal testers said it was too dark. Rinks are also bright, and a dark screen is harder to read there.</p>
+    </li>
+    <li>
+      <p class="change__what">Text contrast fixed across every screen</p>
+      <p>Secondary text went from #3d6070 to #7aa3b8, raising contrast from 2.65:1 to 6.63:1.</p>
+      <p class="change__why">Why: my own accessibility audit (next section).</p>
+    </li>
+  </ul>
+</section>
+
+<section aria-labelledby="accessibility">
+  <h2 id="accessibility"><span class="eyebrow">08</span>Accessibility</h2>
+  <p>I'd assumed the prototype met WCAG AA. When I actually measured it, it didn't: the audit found four high-severity issues.</p>
+
+  {% figure "img/rinkside/accessibility-audit.png",
+    "Accessibility audit summary: 4 high, 2 medium and 1 low severity findings and 1 positive. Contrast bars show text-dim failing at 2.65:1 and 2.04:1 while other text passes; touch targets show the save button at about 26 by 26 pixels, failing the 44-pixel minimum.",
+    "<strong>The audit.</strong> Every ratio computed from the real color values, not estimated.",
+    "", true %}
+
+  <ul class="change-list" role="list">
+    <li>
+      <p class="change__what">Readable secondary text</p>
+      <p>Raised the dim text color from 2.65:1 to 6.63:1 contrast.</p>
+      <p class="change__why">Helps: people with low vision, and anyone reading their phone under bright rink lights.</p>
+    </li>
+    <li>
+      <p class="change__what">Visible keyboard focus</p>
+      <p>Added a clear focus outline to every control.</p>
+      <p class="change__why">Helps: people who navigate with a keyboard or switch device.</p>
+    </li>
+    <li>
+      <p class="change__what">Bigger tap targets</p>
+      <p>The save (heart) button was about 26×26 px, well under the 44×44 px minimum. The audit flagged it for more padding.</p>
+      <p class="change__why">Helps: people with limited dexterity, and anyone tapping with gloves on.</p>
+    </li>
+  </ul>
+
+  <h3>In the alpha</h3>
+  <ul>
+    <li><strong>Three themes, all checked.</strong> Every text color in Light, Dark, and Warm measures at least 4.5:1 on every background. The check also caught a power-play badge at 1.9:1, which I fixed.</li>
+    <li><strong>Every control has a name.</strong> All 117 tappable elements have a role and a label for screen readers, and errors and confirmations like "Link copied" are read out loud.</li>
+    <li><strong>Big tap targets.</strong> Buttons and inputs are at least 48 points tall, and small icon buttons get a bigger tap area.</li>
+    <li><strong>Text grows with the phone's settings,</strong> and team banners grow instead of cutting off text.</li>
+    <li><strong>No gesture-only actions.</strong> The one long-press (reporting a chat message) is also available as a screen reader action.</li>
+  </ul>
+  <p>Helps: people with low vision, people who use VoiceOver or TalkBack, people with limited dexterity, and anyone squinting at their phone under rink lights.</p>
+
+  <h3>Still to do</h3>
+  <p>All of this comes from reviewing the code, not from testing on a device. Next is a real VoiceOver and TalkBack pass, a check at the largest text size and in landscape, and a color-blindness check on the In / Maybe / Out colors.</p>
+</section>
+
+<section aria-labelledby="final">
+  <h2 id="final"><span class="eyebrow">09</span>Final design: the alpha</h2>
+
+  <p>I'm launching Rinkside in four steps, and the alpha is step one. Without partner rinks there's nothing to book or pay for inside the app yet, so step one focuses on what skaters can use today: finding sessions near them and keeping track of their team.</p>
+
+  <ol>
+    <li><strong>Skater app (now):</strong> find sessions near you and run your team. Sign-ups still happen on each rink's own website.</li>
+    <li><strong>Free founders' version of <a href="/design/rinkside-b2b/">Rinkside for rinks</a>:</strong> partner rinks publish sessions once. In-app booking and payments start here, with a small transaction fee.</li>
+    <li><strong>Tournaments and associations</strong> on both the skater and rink sides.</li>
+    <li><strong>Premium subscriptions</strong> for rinks.</li>
+  </ol>
+
+  <h3>What changed from the prototype</h3>
+  <ul>
+    <li><strong>Booking hands off to the rink.</strong> The prototype's checkout, fees, waitlist, and refunds wait for step two. In the alpha you tap through to the rink's sign-up page, then add the session to your schedule.</li>
+    <li><strong>The team side grew.</strong> Captains invite teammates with a text link. Players answer In or Out. Schedules import from a league link, calendar, or screenshot (read by the Claude API). Scores, standings, and stats fill in from the league's site, and players get an alert when the league moves a game.</li>
+    <li><strong>Sessions from 73 rinks,</strong> pulled from the rinks' own public calendars and websites.</li>
+    <li><strong>Three themes</strong> (Light, Dark, Warm), in response to "too dark."</li>
+  </ul>
+
+  <ul class="compare" role="list">
+    <li>{% figure "img/rinkside/app-home-mobile.png", "Alpha Home screen: greeting, the user's team with its next game, a My schedule row of upcoming games with In and Out buttons, and rinks near me.", "<strong>Home.</strong> Your team's next game, with In / Out right there.", "phone" %}</li>
+    <li>{% figure "img/rinkside/app-explore-mobile.png", "Alpha Explore screen: Activities and Rinks tabs, session-type filters, a Google map of rink pins around Littleton, Colorado, and the closest rink.", "<strong>Explore.</strong> Rinks and sessions near you, on a map or a list.", "phone" %}</li>
+    <li>{% figure "img/rinkside/app-team-mobile.png", "Alpha team page for Ice Wolves: a Manage Team button for the captain, record 2-0-1, 1st in the standings, standings and stats links, and the roster.", "<strong>Team.</strong> Record, standings, and stats fill in on their own.", "phone" %}</li>
+  </ul>
+
+  <h3>On a computer</h3>
+  <p>The same app runs on the web, in a centered column on wide screens.</p>
+  {% figure "img/rinkside/app-home-desktop.png", "The alpha Home screen in a desktop browser: the same team card, schedule row with In and Out buttons, and rinks section in a centered column with the tab bar along the bottom.", "<strong>Home</strong> on desktop.", "", true %}
+  {% figure "img/rinkside/app-explore-desktop.png", "The alpha Explore screen in a desktop browser: filters, the rink map, and the closest rinks in a centered column.", "<strong>Explore</strong> on desktop.", "", true %}
+
+  <h3>The main flow: joining your team</h3>
+  <ol>
+    <li>The captain taps "Text it to teammates." The text has an invite link.</li>
+    <li>A teammate taps the link. It opens the app, or offers the download.</li>
+    <li>They sign up with email, Google, Apple, or Facebook. The invite is remembered through sign-up.</li>
+    <li>The team opens with the code filled in. They pick player or goalie and join.</li>
+    <li>They see the next game and tap In or Out.</li>
+    <li>On game day they get a reminder, plus an alert if the league moves the game.</li>
+    <li>After the game, the score, standings, and their stats fill in from the league's site.</li>
+  </ol>
+  <p>The clickable prototype still shows the full booking flow planned for step two.</p>
+  <p><a class="button" href="https://beaudoi1.github.io/rinkside-prototype/rinkside-welcome.html">Try the prototype</a></p>
+
+  <h3>Design choices, and why</h3>
+  <ul>
+    <li><strong>Every nearby session in one list or map,</strong> because people want "movie tickets for ice."</li>
+    <li><strong>In / Out right on the Home screen,</strong> because captains spend their week chasing replies.</li>
+    <li><strong>Schedules imported, not typed,</strong> because a volunteer retyping the league schedule is where teams fall apart.</li>
+    <li><strong>Alerts when the league changes a game,</strong> because stale times in team apps were a real frustration.</li>
+    <li><strong>One Explore tab with a toggle,</strong> because separate tabs confused people.</li>
+    <li><strong>Booking stays on the rink's site for now,</strong> so I'm not showing prices or spots I can't guarantee until rinks are partners.</li>
+  </ul>
+
+  <h3>Back to the problems</h3>
+  <ol>
+    <li><strong>Can't see what's available:</strong> Explore shows sessions from 73 rinks in one place, on a map or a list. Live spot counts need partner rinks (step two).</li>
+    <li><strong>No single source of truth:</strong> one list across rinks, pulled from their own calendars until rinks publish directly through Rinkside.</li>
+    <li><strong>Casual skaters left out:</strong> anyone can find public skate, stick &amp; puck, and drop-in near them without joining anything. Booking without a membership comes with in-app booking in step two.</li>
+    <li><strong>Schedules depend on a volunteer:</strong> import once from a link or screenshot, and scores and standings fill in on their own.</li>
+  </ol>
+
+  <h3>Design system</h3>
+  <p>The prototype's tokens and components became the starting point for the app's three themes.</p>
+  {% figure "img/rinkside/design-system-colors.png",
+    "Color tokens: four dark background shades, a sky-blue accent, an orange hot accent, a purple accent, and three text colors (primary, muted, dim).",
+    "<strong>Colors</strong> (prototype).",
+    "", true %}
+  {% figure "img/rinkside/design-system-components.png",
+    "Components: primary and secondary buttons, status pills (Open, Filling up, Full, Notice), a session card, the patron bottom nav, a toast, and a loading skeleton.",
+    "<strong>Components</strong> (prototype).",
+    "", true %}
+</section>
+
+<section aria-labelledby="takeaways">
+  <h2 id="takeaways"><span class="eyebrow">10</span>Takeaways</h2>
+
+  <h3>What I learned</h3>
+  <ul>
+    <li>Research can overturn your own assumptions. I was sure check-in meant showing a phone at the door. None of the four real check-ins I watched worked that way.</li>
+    <li>Rink staff and players describe the same problem in completely different words.</li>
+    <li>Friction keeps newcomers out much more than it bothers regulars.</li>
+  </ul>
+
+  <h3>What surprised me</h3>
+  <ul>
+    <li>Parents are already doing this job by hand, copying schedules between apps.</li>
+    <li>My own prototype failed my accessibility check. I'd assumed it passed.</li>
+    <li>I misread one interview: what I took as a request was really a complaint, and it flipped a finding.</li>
+  </ul>
+
+  <h3>What I'd do differently</h3>
+  <ul>
+    <li>Test with users before starting the build. I started engineering alongside testing to get to a real alpha sooner, and I'd lock the design first next time.</li>
+    <li>Base every persona on evidence from the start.</li>
+  </ul>
+
+  <h3>What's next</h3>
+  <ul>
+    <li>Finish alpha testing with the two teams and add the results here.</li>
+    <li>Run the VoiceOver, TalkBack, and color-blindness checks on real devices.</li>
+    <li>Step two: bring rinks on board with <a href="/design/rinkside-b2b/">Rinkside for rinks</a>, and turn on in-app booking.</li>
+  </ul>
+
+  <div class="callout">
+    <p class="callout__title">Want to talk about Rinkside?</p>
+    <p>Email me at <a href="mailto:{{ site.email }}">{{ site.email }}</a> or find me on <a href="{{ site.linkedin }}">LinkedIn</a>.</p>
+  </div>
+  <p><a class="button button--ghost" href="https://beaudoi1.github.io/rinkside-prototype/rinkside-welcome.html">Try the prototype</a></p>
+</section>

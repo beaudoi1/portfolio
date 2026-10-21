@@ -1,0 +1,15 @@
+node_modules/
+_site/
+.cache/
+
+# Working files: stay on this computer, never in the public repo
+project-assets/
+assets/
+.claude/
+site-brief.md
+UX-Design-Project-SOP.md
+ux-case-study-guide.md
+ux-job-search-module-summary.md
+wix-capture.md
+BUILD-PLAN.md
+TODO.md

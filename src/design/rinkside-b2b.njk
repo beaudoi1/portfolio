@@ -1,0 +1,70 @@
+---
+layout: case-study.njk
+title: Rinkside for rinks
+eyebrow: UX case study · B2B · In progress
+description: "Rinkside B2B, in progress: an operator platform where rink staff enter a session once and it shows up everywhere. Research and define phase by Aaron Beaudoin."
+lede: "The rink side of Rinkside: enter a session once, and it shows up everywhere it needs to."
+meta:
+  - label: My role
+    value: "Solo designer and founder: research, UX, and product direction."
+  - label: Timeline
+    value: "August 2026 – now"
+  - label: Platforms
+    value: "Web dashboard + app, on the same backend as the skater app"
+  - label: Status
+    value: "In progress. Research and define done; second round of rink interviews next, then lo-fi wireframes."
+  - label: Last updated
+    value: "October 2026"
+links:
+  - label: Rinkside for rinks
+    url: https://rinksideapp.com
+  - label: The skater app case study
+    url: /design/rinkside-b2c/
+---
+
+
+<section aria-labelledby="b2b-problem">
+  <h2 id="b2b-problem">The problem</h2>
+  <p>The skater app only works if the schedule is right. Today, rink staff keep the same schedule in two places by hand, re-key game results at the end of the night, and check people in on paper.</p>
+
+  <div class="callout">
+    <p class="callout__title">Problem statement</p>
+    <p>A rink manager needs to enter a session once and have it appear everywhere, because today the same schedule is kept in two places by hand.</p>
+  </div>
+
+  <h3>What I've heard so far</h3>
+  <ol>
+    <li><strong>The schedule gets typed into every system separately</strong> (2 of 3 rinks).</li>
+    <li><strong>Game results are re-keyed at the end of the night</strong> (3 of 3).</li>
+    <li><strong>Check-in and waivers are on paper at the front desk</strong> (3 of 3).</li>
+    <li><strong>Rinks can't see how full their sessions run</strong> (3 of 3).</li>
+    <li><strong>Every rink has its own rules</strong> for waivers, memberships, goalies, and cancellations, so rules have to be settings, not hard-coded (3 of 3).</li>
+  </ol>
+</section>
+
+<section aria-labelledby="b2b-research">
+  <h2 id="b2b-research">Research so far</h2>
+  <p>I interviewed three rink staff in person: a front desk employee, a front desk manager, and a rink manager at a university rink. I also audited 11 operator systems from their public pages and reviews.</p>
+
+  <ul class="quote-list" role="list">
+    <li><blockquote><p>"I only need to enter it once, and it updates everywhere it needs to."</p><cite>Operator 1, front desk</cite></blockquote></li>
+    <li><blockquote><p>"I would love to only use 1 system instead of 2."</p><cite>Operator 2, front desk manager</cite></blockquote></li>
+  </ul>
+
+  <h3>What surprised me</h3>
+  <ul>
+    <li><strong>Staff describe chores, not features.</strong> Re-keying results at night is the one thing all three do.</li>
+    <li><strong>Nobody reported a schedule-accuracy problem.</strong> None of them tell customers to call and confirm. On the skater side, that was a big complaint, so the pitch to rinks has to be about saving staff time, not fixing accuracy.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="b2b-now">
+  <h2 id="b2b-now">Where I am now</h2>
+  <p><strong>Done:</strong> the problem definition, an as-is journey map of a rink's week, 85 user stories ranked by priority, 15 success criteria, and 14 concepts scored.</p>
+  <p><strong>Next:</strong> a second round of interviews at three more rinks, then Crazy 8s and lo-fi wireframes.</p>
+
+  {% figure "img/rinkside/b2b-dashboard-concept.png",
+    "Early operator dashboard concept: a sidebar with schedule, sessions, check-in and registrations, summary cards for registrations, revenue, sessions and waitlists, and today's schedule with capacity bars.",
+    "An early dashboard concept I made before the B2B research. It's a starting point, and it will change as I design from what rinks told me.",
+    "", true %}
+</section>

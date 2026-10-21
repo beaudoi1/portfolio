@@ -1,0 +1,24 @@
+{#- Card for a project or page. Use:
+    {% set c = project %}{% set featured = false %}{% include "card.njk" %}
+    `c` has title, url, and optional image, imageAlt, imageContain, summary,
+    summaryProposed, statusLabel, status, platform. -#}
+<article class="card{% if featured %} card--feature{% endif %}">
+  <div class="card__media{% if c.imageContain %} card__media--contain{% endif %}{% if c.imageTop %} card__media--top{% endif %}">
+    {%- ifAsync c.image -%}
+      {#- Alt is usually "" here: the title link already names the card. -#}
+      {% image c.image, c.imageAlt or "", "(min-width: 52rem) 40rem, 100vw", [480, 800, 1200] %}
+    {%- else -%}
+      <p class="card__missing">{% todo "cover image for " + c.title %}</p>
+    {%- endif -%}
+  </div>
+  <div class="card__body">
+    <h{{ headingLevel or 3 }} class="card__title"><a href="{{ c.url }}">{{ c.title }}</a></h{{ headingLevel or 3 }}>
+    {%- if c.statusLabel %}<p class="status status--{{ c.status }}"><span class="visually-hidden">Status: </span>{{ c.statusLabel }}</p>{% endif %}
+    {%- if c.platform %}<p class="card__meta">{{ c.platform }}</p>{% endif %}
+    <p class="card__text">
+      {%- if c.summary and c.summaryProposed -%}{% proposed %}{{ c.summary }}{% endproposed %}
+      {%- elif c.summary -%}{{ c.summary }}
+      {%- else -%}{% todo "one-line summary" %}{%- endif -%}
+    </p>
+  </div>
+</article>

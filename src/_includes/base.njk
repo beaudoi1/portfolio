@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- set pageTitle = (title + " | " + site.name) if title and title != site.name else site.name + " | UX Designer" %}
+  <title>{{ pageTitle }}</title>
+  {%- if description %}
+  <meta name="description" content="{{ description }}">
+  {%- endif %}
+  {%- if draft %}
+  <meta name="robots" content="noindex">
+  {%- endif %}
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ pageTitle }}">
+  {%- if description %}
+  <meta property="og:description" content="{{ description }}">
+  {%- endif %}
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:image" content="{{ site.url }}/files/og-image.jpg">
+  <meta property="og:image:alt" content="Aaron Beaudoin's ATB logo on a starfield">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0b0d14">
+  <link rel="icon" type="image/png" sizes="32x32" href="/files/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/files/favicon-48.png">
+  <link rel="apple-touch-icon" href="/files/apple-touch-icon.png">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="{{ bodyClass }}">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="wordmark" href="/"{% if page.url == "/" %} aria-current="page"{% endif %}><img class="wordmark__logo" src="/files/logo-small.jpg" alt="" width="64" height="34">{{ site.name }}</a>
+      <nav aria-label="Main">
+        <ul class="nav">
+          {%- for item in site.nav %}
+          <li><a href="{{ item.url }}"{% if page.url == item.url or (item.url != "/" and page.url.startsWith(item.url)) %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+          {%- endfor %}
+          {%- if site.resume %}
+          <li><a href="{{ site.resume }}">Resume <span class="visually-hidden">(PDF)</span></a></li>
+          {%- endif %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    {%- if draft %}
+    <p class="draft-banner">Draft: only visible in local preview. Not published.</p>
+    {%- endif %}
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <ul class="footer-links">
+        <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+        <li><a href="{{ site.linkedin }}">LinkedIn</a></li>
+        <li><a href="{{ site.github }}">GitHub</a></li>
+        {%- if site.resume %}
+        <li><a href="{{ site.resume }}">Resume <span class="visually-hidden">(PDF)</span></a></li>
+        {%- endif %}
+        <li><a href="/accessibility/">Accessibility</a></li>
+      </ul>
+      <p class="footer-meta">© {{ site.year }} {{ site.name }} · {{ site.location }}</p>
+    </div>
+  </footer>
+</body>
+</html>

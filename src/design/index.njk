@@ -1,0 +1,29 @@
+---
+layout: base.njk
+title: Design
+description: UX design case studies by Aaron Beaudoin, plus brand and marketing work.
+---
+<div class="wrap">
+  <header class="page-head">
+    <p class="eyebrow">Portfolio</p>
+    <h1>Design</h1>
+  </header>
+
+  <section class="section" aria-labelledby="ux-heading">
+    <div class="section__head"><h2 id="ux-heading">UX case studies</h2></div>
+    <ul class="card-grid" role="list">
+      {%- asyncEach p in projects %}{% ifAsync p.group == "ux" %}
+      <li>{% set c = p %}{% set featured = false %}{% set headingLevel = 3 %}{% include "card.njk" %}</li>
+      {%- endif %}{% endeach %}
+    </ul>
+  </section>
+
+  <section class="section" aria-labelledby="brand-heading">
+    <div class="section__head"><h2 id="brand-heading">Brand &amp; marketing work</h2></div>
+    <ul class="card-grid" role="list">
+      {%- asyncEach p in projects %}{% ifAsync p.group == "brand" %}
+      <li>{% set c = p %}{% set featured = false %}{% set headingLevel = 3 %}{% include "card.njk" %}</li>
+      {%- endif %}{% endeach %}
+    </ul>
+  </section>
+</div>
