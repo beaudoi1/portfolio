@@ -70,6 +70,19 @@ export default function (eleventyConfig) {
     }
   });
 
+  // ---- External links and PDFs open in a new tab, and say so (WCAG G201):
+  // a visible ↗ plus "(opens in a new tab)" for screen readers.
+  eleventyConfig.addTransform("external-links", function (content) {
+    if (!this.page.outputPath?.endsWith(".html")) return content;
+    return content.replace(
+      /<a\b([^>]*?)\shref="((?:https?:\/\/(?!aaronbeaudoin\.com)[^"]+)|(?:\/files\/[^"]+\.pdf))"([^>]*)>([\s\S]*?)<\/a>/g,
+      (match, before, href, after, inner) => {
+        if (/\starget=/.test(before + after)) return match;
+        return `<a${before} href="${href}"${after} target="_blank" rel="noopener">${inner}<span class="visually-hidden"> (opens in a new tab)</span><span class="ext-icon" aria-hidden="true">↗</span></a>`;
+      }
+    );
+  });
+
   // ---- Responsive images
   // {% image "img/research/x.jpg", "Alt text", "(min-width: 60rem) 50vw, 100vw" %}
   // Pass alt "" only for purely decorative images.

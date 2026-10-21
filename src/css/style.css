@@ -477,3 +477,6 @@ th { color: var(--accent); font-size: 0.8125rem; letter-spacing: 0.04em; text-tr
 .skills { display: grid; gap: 1rem; margin: 0; }
 .skills dt { font-weight: 700; color: var(--text); }
 .skills dd { margin: 0.2rem 0 0; color: var(--text-muted); }
+
+/* ↗ after links that open in a new tab */
+.ext-icon { display: inline-block; margin-left: 0.2em; font-size: 0.85em; line-height: 1; text-decoration: none; }
