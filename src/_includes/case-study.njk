@@ -14,6 +14,19 @@ layout: base.njk
   {%- endif %}
 
   <div class="panel">
+    {%- if glance %}
+    <div class="glance">
+      <h2 class="glance__title">At a glance</h2>
+      <dl class="glance__list">
+        {%- for g in glance %}<div><dt>{{ g.label }}</dt><dd>{{ g.value | safe }}</dd></div>{% endfor %}
+      </dl>
+    </div>
+    {%- endif %}
+    {%- if stats %}
+    <ul class="stats" role="list">
+      {%- for st in stats %}<li><span class="stats__value">{{ st.value }}</span> <span class="stats__label">{{ st.label }}</span></li>{% endfor %}
+    </ul>
+    {%- endif %}
     {%- if meta %}
     <dl class="cs-meta">
       {%- for m in meta %}
@@ -45,4 +58,5 @@ layout: base.njk
       </div>
     </div>
   </div>
+  {% include "project-nav.njk" %}
 </div>

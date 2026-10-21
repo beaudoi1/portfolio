@@ -39,6 +39,9 @@ async function imageHtml(src, alt, sizes = "100vw", widths = [480, 800, 1200, 16
 }
 
 export default function (eleventyConfig) {
+  // True in local preview, false in the live build. Use for preview-only placeholders.
+  eleventyConfig.addGlobalData("isPreview", !isBuild());
+
   // ---- Drafts: shown when previewing, left out of the production build.
   eleventyConfig.addPreprocessor("drafts", "*", (data) => {
     if (data.draft && isBuild()) return false;

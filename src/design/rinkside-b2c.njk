@@ -17,6 +17,21 @@ meta:
     value: "Figma · FigJam · Google Forms · HTML/CSS/JS prototype · Claude Code · Claude API · Expo / React Native · Next.js · Supabase · Clerk · Vercel"
   - label: Status
     value: "Alpha (step 1 of 4). Testing with two hockey teams in progress."
+glance:
+  - label: The problem
+    value: "Skaters can't tell which rink sessions they can actually book. Every rink uses different software, hides open spots behind a login, and still says to call."
+  - label: What I did
+    value: "Researched it at real rinks, with interviews, a survey, and a competitive audit. Then I designed and prototyped a one-app fix and built a working alpha with Claude Code."
+  - label: Where it stands
+    value: "Android and iOS alpha (step 1 of 4), being tested by two hockey teams. Results coming soon."
+stats:
+  - { value: "0 of 3", label: "rinks let an adult book drop-in on a phone" }
+  - { value: "13 → 5", label: "taps to book a session, in my prototype" }
+  - { value: "73", label: "rinks' sessions in one app" }
+  - { value: "2", label: "hockey teams testing the alpha" }
+next:
+  title: Rinkside for rinks
+  url: /design/rinkside-b2b/
 links:
   - label: Try the prototype
     url: https://beaudoi1.github.io/rinkside-prototype/rinkside-welcome.html
@@ -37,7 +52,7 @@ toc:
 
 
 <section aria-labelledby="problem">
-  <h2 id="problem"><span class="eyebrow">01</span>The problem</h2>
+  <h2 id="problem"><span class="eyebrow">01 · The problem</span>Finding ice time shouldn't take five websites</h2>
 
   <p>I play adult league and drop-in hockey in Colorado. Finding ice time means checking a different website for every rink, logging in to see if there's room, and often still being told to call. I wanted one place where a skater can see every session they can actually book, right now.</p>
 
@@ -67,15 +82,17 @@ toc:
 </section>
 
 <section aria-labelledby="research">
-  <h2 id="research"><span class="eyebrow">02</span>Research</h2>
+  <h2 id="research"><span class="eyebrow">02 · Research</span>0 of 3 rinks let me book on a phone</h2>
 
-  <h3>What I wanted to learn</h3>
-  <ul>
-    <li>Is there a real need, and who has it?</li>
-    <li>How do people find out when they can skate, and how do they sign up?</li>
-    <li>Where does the booking journey break?</li>
-    <li>What do rinks need for this to work?</li>
-  </ul>
+  <details class="more">
+    <summary>What I wanted to learn</summary>
+    <ul>
+      <li>Is there a real need, and who has it?</li>
+      <li>How do people find out when they can skate, and how do they sign up?</li>
+      <li>Where does the booking journey break?</li>
+      <li>What do rinks need for this to work?</li>
+    </ul>
+  </details>
 
   <h3>How I found out, and why</h3>
   <ul>
@@ -126,7 +143,7 @@ toc:
 </section>
 
 <section aria-labelledby="personas">
-  <h2 id="personas"><span class="eyebrow">03</span>Personas &amp; journey map</h2>
+  <h2 id="personas"><span class="eyebrow">03 · Personas &amp; journey map</span>Players and parents hit the same wall</h2>
   <p>Both personas are built from interviews. Their names and ages are made up. Their frustrations are real.</p>
 
   <div class="persona-grid">
@@ -187,7 +204,7 @@ toc:
 </section>
 
 <section aria-labelledby="ideation">
-  <h2 id="ideation"><span class="eyebrow">04</span>Ideation</h2>
+  <h2 id="ideation"><span class="eyebrow">04 · Ideation</span>Eight ways to answer one question</h2>
 
   <h3>How might we…</h3>
   <ul>
@@ -197,7 +214,7 @@ toc:
     <li>…make a team's schedule show up without anyone typing it in?</li>
   </ul>
 
-  <h3>Eight ways to answer one question</h3>
+  <h3>The sketches</h3>
   <p>I sketched eight different main screens, all answering "when can I skate, and is there room?"</p>
   {% figure "img/rinkside/concept-sketches.png",
     "Eight wireframe concepts in a grid: chronological list (selected), map first, calendar grid (rejected), Tonight single answer, swipe deck (rejected), search first, rink first (rejected), and personalized feed (deferred).",
@@ -217,7 +234,7 @@ toc:
 </section>
 
 <section aria-labelledby="wireframes">
-  <h2 id="wireframes"><span class="eyebrow">05</span>Wireframes &amp; prototype</h2>
+  <h2 id="wireframes"><span class="eyebrow">05 · Wireframes &amp; prototype</span>Nothing more than three taps from Home</h2>
 
   <h3>How the app is organized</h3>
   <p>Six tabs: Home, My Schedule, My Teams, Explore, Saved, and Profile. Every screen follows the same order: one hero item, a scannable list, then filters. I merged "Rinks" and "Activities" into one Explore tab with a toggle, because research showed people getting lost between competing tabs.</p>
@@ -251,27 +268,29 @@ toc:
 </section>
 
 <section aria-labelledby="testing">
-  <h2 id="testing"><span class="eyebrow">06</span>Usability testing</h2>
+  <h2 id="testing"><span class="eyebrow">06 · Usability testing</span>Testing with real teams, in a real app</h2>
 
   <div class="callout callout--progress">
     <p class="callout__title">In progress</p>
     <p>I chose to build a working alpha first and test with the real app instead of a prototype. Two hockey teams are using it now, and I'm collecting their feedback over the next few weeks. I'll add the results here.</p>
   </div>
 
-  <h3>The plan</h3>
+  <details class="more">
+    <summary>The test plan</summary>
   <ul>
     <li><strong>Watching people use it (3–5 people, about 30 minutes each).</strong> I give someone a task, like "find out if there's an open session tonight and how many spots are left," and ask them to think out loud while I watch where they hesitate.</li>
     <li><strong>A follow-up survey (8–10 people)</strong> with a standard usability score, so I can compare rounds.</li>
   </ul>
   <p>The tasks check whether the problems from research are actually solved: Can you tell if a session has room within 10 seconds? Do you hit any dead ends? Can you join your team from an invite and answer In or Out? Booking, cancelling, and the goalie fee come later. The alpha sends people to the rink's own sign-up page until rinks join (see Final design).</p>
   <p>Feedback from the alpha comes in through the app's built-in feedback form.</p>
+  </details>
 
   <h3>Early signal</h3>
   <p>Before the alpha, two people tried the prototype informally. Both said, separately, that it was <strong>too dark</strong>. One also said it was "easy to use, very clear to navigate." Two people saying the same thing unprompted was enough for me to act on (see Iterations).</p>
 </section>
 
 <section aria-labelledby="iterations">
-  <h2 id="iterations"><span class="eyebrow">07</span>Iterations</h2>
+  <h2 id="iterations"><span class="eyebrow">07 · Iterations</span>What the evidence changed</h2>
   <p>So far, these changes came from research findings, an accessibility audit, and early feedback. Changes from the alpha testing will be added after it wraps up.</p>
 
   <ul class="change-list" role="list">
@@ -304,7 +323,7 @@ toc:
 </section>
 
 <section aria-labelledby="accessibility">
-  <h2 id="accessibility"><span class="eyebrow">08</span>Accessibility</h2>
+  <h2 id="accessibility"><span class="eyebrow">08 · Accessibility</span>My own prototype failed my accessibility check</h2>
   <p>I'd assumed the prototype met WCAG AA. When I actually measured it, it didn't: the audit found four high-severity issues.</p>
 
   {% figure "img/rinkside/accessibility-audit.png",
@@ -345,7 +364,7 @@ toc:
 </section>
 
 <section aria-labelledby="final">
-  <h2 id="final"><span class="eyebrow">09</span>Final design: the alpha</h2>
+  <h2 id="final"><span class="eyebrow">09 · Final design: the alpha</span>Step one: find ice, run your team</h2>
 
   <p>I'm launching Rinkside in four steps, and the alpha is step one. Without partner rinks there's nothing to book or pay for inside the app yet, so step one focuses on what skaters can use today: finding sessions near them and keeping track of their team.</p>
 
@@ -388,22 +407,12 @@ toc:
   <p>The clickable prototype still shows the full booking flow planned for step two.</p>
   <p><a class="button" href="https://beaudoi1.github.io/rinkside-prototype/rinkside-welcome.html">Try the prototype</a></p>
 
-  <h3>Design choices, and why</h3>
-  <ul>
-    <li><strong>Every nearby session in one list or map,</strong> because people want "movie tickets for ice."</li>
-    <li><strong>In / Out right on the Home screen,</strong> because captains spend their week chasing replies.</li>
-    <li><strong>Schedules imported, not typed,</strong> because a volunteer retyping the league schedule is where teams fall apart.</li>
-    <li><strong>Alerts when the league changes a game,</strong> because stale times in team apps were a real frustration.</li>
-    <li><strong>One Explore tab with a toggle,</strong> because separate tabs confused people.</li>
-    <li><strong>Booking stays on the rink's site for now,</strong> so I'm not showing prices or spots I can't guarantee until rinks are partners.</li>
-  </ul>
-
   <h3>Back to the problems</h3>
   <ol>
-    <li><strong>Can't see what's available:</strong> Explore shows sessions from 73 rinks in one place, on a map or a list. Live spot counts need partner rinks (step two).</li>
-    <li><strong>No single source of truth:</strong> one list across rinks, pulled from their own calendars until rinks publish directly through Rinkside.</li>
+    <li><strong>Can't see what's available:</strong> every nearby session in one list or map, from 73 rinks, because people asked for "movie tickets for ice." Live spot counts need partner rinks (step two).</li>
+    <li><strong>No single source of truth:</strong> one list across rinks, pulled from their own calendars until rinks publish through Rinkside. Booking stays on the rink's site for now, so I'm not showing prices or spots I can't guarantee.</li>
     <li><strong>Casual skaters left out:</strong> anyone can find public skate, stick &amp; puck, and drop-in near them without joining anything. Booking without a membership comes with in-app booking in step two.</li>
-    <li><strong>Schedules depend on a volunteer:</strong> import once from a link or screenshot, and scores and standings fill in on their own.</li>
+    <li><strong>Schedules depend on a volunteer:</strong> schedules are imported, not typed, and scores and standings fill in on their own. In / Out sits right on Home, because captains spend their week chasing replies, and players get an alert when the league moves a game, because stale times were a real frustration.</li>
   </ol>
 
   <h3>Design system</h3>
@@ -419,7 +428,7 @@ toc:
 </section>
 
 <section aria-labelledby="takeaways">
-  <h2 id="takeaways"><span class="eyebrow">10</span>Takeaways</h2>
+  <h2 id="takeaways"><span class="eyebrow">10 · Takeaways</span>What I'd tell myself at the start</h2>
 
   <h3>What I learned</h3>
   <ul>

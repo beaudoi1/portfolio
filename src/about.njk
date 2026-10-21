@@ -21,8 +21,10 @@ description: "About Aaron Beaudoin: a UX designer in the Denver metro area with 
         <div class="button-row">
           {%- if site.resume %}<a class="button" href="{{ site.resume }}">Download my resume <span class="visually-hidden">(PDF)</span></a>{% endif %}
           <a class="button{% if site.resume %} button--ghost{% endif %}" href="mailto:{{ site.email }}">Email me</a>
+          <button class="button button--ghost" type="button" data-copy="{{ site.email }}" hidden>Copy email</button>
           <a class="button button--ghost" href="{{ site.linkedin }}">LinkedIn</a>
         </div>
+        <p class="copy-status" role="status" aria-live="polite"></p>
       </div>
     </div>
 
@@ -48,3 +50,20 @@ description: "About Aaron Beaudoin: a UX designer in the Denver metro area with 
     </div>
   </div>
 </div>
+
+<script>
+  // "Copy email": shown only when the browser can copy to the clipboard.
+  (function () {
+    var button = document.querySelector("[data-copy]");
+    var status = document.querySelector(".copy-status");
+    if (!button || !navigator.clipboard) return;
+    button.hidden = false;
+    button.addEventListener("click", function () {
+      navigator.clipboard.writeText(button.dataset.copy).then(function () {
+        status.textContent = "Copied " + button.dataset.copy + " to your clipboard.";
+      }, function () {
+        status.textContent = "Couldn't copy. My email is " + button.dataset.copy + ".";
+      });
+    });
+  })();
+</script>

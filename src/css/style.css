@@ -369,6 +369,10 @@ figcaption strong { color: var(--text); }
 
 .button {
   display: inline-flex;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  border: 0;
   align-items: center;
   justify-content: center;
   min-height: 2.75rem;
@@ -386,9 +390,10 @@ figcaption strong { color: var(--text); }
 
 /* ---- Home ---------------------------------------------------------------- */
 
-.hero { padding-block: clamp(3rem, 10vw, 7rem) var(--space); }
+.hero { padding-block: clamp(2.5rem, 7vw, 5rem) clamp(2rem, 5vw, 3.5rem); }
 .hero h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 0.3em; }
-.hero__line { font-size: clamp(1.1875rem, 2.6vw, 1.5rem); max-width: 38rem; margin: 0; }
+.hero__line { font-size: clamp(1.1875rem, 2.6vw, 1.5rem); max-width: 40rem; margin: 0; }
+#work { scroll-margin-top: 1rem; }
 
 .section { padding-block: 0 var(--space); }
 .section__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.5rem 1rem; margin-bottom: 1.25rem; }
@@ -523,3 +528,45 @@ th { color: var(--accent); font-size: 0.8125rem; letter-spacing: 0.04em; text-tr
 
 /* ↗ after links that open in a new tab */
 .ext-icon { display: inline-block; margin-left: 0.2em; font-size: 0.85em; line-height: 1; text-decoration: none; }
+
+/* ---- At a glance, stats, project navigation ------------------------------ */
+
+.glance { margin: 0 0 1.5rem; padding: 1.25rem 1.5rem; background: var(--panel-raised); border-left: 4px solid var(--accent); border-radius: 0 0.5rem 0.5rem 0; }
+.glance__title { margin: 0 0 0.75rem; font-size: 0.875rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.glance__list { display: grid; gap: 0.75rem 2rem; margin: 0; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+.glance__list dt { font-weight: 700; }
+.glance__list dd { margin: 0.2rem 0 0; color: var(--text-muted); }
+
+.stats { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); margin: 0 0 1.5rem; padding: 0; list-style: none; }
+.stats li { display: flex; flex-direction: column; gap: 0.25rem; padding: 1rem; background: var(--bg); border: 1px solid var(--line); border-radius: 0.5rem; }
+.stats__value { font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 800; line-height: 1.1; color: var(--accent-strong); letter-spacing: -0.02em; }
+.stats__label { color: var(--text-muted); font-size: 0.9375rem; line-height: 1.4; }
+
+.project-nav { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: stretch; gap: 1rem; margin-top: 1.5rem; }
+.project-nav a { display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0.75rem 1.25rem; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--text); }
+.project-nav a:hover { border-color: var(--accent); color: var(--accent-strong); }
+.project-nav__next { flex-direction: column; align-items: flex-end !important; margin-left: auto; text-align: right; }
+.project-nav__label { color: var(--text-muted); font-size: 0.8125rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.project-nav__title { font-weight: 700; font-size: 1.125rem; }
+
+/* Insight-led section headings: small section label above the takeaway. */
+.cs-body h2 .eyebrow { font-size: 0.8125rem; }
+
+/* "Show more" folds */
+details.more { margin: 1.25rem 0; border: 1px solid var(--line); border-radius: 0.5rem; padding: 0 1rem; background: var(--bg); }
+details.more > summary { cursor: pointer; min-height: 2.75rem; display: flex; align-items: center; font-weight: 700; color: var(--accent); }
+details.more > summary:hover { color: var(--accent-strong); }
+details.more[open] { padding-bottom: 0.75rem; }
+details.more[open] > summary { margin-bottom: 0.5rem; }
+
+/* Testimonials */
+.quotes { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); margin: 0; padding: 0; list-style: none; }
+.quotes blockquote { margin: 0; height: 100%; padding: 1.25rem 1.5rem; background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; }
+.quotes p { margin: 0 0 0.75rem; font-size: 1.0625rem; }
+.quotes footer { color: var(--text-muted); font-size: 0.9375rem; }
+.quotes cite { font-style: normal; font-weight: 700; color: var(--text); }
+
+/* Copy email */
+.copy-status { min-height: 1.5rem; margin: 0.5rem 0 0; color: var(--accent-strong); font-size: 0.9375rem; }
+
+[hidden] { display: none !important; }

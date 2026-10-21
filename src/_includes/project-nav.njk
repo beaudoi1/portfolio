@@ -1,0 +1,7 @@
+{#- "All work" and "Next project" links at the end of a project page. Set `next: { title, url }` in front matter. -#}
+<nav class="project-nav" aria-label="More projects">
+  <a class="project-nav__back" href="/design/"><span aria-hidden="true">←</span> All work</a>
+  {%- if next %}
+  <a class="project-nav__next" href="{{ next.url }}"><span class="project-nav__label">Next project</span> <span class="project-nav__title">{{ next.title }} <span aria-hidden="true">→</span></span></a>
+  {%- endif %}
+</nav>

@@ -5,32 +5,28 @@ description: Aaron Beaudoin is a UX designer in the Denver metro area, with a ba
 ---
 <div class="wrap">
   <header class="hero">
-    <picture><source srcset="/files/logo.webp" type="image/webp"><img class="hero__logo" src="/files/logo.jpg" alt="" width="428" height="226"></picture>
     <p class="eyebrow">UX Designer · {{ site.location }}</p>
     <h1>{{ site.name }}</h1>
     <p class="hero__line">I'm a UX designer with seven years in sales leadership and running my own business. I design products around the people who use them.</p>
     <div class="button-row">
-      <a class="button" href="/design/">See my work</a>
+      <a class="button" href="#work">See my work</a>
       <a class="button button--ghost" href="/about/">About me</a>
     </div>
   </header>
 
-  <section class="section" aria-labelledby="featured-heading">
+  <section class="section" id="work" aria-labelledby="work-heading">
     <div class="section__head">
-      <h2 id="featured-heading">Featured case study</h2>
-      <a href="/design/">All projects</a>
+      <h2 id="work-heading">Selected work</h2>
     </div>
     {%- asyncEach p in projects %}{% ifAsync p.featured %}
     {% set c = p %}{% set featured = true %}{% set headingLevel = 3 %}{% include "card.njk" %}
     {%- endif %}{% endeach %}
-  </section>
-
-  <section class="section" aria-labelledby="explore-heading">
-    <div class="section__head"><h2 id="explore-heading">Explore</h2></div>
-    <ul class="card-grid" role="list">
-      <li>{% set c = { title: "Design", url: "/design/", summary: "UX case studies, plus brand and marketing work.", image: "img/rinkside/concept-sketches.png" } %}{% set featured = false %}{% include "card.njk" %}</li>
-      <li>{% set c = { title: "Research", url: "/research/", summary: "Astrophysics research from my degree: supernova spectra and telescope test software.", image: "img/research/sn2011fe-spectrum.jpg" } %}{% include "card.njk" %}</li>
-      <li>{% set c = { title: "About", url: "/about/", summary: "My background in sales, business, and science, and what I bring to UX.", image: "img/site/headshot.jpg", imageTop: true } %}{% include "card.njk" %}</li>
+    <ul class="card-grid" role="list" style="margin-top:1.25rem">
+      {%- asyncEach p in projects %}{% ifAsync not p.featured %}
+      <li>{% set c = p %}{% set featured = false %}{% set headingLevel = 3 %}{% include "card.njk" %}</li>
+      {%- endif %}{% endeach %}
     </ul>
   </section>
+
+  {% include "testimonials.njk" %}
 </div>

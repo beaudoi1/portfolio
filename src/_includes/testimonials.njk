@@ -1,0 +1,15 @@
+{%- if testimonials.length %}
+<section class="section" aria-labelledby="quotes-heading">
+  <div class="section__head"><h2 id="quotes-heading">What people say</h2></div>
+  <ul class="quotes" role="list">
+    {%- for t in testimonials %}
+    <li><blockquote><p>"{{ t.quote }}"</p><footer><cite>{{ t.name }}</cite>, {{ t.role }}</footer></blockquote></li>
+    {%- endfor %}
+  </ul>
+</section>
+{%- elif isPreview %}
+<section class="section" aria-labelledby="quotes-heading">
+  <div class="section__head"><h2 id="quotes-heading">What people say</h2></div>
+  <p class="panel">{% todo "1–3 quotes from past colleagues: quote, name, role. Add them to src/_data/testimonials.js. (Preview only: this section stays off the live site until quotes exist.)" %}</p>
+</section>
+{%- endif %}
