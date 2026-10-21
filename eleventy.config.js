@@ -120,6 +120,7 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy({ "src/css": "css" });
   eleventyConfig.addPassthroughCopy({ "src/files": "files" });
+  eleventyConfig.addPassthroughCopy({ "src/media": "media" });
   // Originals for "Open full size" links.
   eleventyConfig.addPassthroughCopy({ "src/img/rinkside": "img/rinkside" });
   eleventyConfig.addWatchTarget("src/css/");

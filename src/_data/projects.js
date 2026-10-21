@@ -4,7 +4,7 @@
 // Leave image/summary empty while missing. The card then shows a TODO in preview.
 export default [
   {
-    title: "Rinkside B2C",
+    title: "Rinkside: find ice, run your team",
     url: "/design/rinkside-b2c/",
     group: "ux",
     status: "progress",

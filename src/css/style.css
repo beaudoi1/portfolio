@@ -570,3 +570,10 @@ details.more[open] > summary { margin-bottom: 0.5rem; }
 .copy-status { min-height: 1.5rem; margin: 0.5rem 0 0; color: var(--accent-strong); font-size: 0.9375rem; }
 
 [hidden] { display: none !important; }
+
+/* Screen recordings: phone-shaped, never autoplay */
+.figure--video video { display: block; width: 100%; max-width: 20rem; height: auto; margin-inline: auto; border-radius: 1.25rem; border: 1px solid var(--line); background: var(--bg); }
+.figure--video figcaption { text-align: center; }
+
+/* Before/after rows inside an iteration: keep three phones side by side when there's room */
+@media (min-width: 40rem) { .change-list .compare { grid-template-columns: repeat(3, 1fr); } }

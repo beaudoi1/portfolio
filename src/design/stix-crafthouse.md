@@ -5,7 +5,7 @@ description: Branding and social media for STiX Crafthouse, the hockey bar Aaron
 eyebrow: Brand & marketing work
 lede: "Co-owner and founder · 2020–2024 · Logo, event flyers, and social media"
 next:
-  title: Rinkside
+  title: "Rinkside: find ice, run your team"
   url: /design/rinkside-b2c/
 ---
 

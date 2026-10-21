@@ -313,6 +313,11 @@ toc:
       <p class="change__what">Theme: from dark-only to three themes</p>
       <p>The prototype was dark-only. The alpha ships with Light, Dark, and Warm themes, and each one is checked against WCAG contrast.</p>
       <p class="change__why">Why: both informal testers said it was too dark. Rinks are also bright, and a dark screen is harder to read there.</p>
+      <ul class="compare" role="list">
+        <li>{% figure "img/rinkside/hifi-home.png", "Prototype Home screen in its only theme: dark navy, with a search bar, a green Check In card, and recurring sessions.", "<strong>Before:</strong> the prototype, dark only.", "phone" %}</li>
+        <li>{% figure "img/rinkside/app-home-light.png", "Alpha Home screen in the Light theme: a pale gray-blue background with white cards, navy text, the team card, a schedule row with In and Out buttons, and a saved drop-in session.", "<strong>After:</strong> the alpha in Light.", "phone" %}</li>
+        <li>{% figure "img/rinkside/app-home-warm.png", "The same alpha Home screen in the Warm theme: a near-black brown background with orange accents and cream text.", "<strong>After:</strong> the alpha in Warm.", "phone" %}</li>
+      </ul>
     </li>
     <li>
       <p class="change__what">Text contrast fixed across every screen</p>
@@ -387,6 +392,7 @@ toc:
     <li>{% figure "img/rinkside/app-home-mobile.png", "Alpha Home screen: greeting, the user's team with its next game, a My schedule row of upcoming games with In and Out buttons, and rinks near me.", "<strong>Home.</strong> Your team's next game, with In / Out right there.", "phone" %}</li>
     <li>{% figure "img/rinkside/app-explore-mobile.png", "Alpha Explore screen: Activities and Rinks tabs, session-type filters, a Google map of rink pins around Littleton, Colorado, and the closest rink.", "<strong>Explore.</strong> Rinks and sessions near you, on a map or a list.", "phone" %}</li>
     <li>{% figure "img/rinkside/app-team-mobile.png", "Alpha team page for Ice Wolves: a Manage Team button for the captain, record 2-0-1, 1st in the standings, standings and stats links, and the roster.", "<strong>Team.</strong> Record, standings, and stats fill in on their own.", "phone" %}</li>
+    <li>{% figure "img/rinkside/app-game.png", "Alpha game screen: the date, time and rink, a Wear White note because the team is away, a final score of W 8 to 4 marked as updated automatically from the league page, and In and Out buttons with who has replied.", "<strong>Game.</strong> The final score fills in from the league's site.", "phone" %}</li>
   </ul>
 
   <h3>On a computer</h3>
@@ -395,7 +401,14 @@ toc:
   {% figure "img/rinkside/app-explore-desktop.png", "The alpha Explore screen in a desktop browser: filters, the rink map, and the closest rinks in a centered column.", "<strong>Explore</strong> on desktop.", "", true %}
 
   <h3>The main flow: joining your team</h3>
-  <ol>
+  <figure class="figure figure--video">
+    <video controls preload="none" playsinline width="540" height="1168" poster="/media/rinkside-join-team-poster.jpg" aria-describedby="join-flow-steps">
+      <source src="/media/rinkside-join-team.mp4" type="video/mp4">
+      <a href="/media/rinkside-join-team.mp4">Download the screen recording</a>
+    </video>
+    <figcaption>Screen recording, 33 seconds, no sound: joining a demo team from an invite text, then answering In. The steps are written out below.</figcaption>
+  </figure>
+  <ol id="join-flow-steps">
     <li>The captain taps "Text it to teammates." The text has an invite link.</li>
     <li>A teammate taps the link. It opens the app, or offers the download.</li>
     <li>They sign up with email, Google, Apple, or Facebook. The invite is remembered through sign-up.</li>
