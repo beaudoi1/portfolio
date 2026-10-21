@@ -75,59 +75,21 @@
 
   <dialog class="lightbox" aria-label="Enlarged image">
     <div class="lightbox__bar">
-      <button type="button" class="lightbox__btn" data-lightbox-zoom aria-pressed="false">Zoom in</button>
+      <div class="lightbox__zoom" role="group" aria-label="Zoom">
+        <button type="button" class="lightbox__btn" data-zoom-out aria-label="Zoom out">−</button>
+        <span class="lightbox__level" aria-live="polite">Fit</span>
+        <button type="button" class="lightbox__btn" data-zoom-in aria-label="Zoom in">+</button>
+        <button type="button" class="lightbox__btn" data-zoom-fit>Fit</button>
+      </div>
       <button type="button" class="lightbox__btn" data-lightbox-close>Close</button>
     </div>
-    <div class="lightbox__stage"><img class="lightbox__img" alt=""></div>
+    <div class="lightbox__stage" tabindex="0" aria-label="Image. When zoomed, use the arrow keys to move around."><img class="lightbox__img" alt="" draggable="false"></div>
     <p class="lightbox__caption"></p>
+    <p class="lightbox__hint">Pinch or Ctrl + scroll to zoom. Drag to move around.</p>
   </dialog>
+  <script src="/js/lightbox.js" defer></script>
 
   <script>
-    // Pop-out image viewer: "Enlarge" buttons and clicks on enlargeable images open it.
-    (function () {
-      var dialog = document.querySelector(".lightbox");
-      if (!dialog || typeof dialog.showModal !== "function") return;
-      var img = dialog.querySelector(".lightbox__img");
-      var stage = dialog.querySelector(".lightbox__stage");
-      var caption = dialog.querySelector(".lightbox__caption");
-      var zoomBtn = dialog.querySelector("[data-lightbox-zoom]");
-      function setZoom(on) {
-        dialog.classList.toggle("is-zoomed", on);
-        zoomBtn.setAttribute("aria-pressed", String(on));
-        zoomBtn.textContent = on ? "Fit to screen" : "Zoom in";
-      }
-      function open(link) {
-        var wrap = link.closest(".zoomable");
-        var thumb = wrap.querySelector("img");
-        var fig = wrap.closest("figure");
-        var cap = fig && fig.querySelector("figcaption");
-        img.src = link.getAttribute("href");
-        img.alt = thumb ? thumb.alt : "";
-        caption.textContent = cap ? cap.textContent : "";
-        caption.hidden = !caption.textContent;
-        img.classList.toggle("lightbox__img--light", !!(fig && fig.classList.contains("figure--light")));
-        setZoom(false);
-        dialog.showModal();
-        zoomBtn.focus();
-      }
-      document.addEventListener("click", function (e) {
-        var link = e.target.closest("[data-zoom]");
-        if (!link) {
-          var pic = e.target.closest(".zoomable img");
-          if (pic) link = pic.closest(".zoomable").querySelector("[data-zoom]");
-        }
-        if (!link) return;
-        e.preventDefault();
-        open(link);
-      });
-      zoomBtn.addEventListener("click", function () { setZoom(!dialog.classList.contains("is-zoomed")); });
-      img.addEventListener("click", function () { setZoom(!dialog.classList.contains("is-zoomed")); });
-      dialog.querySelector("[data-lightbox-close]").addEventListener("click", function () { dialog.close(); });
-      // Click on the dark backdrop closes it.
-      dialog.addEventListener("click", function (e) { if (e.target === dialog || e.target === stage) dialog.close(); });
-      dialog.addEventListener("close", function () { img.removeAttribute("src"); });
-    })();
-
     // Hamburger menu for phone-size screens.
     (function () {
       var root = document.documentElement;

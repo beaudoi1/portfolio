@@ -137,6 +137,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/css": "css" });
   eleventyConfig.addPassthroughCopy({ "src/files": "files" });
   eleventyConfig.addPassthroughCopy({ "src/media": "media" });
+  eleventyConfig.addPassthroughCopy({ "src/js": "js" });
   eleventyConfig.addWatchTarget("src/css/");
 
   return {
