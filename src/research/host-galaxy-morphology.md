@@ -14,7 +14,7 @@ glance:
 stats:
   - { value: "10", label: "students on the team" }
   - { value: "514", label: "host galaxies cataloged" }
-  - { value: "3", label: "properties compared: brightness, decline rate, metallicity" }
+  - { value: "80", label: "of my commits in the project's code" }
 meta:
   - label: Team
     value: "10 undergraduate and graduate students"
@@ -22,6 +22,11 @@ meta:
     value: "MySQL · Python"
   - label: Where
     value: "University of Illinois at Urbana-Champaign, Department of Astronomy"
+links:
+  - label: View the code (kaepora)
+    url: https://github.com/msiebert1/kaepora
+  - label: Read the 2019 paper
+    url: https://arxiv.org/abs/1905.02204
 next:
   title: Modular analysis software for ALMA
   url: /research/alma-test-software/
@@ -40,3 +45,9 @@ Type Ia supernovae are used to measure distances across the universe, because th
 I looked at a large sample of Type Ia supernovae taken from the supernova database at the Harvard-Smithsonian Center for Astrophysics, the UC Berkeley Filippenko Group's Supernova Database, and other sources. We looked for correlations between host galaxy morphology and intrinsic brightness, decline rates, and metallicities.
 
 The project involved cataloging 514 host galaxy morphologies, then using MySQL and Python to compare composite spectra, built by combining spectra from nearby supernovae measured at maximum brightness.
+
+## What it became
+
+The database our team started became [kaepora](https://github.com/msiebert1/kaepora), an open-source database of Type Ia supernova spectra. Foley's group described it in a [2019 paper](https://arxiv.org/abs/1905.02204) (Siebert et al.), by which point it held 4,975 spectra of 777 supernovae. I'm one of 13 contributors to its code, with 80 commits.
+
+The paper's composite spectra answered the question we started with: once you account for how fast each supernova fades, supernovae in early-type and late-type galaxies look much the same, with only small differences in their calcium features.

@@ -27,6 +27,8 @@ meta:
 links:
   - label: See the archived poster
     url: https://hdl.handle.net/2142/75951
+  - label: View my analysis code
+    url: https://github.com/beaudoi1/snResearch
 next:
   title: Host galaxy morphology catalog
   url: /research/host-galaxy-morphology/

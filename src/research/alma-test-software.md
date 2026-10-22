@@ -26,6 +26,8 @@ meta:
 links:
   - label: Read Technical Note 221 (PDF)
     url: https://library.nrao.edu/public/memos/edtn/EDTN_221.pdf
+  - label: View the code
+    url: https://github.com/beaudoi1/ALMA-FETMS
 next:
   title: Supernova ultraviolet spectra
   url: /research/supernova-uv-spectra/
