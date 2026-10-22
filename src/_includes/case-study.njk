@@ -10,7 +10,8 @@ layout: base.njk
   </header>
 
   {%- if hero %}
-  <div class="cs-hero">{% zoomImage hero, heroAlt, "(min-width: 72rem) 68rem, 100vw", [800, 1200, 1600, 2400] %}</div>
+  <figure class="cs-hero">{% zoomImage hero, heroAlt, "(min-width: 72rem) 68rem, 100vw", [800, 1200, 1600, 2400] %}
+    {%- if heroCaption %}<figcaption class="cs-hero__caption">{{ heroCaption | safe }}</figcaption>{% endif %}</figure>
   {%- endif %}
 
   <div class="panel">

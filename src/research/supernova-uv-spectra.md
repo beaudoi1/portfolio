@@ -10,7 +10,7 @@ glance:
   - label: What I did
     value: "Wrote Python scripts to measure absorption lines in 46 Hubble Space Telescope ultraviolet spectra, then checked whether any of them changed over time."
   - label: The result
-    value: "None of the lines changed, which put new limits on the kind of star systems these supernovae come from. I presented it as a poster at the American Astronomical Society meeting in 2014."
+    value: "None of the lines changed, which put new limits on the kind of star systems these supernovae come from. I presented it as a poster at the American Astronomical Society meeting in 2014 and at the University of Illinois Undergraduate Research Symposium in 2015, where the poster is archived."
 stats:
   - { value: "8", label: "Type Ia supernovae" }
   - { value: "46", label: "Hubble ultraviolet spectra" }
@@ -24,6 +24,9 @@ meta:
     value: "Python"
   - label: Where
     value: "University of Illinois at Urbana-Champaign, Department of Astronomy"
+links:
+  - label: See the archived poster
+    url: https://hdl.handle.net/2142/75951
 next:
   title: Host galaxy morphology catalog
   url: /research/host-galaxy-morphology/

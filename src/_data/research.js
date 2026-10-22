@@ -18,7 +18,7 @@ export default [
     status: "complete",
     platform: "PHP · radio telescope test data",
     summary: "A PHP library that checks and plots test results for the receivers of a 66-antenna radio telescope.",
-    image: "img/research/alma-overview.jpg",
+    image: "img/research/alma-eso-malin.jpg",
     imageAlt: "",
   },
   {

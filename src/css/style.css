@@ -707,3 +707,5 @@ details.more[open] > summary { margin-bottom: 0.5rem; }
 @media (max-width: 63.99rem) { .cs-layout--toc .cs-body { padding-right: 3.25rem; } }
 @media (min-width: 64rem) { .section-rail { display: none !important; } }
 @media (forced-colors: active) { .section-rail a[aria-current="location"] { background: Highlight; color: HighlightText; } }
+
+.cs-hero__caption { margin: 0; padding: 0.6rem 1rem; color: var(--text-muted); font-size: 0.875rem; background: var(--panel); border-top: 1px solid var(--line); }

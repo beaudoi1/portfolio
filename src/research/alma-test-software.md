@@ -4,6 +4,9 @@ title: Modular Analysis Software for the ALMA Front End Test and Measurement Sys
 eyebrow: Research · Software
 description: "Aaron Beaudoin's NRAO summer research project: a modular PHP library that checks and plots test data for the ALMA radio telescope's receivers. Published as NRAO Electronics Division Technical Note 221."
 lede: "Software that tests the receivers of ALMA, a 66-antenna radio telescope in Chile's Atacama Desert, so engineers can see at a glance whether each one meets spec."
+hero: img/research/alma-eso-malin.jpg
+heroAlt: "ALMA radio antennas on the Chajnantor Plateau at night, under a sky full of stars, with the Large and Small Magellanic Clouds visible as faint smudges above them."
+heroCaption: "ALMA's antennas under the Magellanic Clouds. Photo: <a href=\"https://www.eso.org/public/images/ann13016a/\">ESO/C. Malin</a>, <a href=\"https://creativecommons.org/licenses/by/4.0/\">CC BY 4.0</a>."
 glance:
   - label: My role
     value: "Summer research intern (REU) at the National Radio Astronomy Observatory, May to August 2014."

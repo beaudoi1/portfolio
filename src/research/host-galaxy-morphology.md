@@ -29,7 +29,7 @@ next:
 
 {% figure "img/research/ngc5643-hubble.jpg",
   "Hubble image of NGC 5643, a face-on spiral galaxy with a bright core, two main spiral arms laced with dark dust lanes, and pink star-forming regions.",
-  "An example of a supernova host galaxy: the spiral galaxy NGC 5643, home of Type Ia supernova 2017cbv (after our project, so not in our sample). Image: <a href=\"https://esahubble.org/images/potw2039a/\">ESA/Hubble</a> &amp; NASA, A. Riess et al.; acknowledgement: Mahdi Zamani (CC BY 4.0)." %}
+  "An example of a supernova host galaxy: the spiral galaxy NGC 5643, home of Type Ia supernova 2017cbv (after our project, so not in our sample). Image: <a href=\"https://esahubble.org/images/potw2039a/\">ESA/Hubble</a> &amp; NASA, A. Riess et al.; acknowledgement: Mahdi Zamani, <a href=\"https://creativecommons.org/licenses/by/4.0/\">CC BY 4.0</a>." %}
 
 ## The question
 
