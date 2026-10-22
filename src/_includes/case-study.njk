@@ -60,3 +60,14 @@ layout: base.njk
   </div>
   {% include "project-nav.njk" %}
 </div>
+{%- if toc %}
+<nav class="section-rail" aria-label="Jump to section" hidden>
+  <ol>
+    {%- for t in toc %}
+    <li><a href="#{{ t.id }}" data-label="{{ t.label }}">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}<span class="visually-hidden"> {{ t.label }}</span></a></li>
+    {%- endfor %}
+  </ol>
+  <span class="section-rail__bubble" aria-hidden="true"></span>
+</nav>
+<script src="/js/section-rail.js" defer></script>
+{%- endif %}

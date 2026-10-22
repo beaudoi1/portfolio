@@ -24,12 +24,11 @@ export default [
   {
     title: "Host galaxy morphology catalog",
     url: "/research/host-galaxy-morphology/",
-    statusLabel: "Group project · University of Illinois",
+    statusLabel: "Team of 10 · University of Illinois",
     status: "other",
     platform: "MySQL · Python",
     summary: "Cataloged 514 supernova host galaxies by shape and compared their composite spectra.",
-    image: "",
+    image: "img/research/ngc5643-hubble.jpg",
     imageAlt: "",
-    imageText: "514<small>host galaxies cataloged</small>",
   },
 ];

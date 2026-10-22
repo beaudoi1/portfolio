@@ -1,20 +1,23 @@
 ---
 layout: case-study.njk
 title: Host galaxy morphology catalog
-eyebrow: Research · Group project
+eyebrow: Research · Team project
 description: "Group research project at the University of Illinois: cataloging 514 Type Ia supernova host galaxies and comparing composite spectra with MySQL and Python."
 lede: "Does the kind of galaxy a supernova explodes in change how bright it gets? We sorted 514 host galaxies by shape and compared the supernovae inside them."
 glance:
   - label: My role
-    value: "Research assistant on a group project at the University of Illinois. I cataloged the host galaxies and compared their spectra with MySQL and Python."
+    value: "One of 10 undergraduate and graduate students on a team project at the University of Illinois. We all shared the work of writing the code and building the database."
   - label: What we did
     value: "Pulled a large sample of Type Ia supernovae from public databases, classified each host galaxy's shape, and looked for links between galaxy type and how the supernovae behaved."
   - label: What we compared
     value: "Intrinsic brightness, how fast each supernova faded, and metallicity (how rich in heavy elements it was)."
 stats:
+  - { value: "10", label: "students on the team" }
   - { value: "514", label: "host galaxies cataloged" }
   - { value: "3", label: "properties compared: brightness, decline rate, metallicity" }
 meta:
+  - label: Team
+    value: "10 undergraduate and graduate students"
   - label: Tools
     value: "MySQL · Python"
   - label: Where
@@ -23,6 +26,10 @@ next:
   title: Modular analysis software for ALMA
   url: /research/alma-test-software/
 ---
+
+{% figure "img/research/ngc5643-hubble.jpg",
+  "Hubble image of NGC 5643, a face-on spiral galaxy with a bright core, two main spiral arms laced with dark dust lanes, and pink star-forming regions.",
+  "An example of a supernova host galaxy: the spiral galaxy NGC 5643, home of Type Ia supernova 2017cbv (after our project, so not in our sample). Image: <a href=\"https://esahubble.org/images/potw2039a/\">ESA/Hubble</a> &amp; NASA, A. Riess et al.; acknowledgement: Mahdi Zamani (CC BY 4.0)." %}
 
 ## The question
 
