@@ -8,25 +8,36 @@ description: Aaron Beaudoin is a UX designer in the Denver metro area, with a ba
     <p class="eyebrow">UX Designer · {{ site.location }}</p>
     <h1>{{ site.name }}</h1>
     <p class="hero__line">UX designer and builder. I take products from user research to a working app, backed by seven years of sitting across the table from customers.</p>
-    <div class="button-row">
-      <a class="button" href="#work">See my work</a>
-      <a class="button button--ghost" href="/about/">About me</a>
-    </div>
   </header>
 
-  <section class="section" id="work" aria-labelledby="work-heading">
-    <div class="section__head">
+  <section class="section carousel" id="work" aria-roledescription="carousel" aria-labelledby="work-heading">
+    <div class="section__head carousel__head">
       <h2 id="work-heading">Selected work</h2>
+      <div class="carousel__controls" hidden>
+        <button type="button" class="carousel__btn" data-carousel-prev aria-label="Previous project"><span aria-hidden="true">←</span></button>
+        <p class="carousel__count" aria-hidden="true"><span data-carousel-current>1</span> / {{ projects.length }}</p>
+        <button type="button" class="carousel__btn" data-carousel-next aria-label="Next project"><span aria-hidden="true">→</span></button>
+      </div>
     </div>
-    {%- asyncEach p in projects %}{% ifAsync p.featured %}
-    {% set c = p %}{% set featured = true %}{% set headingLevel = 3 %}{% include "card.njk" %}
-    {%- endif %}{% endeach %}
-    <ul class="card-grid" role="list" style="margin-top:1.25rem">
-      {%- asyncEach p in projects %}{% ifAsync not p.featured %}
-      <li>{% set c = p %}{% set featured = false %}{% set headingLevel = 3 %}{% include "card.njk" %}</li>
-      {%- endif %}{% endeach %}
-    </ul>
+    <div class="carousel__track">
+      {%- asyncEach p in projects %}
+      <div class="carousel__slide" role="group" aria-roledescription="slide" aria-label="{{ loop.index }} of {{ projects.length }}">
+        {% set c = p %}{% set featured = true %}{% set headingLevel = 3 %}{% include "card.njk" %}
+      </div>
+      {%- endeach %}
+    </div>
+    <div class="carousel__foot">
+      <div class="carousel__dots" hidden>
+        {%- for p in projects %}
+        <button type="button" class="carousel__dot" data-carousel-dot="{{ loop.index0 }}" aria-label="Show project {{ loop.index }}: {{ p.title }}"></button>
+        {%- endfor %}
+      </div>
+      <a class="carousel__all" href="/design/">All work <span aria-hidden="true">→</span></a>
+    </div>
+    <p class="visually-hidden" aria-live="polite" data-carousel-status></p>
   </section>
 
   {% include "testimonials.njk" %}
 </div>
+
+<script src="/js/carousel.js" defer></script>

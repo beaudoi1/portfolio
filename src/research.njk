@@ -1,0 +1,18 @@
+---
+layout: base.njk
+title: Research
+description: "Undergraduate astrophysics research by Aaron Beaudoin: Hubble ultraviolet spectra of supernovae, and published test software for the ALMA radio telescope."
+---
+<div class="wrap">
+  <header class="page-head">
+    <p class="eyebrow">Astrophysics</p>
+    <h1>Research</h1>
+    <p class="lede">Before UX, I studied astronomy and astrophysics at the University of Illinois. These projects are where I learned to turn large, messy data sets into something people can read, and to write software other people rely on.</p>
+  </header>
+
+  <ul class="card-grid" role="list">
+    {%- asyncEach r in research %}{% ifAsync (not r.draft) or isPreview %}
+    <li>{% set c = r %}{% set featured = false %}{% set headingLevel = 2 %}{% include "card.njk" %}</li>
+    {%- endif %}{% endeach %}
+  </ul>
+</div>

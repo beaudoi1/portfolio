@@ -1,48 +1,34 @@
 ---
-layout: page.njk
-title: Research
-description: Undergraduate astrophysics research by Aaron Beaudoin. Hubble UV spectra of Type Ia supernovae, and PHP analysis software for the ALMA radio telescope's front-end test system.
-eyebrow: Astrophysics
-lede: "Before UX, I studied astronomy and astrophysics at the University of Illinois. These are two projects from that time: one on exploding stars, one on software I wrote to test ALMA's radio receivers."
+layout: case-study.njk
+title: Modular Analysis Software for the ALMA Front End Test and Measurement System
+eyebrow: Research · Software
+description: "Aaron Beaudoin's NRAO summer research project: a modular PHP library that checks and plots test data for the ALMA radio telescope's receivers. Published as NRAO Electronics Division Technical Note 221."
+lede: "Software that tests the receivers of ALMA, a 66-antenna radio telescope in Chile's Atacama Desert, so engineers can see at a glance whether each one meets spec."
+glance:
+  - label: My role
+    value: "Summer research intern (REU) at the National Radio Astronomy Observatory, May to August 2014."
+  - label: What I did
+    value: "Built a modular PHP library that pulls the receivers' test data from a database, checks it against specifications, and plots the results."
+  - label: The result
+    value: "Published as NRAO Electronics Division Technical Note 221."
+stats:
+  - { value: "66", label: "antennas in the ALMA array" }
+  - { value: "10", label: "receiver bands, 31 to 962 GHz" }
+  - { value: "221", label: "NRAO Electronics Division Technical Note" }
+meta:
+  - label: Tools
+    value: "PHP, database queries, plotting"
+  - label: Where
+    value: "National Radio Astronomy Observatory (NRAO)"
+links:
+  - label: Read Technical Note 221 (PDF)
+    url: https://library.nrao.edu/public/memos/edtn/EDTN_221.pdf
+next:
+  title: Supernova ultraviolet spectra
+  url: /research/supernova-uv-spectra/
 ---
 
-<!--
-  Edit this page freely. Text is plain Markdown.
-  Figures use: {% raw %}{% figure "img/research/file.png", "Alt text", "Caption" %}{% endraw %}
--->
-
-## Searching for Imprints of Circumstellar Material in the Ultraviolet Spectra of Type Ia Supernovae
-
-<p class="byline">Aaron T. Beaudoin &amp; Ryan J. Foley (U. Illinois)</p>
-
-Type Ia supernovae (SNe Ia) are thermonuclear explosions that have high and relatively standard peak luminosities. It is accepted that SNe Ia originate in white dwarf (WD) binary systems, however, the companion star is still unclear. Two possible progenitor models are the single- (SD) and double-degenerate (DD) scenarios, where the companion in the DD scenario is another WD, while the companion in the SD scenario is a more normal star such as a red giant.
-
-Here, we test these models by searching for indications of circumstellar material (CSM) in *Hubble Space Telescope* UV spectra of 8 SNe Ia. Imprinted on these UV spectra are narrow absorption lines from ISM and/or CSM. If these features vary in strength over time, the material is likely CSM, ionizing and recombining after the SN explosion. Such material is most easily explained in a SD progenitor system. Using a total of 46 spectra from 8 SNe Ia, we do not detect any variability in Mg I, Mg II, and Fe II lines, placing new, strong constraints on the progenitor systems of these SNe Ia.
-
-{% figure "img/research/sn2011fe-spectrum.jpg",
-  "Two-panel plot of the ultraviolet spectrum of SN 2011fe from about 2300 to 2900 ångströms. Narrow absorption lines from Fe II, Mg II and Mg I are marked.",
-  "<strong>Fig. 1:</strong> (<em>Top</em>) Maximum-brightness spectrum of SN 2011fe. The blue curve is a 3rd-order interpolated fit to the data including Gaussian profiles for the Fe II λλ 2344, 2374, 2383, 2587, 2600; Mg II λλ2796, 2803; and Mg I λ2853 absorption features. (<em>Bottom</em>) Normalized maximum-brightness spectrum of SN 2011fe. The inset is a zoom-in showing the region near the Mg I and Mg II features.",
-  "light" %}
-
-We detect the Mg II λ2800 doublet and Mg I λ2853 in all spectra, although SNe 1992A, 2011ek, and 2011iv only show absorption from the Milky Way. We also detect Fe II in some observations from each SN. Measuring the EW of each feature at each epoch, we look for any variability. In our best measurements to date, we do not detect any significant change in any of the absorption features, consistent with studies of optical features for SN 2011fe (Patat et al., 2013) and SN 2014J (Welty et al., 2014; Goobar et al., 2014, Foley et al., 2014). We therefore do not detect a large amount of CSM along our line of sight.
-
-{% figure "img/research/ew-deviations.jpg",
-  "Three stacked plots of change in equivalent width against days from maximum brightness, for Mg II 2796, Mg II 2803 and Mg I 2853, across six supernovae. The points stay close to zero.",
-  "<strong>Fig. 2:</strong> Deviations in the EW from the average measurement of the Mg II doublet and Mg I, respectively. We do not detect any absorption at the redshift of the host galaxy for the three SNe not listed. When a feature is not detected, we plot the 3-σ upper limit as a downward arrow. The measurements are all consistent with zero variability.",
-  "light" %}
-
-### References
-
-<ul class="references">
-  <li>Patat et al., 2013, A&amp;A, 549, 62.</li>
-  <li>Welty et al., 2014, ApJ, 792, 2.</li>
-  <li>Goobar et al., 2014, ApJL, 784 12.</li>
-  <li>Foley et al., 2014, MNRAS, 433, 2887.</li>
-</ul>
-
-## Modular Analysis Software for the ALMA Front End Test and Measurement System
-
-### Introduction
+## Introduction
 
 The Atacama Large Millimeter/ Submillimeter Array (ALMA) is a radio interferometer that is located in the Atacama Desert in Chile (altitude ~16,400 ft.). It consists of 66 antennae, creating a synthesized aperture with a diameter of up to 16 km. There are 59 12-m antennae and seven 7-m antennae, each of which has a parabolic dish (cannot deviate from a perfect parabola by more than 20 microns), sub-reflector, and receiver.
 

@@ -7,6 +7,8 @@
     {%- ifAsync c.image -%}
       {#- Alt is usually "" here: the title link already names the card. -#}
       {% image c.image, c.imageAlt or "", "(min-width: 52rem) 40rem, 100vw", [480, 800, 1200] %}
+    {%- elif c.imageText -%}
+      <p class="card__tile" aria-hidden="true">{{ c.imageText | safe }}</p>
     {%- else -%}
       <p class="card__missing">{% todo "cover image for " + c.title %}</p>
     {%- endif -%}
