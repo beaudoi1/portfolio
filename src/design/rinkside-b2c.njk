@@ -320,6 +320,11 @@ toc:
       </ul>
     </li>
     <li>
+      <p class="change__what">Stats errors: not just a red border</p>
+      <p>A bad entry in a stats box was marked only in red. It now also shows a ⚠ and is read out as "not a number."</p>
+      <p class="change__why">Why: my color-blindness check found it was the one place where color was the only signal.</p>
+    </li>
+    <li>
       <p class="change__what">Text contrast fixed across every screen</p>
       <p>Secondary text went from #3d6070 to #7aa3b8, raising contrast from 2.65:1 to 6.63:1.</p>
       <p class="change__why">Why: my own accessibility audit (next section).</p>
@@ -329,7 +334,9 @@ toc:
 
 <section aria-labelledby="accessibility">
   <h2 id="accessibility"><span class="eyebrow">08 · Accessibility</span>My own prototype failed my accessibility check</h2>
-  <p>I'd assumed the prototype met WCAG AA. When I actually measured it, it didn't: the audit found four high-severity issues.</p>
+  <p>I'd assumed the prototype met WCAG AA. When I actually measured it, it didn't: the audit found four high-severity issues. So I audited the built app too, then tested it on real phones.</p>
+
+  <h3>The prototype audit</h3>
 
   {% figure "img/rinkside/accessibility-audit.png",
     "Accessibility audit summary: 4 high, 2 medium and 1 low severity findings and 1 positive. Contrast bars show text-dim failing at 2.65:1 and 2.04:1 while other text passes; touch targets show the save button at about 26 by 26 pixels, failing the 44-pixel minimum.",
@@ -354,18 +361,61 @@ toc:
     </li>
   </ul>
 
-  <h3>In the alpha</h3>
-  <ul>
-    <li><strong>Three themes, all checked.</strong> Every text color in Light, Dark, and Warm measures at least 4.5:1 on every background. The check also caught a power-play badge at 1.9:1, which I fixed.</li>
-    <li><strong>Every control has a name.</strong> All 117 tappable elements have a role and a label for screen readers, and errors and confirmations like "Link copied" are read out loud.</li>
-    <li><strong>Big tap targets.</strong> Buttons and inputs are at least 48 points tall, and small icon buttons get a bigger tap area.</li>
-    <li><strong>Text grows with the phone's settings,</strong> and team banners grow instead of cutting off text.</li>
-    <li><strong>No gesture-only actions.</strong> The one long-press (reporting a chat message) is also available as a screen reader action.</li>
+  <h3>Testing the alpha</h3>
+  <p>I tested the built app in three rounds: a full audit of the code (October 14), a round of fixes for large text and rotation (October 17), and hands-on tests on my own iPhone and Android phone with VoiceOver, TalkBack, and the phones' color-blindness filters (October 23). On the phones, VoiceOver and TalkBack worked well, and the color-blindness check passed.</p>
+
+  <ul class="stats" role="list">
+    <li><span class="stats__value">1 → 92</span> <span class="stats__label">headings a screen reader can jump between</span></li>
+    <li><span class="stats__value">1.9:1 → AA</span> <span class="stats__label">contrast on the power-play badge</span></li>
+    <li><span class="stats__value">3</span> <span class="stats__label">themes, every text color at 4.5:1 or better</span></li>
   </ul>
-  <p>Helps: people with low vision, people who use VoiceOver or TalkBack, people with limited dexterity, and anyone squinting at their phone under rink lights.</p>
+
+  <h3>What the audit found, and what I fixed</h3>
+  <ul class="change-list" role="list">
+    <li>
+      <p class="change__what">Screen readers could barely navigate</p>
+      <p>The whole app had one heading, so VoiceOver and TalkBack users couldn't jump between sections. Screen titles and section labels are now real headings, 92 of them.</p>
+      <p class="change__why">Helps: people who use a screen reader, who move through an app by headings.</p>
+    </li>
+    <li>
+      <p class="change__what">Errors and confirmations happened silently</p>
+      <p>Form errors and messages like "Code copied" or "Feedback sent" only appeared on screen. They're now read out loud on iPhone and Android, and buttons keep their name while they're loading.</p>
+      <p class="change__why">Helps: people who can't see the screen, so they know an action worked or failed.</p>
+    </li>
+    <li>
+      <p class="change__what">Pop-up sheets trapped screen readers</p>
+      <p>The tappable dark background behind the team switcher and two other sheets swallowed their buttons into one element. Fixed, and the team switcher got a Close button.</p>
+      <p class="change__why">Helps: screen reader users, and anyone who expects an obvious way out.</p>
+    </li>
+    <li>
+      <p class="change__what">No gesture-only actions</p>
+      <p>Reporting a chat message needed a press-and-hold. It's now also a screen reader action.</p>
+      <p class="change__why">Helps: people who can't do a long press, and screen reader users.</p>
+    </li>
+    <li>
+      <p class="change__what">Readable in every theme</p>
+      <p>Every text color in Light, Dark, and Warm measures at least 4.5:1 on every background. The audit caught a power-play badge at 1.9:1 and an Edit button that failed. Both pass now.</p>
+      <p class="change__why">Helps: people with low vision, and anyone squinting at their phone under rink lights.</p>
+    </li>
+    <li>
+      <p class="change__what">Works sideways and on tablets</p>
+      <p>The app was locked to portrait, which fails WCAG. Rotation is now unlocked and iPad is supported.</p>
+      <p class="change__why">Helps: people whose phone is mounted sideways, for example on a wheelchair.</p>
+    </li>
+    <li>
+      <p class="change__what">Grows with the phone's text size</p>
+      <p>Team banners and unread badges now grow with large text instead of cutting it off.</p>
+      <p class="change__why">Helps: people who set their phone to large text.</p>
+    </li>
+    <li>
+      <p class="change__what">Color is never the only signal</p>
+      <p>A bad entry in a stats box was marked only with a red border. It now also shows a ⚠ next to the box name, and the screen reader says "not a number." Everything else already paired color with words or symbols: In / Out, W / L / OTL, and ✓ On your schedule.</p>
+      <p class="change__why">Helps: people with color blindness, and screen reader users.</p>
+    </li>
+  </ul>
 
   <h3>Still to do</h3>
-  <p>All of this comes from reviewing the code, not from testing on a device. Next is a real VoiceOver and TalkBack pass, a check at the largest text size and in landscape, and a color-blindness check on the In / Maybe / Out colors.</p>
+  <p>Check the largest text size and landscape on real phones (both are fixed in the code, but not yet tested on a device), and enlarge the 48 places that start at a small 9–11 point size.</p>
 </section>
 
 <section aria-labelledby="final">
@@ -466,7 +516,7 @@ toc:
   <h3>What's next</h3>
   <ul>
     <li>Finish alpha testing with the two teams and add the results here.</li>
-    <li>Run the VoiceOver, TalkBack, and color-blindness checks on real devices.</li>
+    <li>Test the largest text size and landscape on real phones.</li>
     <li>Step two: bring rinks on board with <a href="/design/rinkside-b2b/">Rinkside for rinks</a>, and turn on in-app booking.</li>
   </ul>
 
