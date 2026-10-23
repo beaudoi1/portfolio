@@ -362,7 +362,13 @@ toc:
   </ul>
 
   <h3>Testing the alpha</h3>
-  <p>I tested the built app in three rounds: a full audit of the code (October 14), a round of fixes for large text and rotation (October 17), and hands-on tests on my own iPhone and Android phone with VoiceOver, TalkBack, and the phones' color-blindness filters (October 23). On the phones, VoiceOver and TalkBack worked well, and the color-blindness check passed.</p>
+  <p>I tested the built app in three rounds: a full audit of the code (October 14), a round of fixes for large text and rotation (October 17), and hands-on tests on my own iPhone (iOS 26.1) and Android phone (Android 17) on October 23.</p>
+  <ul>
+    <li><strong>VoiceOver and TalkBack:</strong> worked well.</li>
+    <li><strong>Color blindness:</strong> passed with the phones' deuteranopia, protanopia, and tritanopia filters.</li>
+    <li><strong>Landscape:</strong> worked well.</li>
+    <li><strong>Largest text size:</strong> found real problems (see Still to do).</li>
+  </ul>
 
   <ul class="stats" role="list">
     <li><span class="stats__value">1 → 92</span> <span class="stats__label">headings a screen reader can jump between</span></li>
@@ -399,7 +405,7 @@ toc:
     </li>
     <li>
       <p class="change__what">Works sideways and on tablets</p>
-      <p>The app was locked to portrait, which fails WCAG. Rotation is now unlocked and iPad is supported.</p>
+      <p>The app was locked to portrait, which fails WCAG. Rotation is now unlocked and iPad is supported, and I confirmed landscape on my phone.</p>
       <p class="change__why">Helps: people whose phone is mounted sideways, for example on a wheelchair.</p>
     </li>
     <li>
@@ -412,10 +418,58 @@ toc:
       <p>A bad entry in a stats box was marked only with a red border. It now also shows a ⚠ next to the box name, and the screen reader says "not a number." Everything else already paired color with words or symbols: In / Out, W / L / OTL, and ✓ On your schedule.</p>
       <p class="change__why">Helps: people with color blindness, and screen reader users.</p>
     </li>
+    <li>
+      <p class="change__what">A back button that said "(tabs)"</p>
+      <p>Testing on my iPhone turned up a confusing label: on Stats and other inner pages, the back button read "(tabs)," an internal name that leaked through. It's now just the back arrow, the same as on Android.</p>
+      <p class="change__why">Helps: every iPhone user, and screen reader users, who hear the button's label.</p>
+      <ul class="compare compare--stack" role="list">
+        <li>{% figure "img/rinkside/a11y/back-before-header.png", "The Stats page header before the fix: a back button labeled with a left arrow and the word (tabs).", "<strong>Before</strong>" %}</li>
+        <li>{% figure "img/rinkside/a11y/back-after-header.png", "The Stats page header after the fix: the back button is only a left arrow.", "<strong>After</strong>" %}</li>
+      </ul>
+    </li>
   </ul>
 
+  <h3>Color is never the only signal: the evidence</h3>
+  <p>These are my own screenshots run through a standard color-blindness model (Machado, Oliveira &amp; Fernandes, 2009). They're simulations: an iPhone's color filters can't be captured in a screenshot, so the real-filter result is the on-device check above. The point is the same either way: when the colors blur together, the words still carry the meaning.</p>
+
+  <h4>RSVP: green In and red Out turn the same tan, but the words don't</h4>
+  <ul class="compare" role="list">
+    <li>{% figure "img/rinkside/a11y/rsvp-in-normal.png", "A practice page with the In button selected in green, next to an unselected Out button.", "Normal color vision", "phone" %}</li>
+    <li>{% figure "img/rinkside/a11y/rsvp-in-deuteranopia-sim.png", "The same practice page simulated for deuteranopia: the selected In button is tan, and the word In still shows which one is chosen.", "Deuteranopia (simulated)", "phone" %}</li>
+  </ul>
+
+  <h4>The stats-box fix: a ⚠ and a label, not just a red border</h4>
+  <ul class="compare" role="list">
+    <li>{% figure "img/rinkside/a11y/stat-error-normal.png", "The Score and stats screen with X typed in the Ice Wolves score box, outlined in red, with a warning sign before the label ICE WOLVES.", "Normal color vision", "phone" %}</li>
+    <li>{% figure "img/rinkside/a11y/stat-error-deuteranopia-sim.png", "The same screen simulated for deuteranopia: the red outline is hard to pick out, but the warning sign before ICE WOLVES still flags the bad entry.", "Deuteranopia (simulated)", "phone" %}</li>
+  </ul>
+
+  <details class="more">
+    <summary>More checks: game results and Explore</summary>
+    <h4>Past games: the letters W and OTL still read when green and red merge</h4>
+    <ul class="compare" role="list">
+      <li>{% figure "img/rinkside/a11y/results-normal.png", "Past games list with a win, W 4 to 1, in green and an overtime loss, OTL 2 to 3, in red.", "Normal color vision", "phone" %}</li>
+      <li>{% figure "img/rinkside/a11y/results-protanopia-sim.png", "The same list simulated for protanopia: the green and red scores look alike, but W and OTL still tell them apart.", "Protanopia (simulated)", "phone" %}</li>
+    </ul>
+    <h4>Explore: "Live now" is a word, not a colored dot</h4>
+    <ul class="compare" role="list">
+      <li>{% figure "img/rinkside/a11y/explore-normal.png", "Explore screen with two Public Skate sessions under Happening now, each with a Live now badge.", "Normal color vision", "phone" %}</li>
+      <li>{% figure "img/rinkside/a11y/explore-tritanopia-sim.png", "The same screen simulated for tritanopia: the colors shift, and the Live now badges still read.", "Tritanopia (simulated)", "phone" %}</li>
+    </ul>
+  </details>
+
+  <h3>What VoiceOver says</h3>
+  {% figure "img/rinkside/a11y/voiceover.png", "The practice page with VoiceOver's caption panel at the bottom reading: selected, Aaron: I'm in, Button.", "VoiceOver announces the selected state and what it means (\"selected, … I'm in, Button\"), not a color.", "phone" %}
+
   <h3>Still to do</h3>
-  <p>Check the largest text size and landscape on real phones (both are fixed in the code, but not yet tested on a device), and enlarge the 48 places that start at a small 9–11 point size.</p>
+  <p>Testing on my iPhone at the largest text size found problems I haven't fixed yet:</p>
+  <ul>
+    <li>The bottom tab bar on inner pages breaks its labels mid-word ("Hom/e") and grows to about a quarter of the screen.</li>
+    <li>The team page's four stat tiles break and cut off their labels.</li>
+    <li>The team switcher's list shrinks to a thin line, so you can't see or pick a team.</li>
+    <li>Chat's option cards, the final score ("W 4–" / "1"), and the profile name break mid-word.</li>
+  </ul>
+  <p>What held up: page titles wrap between words, long names end in "…", every page scrolls, and the In / Out buttons stay readable. Also still open: 48 places that start at a small 9–11 point size, and an on-device check on a tablet.</p>
 </section>
 
 <section aria-labelledby="final">
@@ -516,7 +570,7 @@ toc:
   <h3>What's next</h3>
   <ul>
     <li>Finish alpha testing with the two teams and add the results here.</li>
-    <li>Test the largest text size and landscape on real phones.</li>
+    <li>Fix the largest-text problems on the tab bar, stat tiles, and team switcher, then test on Android too.</li>
     <li>Step two: bring rinks on board with <a href="/design/rinkside-b2b/">Rinkside for rinks</a>, and turn on in-app booking.</li>
   </ul>
 

@@ -120,6 +120,13 @@ export default function (eleventyConfig) {
     return `<figure class="${cls}">${img}${cap}</figure>`;
   });
 
+  // Guard: never publish with a missing or truncated stylesheet.
+  eleventyConfig.on("eleventy.before", async () => {
+    const { statSync } = await import("node:fs");
+    const size = statSync("src/css/style.css").size;
+    if (size < 10000) throw new Error(`src/css/style.css is only ${size} bytes. It looks truncated; restore it before building.`);
+  });
+
   // Page background (starfield) at fixed file names so the CSS can use it.
   eleventyConfig.on("eleventy.before", async () => {
     await Image("src/img/site/starfield.jpg", {

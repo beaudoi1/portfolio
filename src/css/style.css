@@ -709,3 +709,8 @@ details.more[open] > summary { margin-bottom: 0.5rem; }
 @media (forced-colors: active) { .section-rail a[aria-current="location"] { background: Highlight; color: HighlightText; } }
 
 .cs-hero__caption { margin: 0; padding: 0.6rem 1rem; color: var(--text-muted); font-size: 0.875rem; background: var(--panel); border-top: 1px solid var(--line); }
+
+/* Short, wide before/after crops stack instead of sitting side by side */
+.compare--stack { grid-template-columns: 1fr !important; max-width: 32rem; }
+.change-list .compare .figure figcaption { margin-top: 0.35rem; }
+.cs-body h4 { margin-top: 1.5rem; }
