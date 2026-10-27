@@ -1,0 +1,40 @@
+{#- A user flow as nested lists: steps go down, decisions split into branches.
+    Data shape: src/_data/rinkside.js. Usage: {% from "flow.njk" import flow %}{{ flow(rinkside.flows.discover) }} -#}
+{% macro steps(list) -%}
+<ol class="flow__steps">
+  {%- for n in list %}
+  {%- if n.q %}
+  <li class="flow__decision">
+    <p class="flow__q"><span class="flow__diamond" aria-hidden="true"></span>{{ n.q }}</p>
+    <ul class="flow__branches">
+      {%- for br in n.branches %}
+      <li class="flow__branch">
+        <p class="flow__label">{{ br.label }}</p>
+        {%- if br.steps.length %}{{ steps(br.steps) }}{% endif %}
+        {%- set last = br.steps | last %}
+        {%- if not last or not (last.end or last.back) %}
+        <p class="flow__note"><span aria-hidden="true">↓</span> Continues below</p>
+        {%- endif %}
+      </li>
+      {%- endfor %}
+    </ul>
+  </li>
+  {%- elif n.back %}
+  <li class="flow__back"><span aria-hidden="true">↺</span> Back to “{{ n.back }}”</li>
+  {%- elif n.start %}
+  <li class="flow__node flow__node--start"><span class="visually-hidden">Start: </span>{{ n.start }}</li>
+  {%- elif n.end %}
+  <li class="flow__node flow__node--end"><span class="visually-hidden">End: </span>{{ n.end }}</li>
+  {%- else %}
+  <li class="flow__node">{{ n }}</li>
+  {%- endif %}
+  {%- endfor %}
+</ol>
+{%- endmacro %}
+
+{% macro flow(list, caption) -%}
+<figure class="flow">
+  {{ steps(list) }}
+  {%- if caption %}<figcaption>{{ caption | safe }}</figcaption>{% endif %}
+</figure>
+{%- endmacro %}

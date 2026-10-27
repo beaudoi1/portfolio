@@ -149,10 +149,22 @@ toc:
     <li>Even the best one shows sessions you can't book, including ones that have already ended.</li>
     <li>No ice-specific app combines the official schedule with team attendance. Volo does, but only at its own venues.</li>
   </ul>
-  {% figure "img/rinkside/competitive-matrix.png",
-    "Feature matrix comparing seven competitors and Rinkside across 15 capabilities. Rinkside is the only column with every row checked, including aggregating multiple rinks and showing availability before login.",
-    "<strong>Feature matrix.</strong> Everyone builds for the rink. Nobody builds for the skater.",
-    "", true %}
+  <div class="matrix-wrap" tabindex="0" role="region" aria-labelledby="matrix-cap">
+    <table class="matrix">
+      <caption id="matrix-cap"><strong>Feature matrix.</strong> Everyone builds for the rink. Nobody builds for the skater.</caption>
+      <thead>
+        <tr><th scope="col">What it does</th>{% for c in rinkside.matrix.columns %}<th scope="col"{% if loop.last %} class="us"{% endif %}>{{ c }}</th>{% endfor %}</tr>
+      </thead>
+      <tbody>
+        {%- set words = { y: "Yes", p: "Partly", n: "No", na: "Doesn't apply" } %}
+        {%- set marks = { y: "✓", p: "◐", n: "✕", na: "—" } %}
+        {%- for r in rinkside.matrix.rows %}
+        <tr{% if r.key %} class="is-key"{% endif %}><th scope="row">{{ r.label }}</th>{% for c in r.cells %}<td{% if loop.last %} class="us"{% endif %}><span class="mx mx--{{ c }}" aria-hidden="true">{{ marks[c] }}</span><span class="visually-hidden">{{ words[c] }}</span></td>{% endfor %}</tr>
+        {%- endfor %}
+      </tbody>
+    </table>
+  </div>
+  <p class="matrix-legend">✓ works · ◐ partly · ✕ missing · — doesn't apply. The two highlighted rows are the ones nobody else does. I tested the five systems by trying to book on a phone, July 2026.</p>
 </section>
 
 <section aria-labelledby="personas">
@@ -236,13 +248,13 @@ toc:
 
   <h3>What I picked, and why</h3>
   <p>A <strong>chronological list of sessions</strong> as the backbone, with a "Tonight" card on top, a map you can switch to, and search always within reach. It answers the question directly, it's the easiest to scan, and it still works when a rink has only a few sessions listed.</p>
+  <p>For teams, Rinkside <strong>replaces BenchApp</strong> instead of sitting next to it. It does what a team app does (schedule, In / Out RSVPs, team chat, stats), and the schedule fills in from the rink, so nobody retypes it. One app is easier to ask a whole roster to use than two.</p>
 
   <h3>What I dropped</h3>
   <ul>
     <li><strong>Calendar grid.</strong> It's what the current systems do, and it's dense and hard to read on a phone.</li>
     <li><strong>Swipe deck.</strong> Fun, but wrong for a quick, practical task.</li>
     <li><strong>Rink first.</strong> It repeats the mental model that's already failing people.</li>
-    <li><strong>Replacing BenchApp outright.</strong> Teams already like it for chat and polls. Asking a whole roster to switch apps is a big ask, so Rinkside works alongside it.</li>
   </ul>
 </section>
 
@@ -257,32 +269,18 @@ toc:
     "", true %}
 
   <h3>The four key flows</h3>
-  <p>Before the hi-fi screens, I mapped the four tasks that matter most in FigJam: finding and booking ice, a team game from schedule to rink, checkout, and canceling.</p>
-  {% figure "img/rinkside/flows/flow-discover-book.png",
-    "Discover to book flow: open Rinkside, Home, then browse or search. Search goes to search results; browse goes to Explore, then a check for sessions nearby. No leads to an empty state; yes and search results both lead to the session list with live spot counts, then Session Detail, Proceed to Checkout, and Booking confirmed.",
-    "<strong>Discover → book.</strong> Browsing and searching end up on the same list of sessions with live spot counts, so there's no separate path for each rink. If nothing's nearby, you get an empty state, not a dead end.",
-    "light" %}
+{% from "flow.njk" import flow %}
+  <p>Before the hi-fi screens, I mapped the four tasks that matter most in FigJam: finding and booking ice, a team game from schedule to rink, checkout, and canceling. They're redrawn here from my boards so they're easier to read.</p>
+  {{ flow(rinkside.flows.discover, "<strong>Discover → book.</strong> Browsing and searching end up on the same list of sessions with live spot counts, so there's no separate path for each rink. If nothing's nearby, you get an empty state, not a dead end.") }}
   <p>In the alpha, this flow ends by handing off to the rink's own site to pay, and then you add the session to your schedule. Paying in the app comes with step two of the launch plan.</p>
 
   <details class="more">
     <summary>More flows: team games, checkout, and canceling</summary>
-    {% figure "img/rinkside/flows/flow-team-checkin.png",
-      "Team check-in flow: the rink publishes its schedule, the game fills in under My Teams, a push notification announces it, the player opens My Teams and sees the date, time and venue, then responds In or Out. No response by the deadline sends an automated nudge back to the question. In or Out updates the live count; In continues to game day, QR check-in at the rink, and on the ice.",
-      "<strong>Team games.</strong> The rink's schedule fills in the team's games, so no captain retypes them. Players answer In or Out, and anyone who hasn't answered by the deadline gets a nudge. The board still ends with a QR check-in at the rink. After I watched four real check-ins and none involved showing a phone, I changed that step to a check-in button in the app (see Iterations).",
-      "light" %}
-    {% figure "img/rinkside/flows/flow-checkout.png",
-      "Checkout flow: enter from Session Detail, pick yourself or a dependent, the fee is set by price tier, then the all-in total shows before payment. Pay with a saved method or add one through Stripe. Success leads to a confirmation; a failed payment leads to a retry; a session that fills during checkout leads to a waitlist offer.",
-      "<strong>Checkout.</strong> Book for yourself or your kid, see the all-in total before you pay, and recover from the two ways it can fail: a declined card (try again) or the session filling up mid-checkout (join the waitlist).",
-      "light" %}
+    {{ flow(rinkside.flows.team, "<strong>Team games.</strong> The rink's schedule fills in the team's games, so no captain retypes them. Players answer In or Out, and anyone who hasn't answered by the deadline gets a nudge. The board still ends with a QR check-in at the rink. After I watched four real check-ins and none involved showing a phone, I changed that step to a check-in button in the app (see Iterations).") }}
+    {{ flow(rinkside.flows.checkout, "<strong>Checkout.</strong> Book for yourself or your kid, see the all-in total before you pay, and recover from the two ways it can fail: a declined card (try again) or the session filling up mid-checkout (join the waitlist).") }}
     <h4>Canceling: version 1 and version 2</h4>
-    {% figure "img/rinkside/flows/flow-cancel-v1.png",
-      "Cancellation flow, version 1: if someone is on the waitlist, the user is told they'll be refunded and the next person is promoted and charged. If not, they're told they won't be refunded, and the booking is canceled with no refund.",
-      "<strong>Version 1.</strong> You only got a refund if someone was already on the waitlist to take your spot.",
-      "light" %}
-    {% figure "img/rinkside/flows/flow-cancel-v2.png",
-      "Cancellation flow, version 2: if the session is full, the user is refunded right away and the next person on the waitlist is promoted and charged. If it isn't full, the refund is set to pending: it's paid if the session fills before it starts, and closes with no refund if it starts unfilled.",
-      "<strong>Version 2.</strong> If the session is full, you're refunded right away. If it isn't, your refund waits: if the spot fills before the session starts, you get your money back. You can always cancel, and the app tells you which case you're in before you confirm.",
-      "light" %}
+    {{ flow(rinkside.flows.cancelV1, "<strong>Version 1.</strong> You only got a refund if someone was already on the waitlist to take your spot.") }}
+    {{ flow(rinkside.flows.cancelV2, "<strong>Version 2.</strong> If the session is full, you're refunded right away. If it isn't, your refund waits: if the spot fills before the session starts, you get your money back. You can always cancel, and the app tells you which case you're in before you confirm.") }}
     <p>Checkout and canceling aren't in the alpha yet, because payments come with step two.</p>
   </details>
 
@@ -591,14 +589,26 @@ toc:
   </ol>
 
   <h3>Design system</h3>
-  <p>The prototype's tokens and components became the starting point for the app's three themes.</p>
-  {% figure "img/rinkside/design-system-colors.png",
-    "Color tokens: four dark background shades, a sky-blue accent, an orange hot accent, a purple accent, and three text colors (primary, muted, dim).",
-    "<strong>Colors</strong> (prototype).",
-    "", true %}
+  <p>The prototype's tokens and components became the starting point for the app's three themes. When testers said the dark prototype was hard to see, I brightened the cards and the gray text.</p>
+  <h4>Colors in the alpha</h4>
+  <p>Each theme's text colors, and how they measure against that theme's cards. WCAG AA asks for at least 4.5:1.</p>
+  <div class="palette">
+    {%- for t in rinkside.themes %}
+    <section class="palette__theme" style="background:{{ t.bg }}" aria-label="{{ t.name }} theme">
+      <p class="palette__name" style="color:{{ t.text }}">{{ t.name }}</p>
+      <div class="palette__card" style="background:{{ t.surface }}">
+        <ul class="palette__list">
+          {%- for sw in t.swatches %}
+          <li style="color:{{ sw.hex }}"><span>{{ sw.label }} <code>{{ sw.hex }}</code></span><span>{{ sw.ratio }}:1</span></li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </section>
+    {%- endfor %}
+  </div>
   {% figure "img/rinkside/design-system-components.png",
     "Components: primary and secondary buttons, status pills (Open, Filling up, Full, Notice), a session card, the patron bottom nav, a toast, and a loading skeleton.",
-    "<strong>Components</strong> (prototype).",
+    "<strong>Components</strong> from the prototype, shown in the alpha's Dark colors.",
     "", true %}
 </section>
 
