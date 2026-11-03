@@ -408,7 +408,7 @@ toc:
     <li><strong>VoiceOver and TalkBack:</strong> worked well.</li>
     <li><strong>Color blindness:</strong> passed with the phones' deuteranopia, protanopia, and tritanopia filters.</li>
     <li><strong>Landscape:</strong> worked well.</li>
-    <li><strong>Largest text size:</strong> found six problems, and a recheck found three more. I fixed all nine and confirmed each one on the iPhone. On Android, nothing broke mid-word, but some tab labels get cut short (see below).</li>
+    <li><strong>Largest text size:</strong> the hardest test. Over three passes on the iPhone I found 23 problems, plus one on Android. All are fixed in the code, and 13 are confirmed on the phone so far (see below).</li>
   </ul>
 
   <ul class="stats" role="list">
@@ -532,7 +532,7 @@ toc:
   </ul>
 
   <h3>Round two: what the recheck turned up</h3>
-  <p>Going back through the app at the largest size found three more things that broke. I fixed them and checked again on the phone.</p>
+  <p>Going back through the same screens at the largest size turned up eight more problems. I fixed all eight, and six are confirmed on the phone.</p>
 
   <h4>The Edit button no longer covers the team name</h4>
   <ul class="compare" role="list">
@@ -546,22 +546,37 @@ toc:
     <li>{% figure "img/rinkside/a11y/largetext-after-tabs.png", "After: the same game page at the largest text size, with Summary and Box Score on one line under the final score W 4–1.", "<strong>After.</strong> Summary and Box Score on one line.", "phone" %}</li>
   </ul>
 
-  <h4>Schedule cards break team names between words, and nothing is cut off at the top</h4>
+  <h4>The team's upcoming-game card: In / Out moves below the details</h4>
   <ul class="compare" role="list">
-    <li>{% figure "img/rinkside/a11y/largetext-before-schedule.png", "Before: a schedule game card at the largest text size, with the team name breaking mid-word, Wolv es.", "<strong>Before.</strong> \"Wolv / es.\"", "phone" %}</li>
-    <li>{% figure "img/rinkside/a11y/largetext-after-schedule.png", "After: the schedule at the largest text size, with the game card reading Ice Wolves vs Smell the Glove, broken only between words.", "<strong>After.</strong> \"Ice Wolves vs Smell the Glove,\" in whole words.", "phone" %}</li>
+    <li>{% figure "img/rinkside/a11y/largetext-before-teamcard.png", "Before: the upcoming-game card on the Teams tab at the largest text size. The In and Out buttons sit beside the title, so it breaks mid-word, Ice Wolv es vs Smell the Glove, and the Add schedule link above is cut off.", "<strong>Before.</strong> The title breaks (\"Wolv / es\") and \"+ Add schedule\" is cut off.", "phone" %}</li>
+    <li>{% figure "img/rinkside/a11y/largetext-after-teamcard.png", "After: the same card at the largest text size. Add schedule wraps onto two lines above the card, and the title reads Ice Wolves vs Smell the Glove in whole words.", "<strong>After.</strong> Whole words, and the link wraps.", "phone" %}</li>
   </ul>
-  <p>The profile name also shows whole now, though the demo account's name is short, so it's a lighter test than my own.</p>
+
+  <h4>Past games: the opponent's name no longer stacks one letter per line</h4>
+  <ul class="compare" role="list">
+    <li>{% figure "img/rinkside/a11y/largetext-before-pastgames.png", "Before: a past game card at the largest text size, with the opponent's name squeezed into a column one letter wide: v, s, D, u, c, k, s.", "<strong>Before.</strong> \"vs Ducks,\" one letter per line.", "phone" %}</li>
+    <li>{% figure "img/rinkside/a11y/largetext-after-pastgames.png", "After: the same past game card at the largest text size, reading vs Ducks, Sun, Nov 1, Edge Ice Arena East, with Add score below.", "<strong>After.</strong> The score link moves below the details.", "phone" %}</li>
+  </ul>
+  <p>The other four: the box score's columns and the team page's Standings and Stats tiles are confirmed on the phone. The team switcher's "Create a team" button and a game's "Wear dark / white" card are fixed in the code, but I've only checked them in a web preview so far. The profile name also shows whole now, though the demo account's name is short, so it's a lighter test than my own.</p>
+
+  <h3>Round three: the rest of the app</h3>
+  <p>Then I went through 12 screens I hadn't checked yet and found nine more problem areas: buttons side by side that broke mid-word, links running off the edge, and icons squeezing names on Home, Explore, Saved, Profile and the Schedule tab. All nine are fixed in the code. So far I've confirmed one on the phone:</p>
+  <ul class="compare" role="list">
+    <li>{% figure "img/rinkside/a11y/largetext-before-scheduletab.png", "Before: the Schedule tab at the largest text size. Add a schedule and Calendar sync sit side by side and break mid-word, Add a sche dule and Cale ndar sync, and the game title beside In and Out breaks, Wol ves.", "<strong>Before.</strong> \"Add a sche / dule\" and \"Cale / ndar.\"", "phone" %}</li>
+    <li>{% figure "img/rinkside/a11y/largetext-after-schedule.png", "After: the Schedule tab at the largest text size. Add a schedule and Calendar sync are stacked full-width buttons, and the game card reads Ice Wolves vs Smell the Glove in whole words.", "<strong>After.</strong> The buttons stack, and the card reads in whole words.", "phone" %}</li>
+  </ul>
+
   <h4>Android at its largest setting</h4>
-  <p>On Android, with the font size and display size both turned all the way up, nothing broke mid-word. Android's largest text is smaller than the iPhone's (about double the normal size, where the iPhone goes to about triple), so the iPhone was the harder test. One thing did show up: on some screens, the tab bar labels get cut short ("Sche…", "Tea…").</p>
+  <p>On Android, with the font size and display size both turned all the way up, nothing broke mid-word. Android's largest text is smaller than the iPhone's (about double the normal size, where the iPhone goes to about triple), so the iPhone was the harder test. One thing did show up: on the main tabs, the tab bar labels got cut short ("Sche…", "Tea…"). That's fixed in the code: the labels now shrink to fit instead.</p>
   <ul class="compare" role="list">
     <li>{% figure "img/rinkside/a11y/largetext-android-game.png", "Android at its largest text and display size: a game page with the final score W 4–1, Summary and Box Score tabs on one line, and the tab bar labels Home, Schedule, Teams, Explore and Saved in full.", "<strong>Game page.</strong> Everything reads in full.", "phone" %}</li>
-    <li>{% figure "img/rinkside/a11y/largetext-android-schedule.png", "Android at its largest text and display size: the schedule, with a game card reading Ice Wolves vs Smell the Glove in whole words. The tab bar labels are cut short: Sche, Tea, Expl and Save, each followed by an ellipsis.", "<strong>Schedule.</strong> The cards read fine, but the tab labels are cut short.", "phone" %}</li>
+    <li>{% figure "img/rinkside/a11y/largetext-android-schedule.png", "Android at its largest text and display size, before the tab bar fix: the schedule, with a game card reading Ice Wolves vs Smell the Glove in whole words. The tab bar labels are cut short: Sche, Tea, Expl and Save, each followed by an ellipsis.", "<strong>Schedule, before the tab bar fix.</strong> The cards read fine, but the tab labels are cut short.", "phone" %}</li>
   </ul>
 
   <h3>Still to do</h3>
   <ul>
-    <li>Stop Android's tab bar labels from being cut short at large text.</li>
+    <li>Recheck on my iPhone: the team switcher, the "Wear dark / white" card, and the eight round-three screens I haven't re-shot.</li>
+    <li>Recheck Android's tab bar after the fix.</li>
     <li>Test the largest text size on a tablet.</li>
     <li>Enlarge small text: 47 places in the code start at 9–11 points. It still grows with the phone's text setting, but it starts too small.</li>
   </ul>
@@ -678,7 +693,7 @@ toc:
   <h3>What's next</h3>
   <ul>
     <li>Finish alpha testing with the two teams and add the results here.</li>
-    <li>Fix Android's cut-short tab labels, then test large text on a tablet.</li>
+    <li>Finish rechecking the large-text fixes on both phones, then test on a tablet.</li>
     <li>Step two: bring rinks on board with <a href="/design/rinkside-b2b/">Rinkside for rinks</a>, and turn on in-app booking.</li>
   </ul>
 
