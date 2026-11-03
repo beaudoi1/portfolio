@@ -408,7 +408,7 @@ toc:
     <li><strong>VoiceOver and TalkBack:</strong> worked well.</li>
     <li><strong>Color blindness:</strong> passed with the phones' deuteranopia, protanopia, and tritanopia filters.</li>
     <li><strong>Landscape:</strong> worked well.</li>
-    <li><strong>Largest text size:</strong> found six problems, and a recheck found three more. I fixed all nine, and seven are confirmed on the phone so far (see below).</li>
+    <li><strong>Largest text size:</strong> found six problems, and a recheck found three more. I fixed all nine and confirmed each one on the phone (see below).</li>
   </ul>
 
   <ul class="stats" role="list">
@@ -504,7 +504,7 @@ toc:
 
   <h3>The largest text size</h3>
   <p>On October 23 I set my iPhone to the largest accessibility text size and went through the app. Page titles wrapped between words, long names ended in "…", every page still scrolled, and the In / Out buttons stayed readable. But six things broke.</p>
-  <p>I fixed all six in the code on October 26, then went back through the same screens on my iPhone. Four of the fixes held up on the phone:</p>
+  <p>I fixed all six in the code on October 26, then went back through the same screens on my iPhone:</p>
 
   <h4>Team switcher: the buttons moved inside the scrolling list, so the teams get the space</h4>
   <ul class="compare" role="list">
@@ -525,8 +525,11 @@ toc:
   </ul>
   <p>The tab bar's labels now stop growing at 1.3 times the normal size. That's a trade-off: they're smaller than the rest of the text, but the bar no longer takes over the screen.</p>
 
-  <p>One fix I haven't seen on the phone yet: the team page's stat tiles, now a 2×2 grid at large text.</p>
-  {% figure "img/rinkside/a11y/largetext-before-2.png", "Team page at the largest text size before the fix: the four stat tiles break their labels mid-word, REC OR D and STA NDI NG, and cut them off.", "<strong>Before.</strong> The stat tiles, fixed in the code but not rechecked yet.", "phone" %}
+  <h4>Stat tiles: a 2×2 grid at large text, instead of four in a row</h4>
+  <ul class="compare" role="list">
+    <li>{% figure "img/rinkside/a11y/largetext-before-2.png", "Before: the team page at the largest text size. Four stat tiles in a row break their labels mid-word, REC OR D and STA NDI NG, and cut them off.", "<strong>Before.</strong> Labels break and get cut off.", "phone" %}</li>
+    <li>{% figure "img/rinkside/a11y/largetext-after-2.png", "After: the team page at the largest text size. The stat tiles sit in a 2 by 2 grid: 2-0-1 record, 1st standing, 5 points, and Won 1 streak, every label whole.", "<strong>After.</strong> Two rows of two, every label whole.", "phone" %}</li>
+  </ul>
 
   <h3>Round two: what the recheck turned up</h3>
   <p>Going back through the app at the largest size found three more things that broke. I fixed them and checked again on the phone.</p>
@@ -543,7 +546,7 @@ toc:
     <li>{% figure "img/rinkside/a11y/largetext-after-tabs.png", "After: the same game page at the largest text size, with Summary and Box Score on one line under the final score W 4–1.", "<strong>After.</strong> Summary and Box Score on one line.", "phone" %}</li>
   </ul>
 
-  <h4>Schedule cards break team names between words</h4>
+  <h4>Schedule cards break team names between words, and nothing is cut off at the top</h4>
   <ul class="compare" role="list">
     <li>{% figure "img/rinkside/a11y/largetext-before-schedule.png", "Before: a schedule game card at the largest text size, with the team name breaking mid-word, Wolv es.", "<strong>Before.</strong> \"Wolv / es.\"", "phone" %}</li>
     <li>{% figure "img/rinkside/a11y/largetext-after-schedule.png", "After: the schedule at the largest text size, with the game card reading Ice Wolves vs Smell the Glove, broken only between words.", "<strong>After.</strong> \"Ice Wolves vs Smell the Glove,\" in whole words.", "phone" %}</li>
@@ -552,7 +555,6 @@ toc:
 
   <h3>Still to do</h3>
   <ul>
-    <li>Recheck the team page's stat tiles and the Schedule page title on my iPhone.</li>
     <li>Test the largest text size on Android, and on a tablet.</li>
     <li>Enlarge small text: 47 places in the code start at 9–11 points. It still grows with the phone's text setting, but it starts too small.</li>
   </ul>
@@ -669,7 +671,7 @@ toc:
   <h3>What's next</h3>
   <ul>
     <li>Finish alpha testing with the two teams and add the results here.</li>
-    <li>Recheck the last two large-text fixes, then test large text on Android.</li>
+    <li>Test large text on Android.</li>
     <li>Step two: bring rinks on board with <a href="/design/rinkside-b2b/">Rinkside for rinks</a>, and turn on in-app booking.</li>
   </ul>
 
