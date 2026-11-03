@@ -408,7 +408,7 @@ toc:
     <li><strong>VoiceOver and TalkBack:</strong> worked well.</li>
     <li><strong>Color blindness:</strong> passed with the phones' deuteranopia, protanopia, and tritanopia filters.</li>
     <li><strong>Landscape:</strong> worked well.</li>
-    <li><strong>Largest text size:</strong> found six problems, and a recheck found three more. I fixed all nine and confirmed each one on the iPhone, and Android passed at its largest setting (see below).</li>
+    <li><strong>Largest text size:</strong> found six problems, and a recheck found three more. I fixed all nine and confirmed each one on the iPhone. On Android, nothing broke mid-word, but some tab labels get cut short (see below).</li>
   </ul>
 
   <ul class="stats" role="list">
@@ -552,10 +552,16 @@ toc:
     <li>{% figure "img/rinkside/a11y/largetext-after-schedule.png", "After: the schedule at the largest text size, with the game card reading Ice Wolves vs Smell the Glove, broken only between words.", "<strong>After.</strong> \"Ice Wolves vs Smell the Glove,\" in whole words.", "phone" %}</li>
   </ul>
   <p>The profile name also shows whole now, though the demo account's name is short, so it's a lighter test than my own.</p>
-  <p>On Android, with the font size and display size both turned all the way up, nothing broke. Android's largest text is smaller than the iPhone's (about double the normal size, where the iPhone goes to about triple), so the iPhone was the harder test.</p>
+  <h4>Android at its largest setting</h4>
+  <p>On Android, with the font size and display size both turned all the way up, nothing broke mid-word. Android's largest text is smaller than the iPhone's (about double the normal size, where the iPhone goes to about triple), so the iPhone was the harder test. One thing did show up: on some screens, the tab bar labels get cut short ("Sche…", "Tea…").</p>
+  <ul class="compare" role="list">
+    <li>{% figure "img/rinkside/a11y/largetext-android-game.png", "Android at its largest text and display size: a game page with the final score W 4–1, Summary and Box Score tabs on one line, and the tab bar labels Home, Schedule, Teams, Explore and Saved in full.", "<strong>Game page.</strong> Everything reads in full.", "phone" %}</li>
+    <li>{% figure "img/rinkside/a11y/largetext-android-schedule.png", "Android at its largest text and display size: the schedule, with a game card reading Ice Wolves vs Smell the Glove in whole words. The tab bar labels are cut short: Sche, Tea, Expl and Save, each followed by an ellipsis.", "<strong>Schedule.</strong> The cards read fine, but the tab labels are cut short.", "phone" %}</li>
+  </ul>
 
   <h3>Still to do</h3>
   <ul>
+    <li>Stop Android's tab bar labels from being cut short at large text.</li>
     <li>Test the largest text size on a tablet.</li>
     <li>Enlarge small text: 47 places in the code start at 9–11 points. It still grows with the phone's text setting, but it starts too small.</li>
   </ul>
@@ -672,7 +678,7 @@ toc:
   <h3>What's next</h3>
   <ul>
     <li>Finish alpha testing with the two teams and add the results here.</li>
-    <li>Test large text on a tablet.</li>
+    <li>Fix Android's cut-short tab labels, then test large text on a tablet.</li>
     <li>Step two: bring rinks on board with <a href="/design/rinkside-b2b/">Rinkside for rinks</a>, and turn on in-app booking.</li>
   </ul>
 
