@@ -408,7 +408,7 @@ toc:
     <li><strong>VoiceOver and TalkBack:</strong> worked well.</li>
     <li><strong>Color blindness:</strong> passed with the phones' deuteranopia, protanopia, and tritanopia filters.</li>
     <li><strong>Landscape:</strong> worked well.</li>
-    <li><strong>Largest text size:</strong> the hardest test. Over three passes on the iPhone I found 23 problems, plus one on Android. All are fixed in the code, and 13 are confirmed on the phone so far (see below).</li>
+    <li><strong>Largest text size:</strong> the hardest test. Over three passes on the iPhone I found 23 problems, plus one on Android. All are fixed in the code, and 14 are confirmed on the phones so far (see below).</li>
   </ul>
 
   <ul class="stats" role="list">
@@ -567,16 +567,15 @@ toc:
   </ul>
 
   <h4>Android at its largest setting</h4>
-  <p>On Android, with the font size and display size both turned all the way up, nothing broke mid-word. Android's largest text is smaller than the iPhone's (about double the normal size, where the iPhone goes to about triple), so the iPhone was the harder test. One thing did show up: on the main tabs, the tab bar labels got cut short ("Sche…", "Tea…"). That's fixed in the code: the labels now shrink to fit instead.</p>
+  <p>On Android, with the font size and display size both turned all the way up, nothing broke mid-word. Android's largest text is smaller than the iPhone's (about double the normal size, where the iPhone goes to about triple), so the iPhone was the harder test. One thing did show up: on the main tabs, the tab bar labels got cut short ("Sche…", "Tea…"). The labels now shrink to fit instead, and I confirmed it on the phone.</p>
   <ul class="compare" role="list">
-    <li>{% figure "img/rinkside/a11y/largetext-android-game.png", "Android at its largest text and display size: a game page with the final score W 4–1, Summary and Box Score tabs on one line, and the tab bar labels Home, Schedule, Teams, Explore and Saved in full.", "<strong>Game page.</strong> Everything reads in full.", "phone" %}</li>
-    <li>{% figure "img/rinkside/a11y/largetext-android-schedule.png", "Android at its largest text and display size, before the tab bar fix: the schedule, with a game card reading Ice Wolves vs Smell the Glove in whole words. The tab bar labels are cut short: Sche, Tea, Expl and Save, each followed by an ellipsis.", "<strong>Schedule, before the tab bar fix.</strong> The cards read fine, but the tab labels are cut short.", "phone" %}</li>
+    <li>{% figure "img/rinkside/a11y/largetext-android-schedule.png", "Before: the Schedule tab on Android at its largest text and display size. The game card reads Ice Wolves vs Smell the Glove in whole words, but the tab bar labels are cut short: Sche, Tea, Expl and Save, each followed by an ellipsis.", "<strong>Before.</strong> The tab labels are cut short.", "phone" %}</li>
+    <li>{% figure "img/rinkside/a11y/largetext-android-schedule-after.png", "After: the same Schedule tab on Android at its largest text and display size. The tab bar reads Home, Schedule, Teams, Explore and Saved in full.", "<strong>After.</strong> Every tab label in full.", "phone" %}</li>
   </ul>
 
   <h3>Still to do</h3>
   <ul>
     <li>Recheck on my iPhone: the team switcher, the "Wear dark / white" card, and the eight round-three screens I haven't re-shot.</li>
-    <li>Recheck Android's tab bar after the fix.</li>
     <li>Test the largest text size on a tablet.</li>
     <li>Enlarge small text: 47 places in the code start at 9–11 points. It still grows with the phone's text setting, but it starts too small.</li>
   </ul>
@@ -693,7 +692,7 @@ toc:
   <h3>What's next</h3>
   <ul>
     <li>Finish alpha testing with the two teams and add the results here.</li>
-    <li>Finish rechecking the large-text fixes on both phones, then test on a tablet.</li>
+    <li>Finish rechecking the large-text fixes on the iPhone, then test on a tablet.</li>
     <li>Step two: bring rinks on board with <a href="/design/rinkside-b2b/">Rinkside for rinks</a>, and turn on in-app booking.</li>
   </ul>
 
