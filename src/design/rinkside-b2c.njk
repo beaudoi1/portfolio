@@ -408,7 +408,7 @@ toc:
     <li><strong>VoiceOver and TalkBack:</strong> worked well.</li>
     <li><strong>Color blindness:</strong> passed with the phones' deuteranopia, protanopia, and tritanopia filters.</li>
     <li><strong>Landscape:</strong> worked well.</li>
-    <li><strong>Largest text size:</strong> the hardest test. Over three passes on the iPhone I found 23 problems, plus one on Android. All are fixed in the code, and 14 are confirmed on the phones so far (see below).</li>
+    <li><strong>Largest text size:</strong> the hardest test. Over three passes on the iPhone I found 23 problems, plus one on an Android phone and two on an Android tablet emulator. All 26 are fixed in the code, and 16 are confirmed on a device so far (see below).</li>
   </ul>
 
   <ul class="stats" role="list">
@@ -573,10 +573,24 @@ toc:
     <li>{% figure "img/rinkside/a11y/largetext-android-schedule-after.png", "After: the same Schedule tab on Android at its largest text and display size. The tab bar reads Home, Schedule, Teams, Explore and Saved in full.", "<strong>After.</strong> Every tab label in full.", "phone" %}</li>
   </ul>
 
+  <h4>Tablet, on an Android emulator</h4>
+  <p>I don't have a tablet, so I ran the app on Android's official tablet emulator (a Pixel Tablet on Android 15) with the font size at 200% and the display size at its largest, in portrait and landscape. It's an emulator, not a real tablet. I couldn't test an iPad, because Apple's simulator needs a Mac.</p>
+  <p>Two things broke, and both are fixed and confirmed on the emulator:</p>
+  <ul class="compare" role="list">
+    <li>{% figure "img/rinkside/a11y/tablet-price-before.png", "Before: Explore on a tablet in landscape at the largest text size. A long price, 7 dollars adults, 6 dollars youth 17 and under, skate rental 4 dollars, is squeezed into a narrow right-hand column, one or two words per line.", "<strong>Before.</strong> A long price turns into a tall strip.", "" %}</li>
+    <li>{% figure "img/rinkside/a11y/tablet-price-after.png", "After: Explore on a tablet in landscape at the largest text size. The price, 6 dollars plus 4 dollars skate rental, sits under the rink and time on its own line.", "<strong>After.</strong> At large text, the price moves under the rink and time.", "" %}</li>
+  </ul>
+  <ul class="compare" role="list">
+    <li>{% figure "img/rinkside/a11y/tablet-tabs-before.png", "Before: the tab bar on a tablet in landscape, where labels sit beside their icons. The labels ride up above the icon line, so the row looks staggered.", "<strong>Before.</strong> Tab labels ride up beside their icons.", "" %}</li>
+    <li>{% figure "img/rinkside/a11y/tablet-tabs-after.png", "After: the same tab bar in landscape, with each label centered beside its icon: Home, Schedule, Teams, Explore, Saved.", "<strong>After.</strong> Each label lines up with its icon.", "" %}</li>
+  </ul>
+  <p>Everything else held up in both directions, including sign-in, Home, Explore and its map, rink pages, the team page, past games, the game page, and the full box score. Two small things are left: first names under the roster avatars get cut short ("D. Te…"), and the floating chat button covers whatever scrolls under it.</p>
+
   <h3>Still to do</h3>
   <ul>
     <li>Recheck on my iPhone: the team switcher, the "Wear dark / white" card, and the eight round-three screens I haven't re-shot.</li>
-    <li>Test the largest text size on a tablet.</li>
+    <li>Test on a real tablet, and on an iPad. An iPad check needs an iPad or a Mac, which I don't have yet.</li>
+    <li>Stop roster first names from being cut short under the avatars.</li>
     <li>Enlarge small text: 47 places in the code start at 9–11 points. It still grows with the phone's text setting, but it starts too small.</li>
   </ul>
 </section>
@@ -692,7 +706,7 @@ toc:
   <h3>What's next</h3>
   <ul>
     <li>Finish alpha testing with the two teams and add the results here.</li>
-    <li>Finish rechecking the large-text fixes on the iPhone, then test on a tablet.</li>
+    <li>Finish rechecking the large-text fixes on the iPhone, then test on a real tablet.</li>
     <li>Step two: bring rinks on board with <a href="/design/rinkside-b2b/">Rinkside for rinks</a>, and turn on in-app booking.</li>
   </ul>
 
