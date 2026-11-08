@@ -2,8 +2,8 @@
 layout: case-study.njk
 title: Rinkside for rinks
 eyebrow: UX case study · B2B · In progress
-description: "Rinkside for rinks, in progress: a platform to run the whole rink, from scheduling and point of sale to staff, finances, and the building. Research by Aaron Beaudoin."
-lede: "A platform to run the whole rink: scheduling, point of sale, inventory, stats, staff, finances, and the building itself. I'm starting where every product should, by finding out what's broken today."
+description: "Rinkside for rinks, in progress: a platform to run the whole rink. Research, Crazy 8s, and lo-fi wireframes by Aaron Beaudoin."
+lede: "A platform to run the whole rink: scheduling, point of sale, inventory, stats, staff, finances, and the building itself. I started by finding out what's broken today. Now it's at lo-fi wireframes, not yet tested."
 meta:
   - label: My role
     value: "Solo designer and founder: research, UX, and product direction."
@@ -11,28 +11,37 @@ meta:
     value: "August 2026 – now"
   - label: Platforms
     value: "Web dashboard + app for rink staff, on the same backend as the skater app"
+  - label: Tools
+    value: "Figma · Excel · Claude"
   - label: Status
-    value: "In progress. First research round done; next rounds cover the rest of the rink, then lo-fi wireframes."
+    value: "In progress. Lo-fi wireframes and a clickable lo-fi prototype are done; not tested with anyone yet."
   - label: Last updated
-    value: "October 2026"
+    value: "November 2026"
 glance:
   - label: The problem
     value: "Rinks run on a patchwork of tools: one system for bookings, another for leagues, paper at the front desk, and spreadsheets for the rest. Staff enter the same information two or three times."
   - label: What I've done
-    value: "Interviewed three rink staff, audited 11 operator systems, and defined the problem, journey, user stories, and success criteria."
+    value: "Interviewed three rink staff and audited 11 operator systems. Then I sketched 40 ideas in Crazy 8s, drew 47 lo-fi screens, and set who can do what for three staff roles."
   - label: Where it stands
-    value: "The first research round covered scheduling, check-in, and game-day results. Next rounds cover point of sale, inventory, staff, and finances. Then lo-fi wireframes."
+    value: "Lo-fi wireframes and a clickable prototype are done. Nobody outside me has tested them yet. Next: a second round of interviews, then usability tests."
 stats:
   - { value: "3 of 3", label: "rinks re-key game results by hand at night" }
   - { value: "3 of 3", label: "check people in on paper" }
-  - { value: "11", label: "operator systems audited" }
-  - { value: "85", label: "user stories, ranked by priority" }
+  - { value: "47", label: "lo-fi screens, from 40 sketched ideas" }
+  - { value: "84", label: "staff actions, each set for three roles" }
 next:
   title: STiX Crafthouse
   url: /design/stix-crafthouse/
 links:
   - label: The skater app case study
     url: /design/rinkside-b2c/
+toc:
+  - { id: b2b-problem, label: The problem }
+  - { id: b2b-research, label: Research }
+  - { id: b2b-ideas, label: Crazy 8s }
+  - { id: b2b-wireframes, label: Lo-fi wireframes }
+  - { id: b2b-roles, label: Who can do what }
+  - { id: b2b-now, label: Where I am now }
 ---
 
 
@@ -76,13 +85,144 @@ links:
   </ul>
 </section>
 
+<section aria-labelledby="b2b-ideas">
+  <h2 id="b2b-ideas">Ideas: 40 sketches in five rounds</h2>
+  <p>I picked five jobs from the interviews, my feature list, and 85 user stories, then did Crazy 8s for each one: eight different layouts for the same job. I did them digitally instead of on paper. Claude drew the eight panels for each round in Figma from my feature list, and I went through them and picked what moved forward.</p>
+  <p>Before this, I'd scored 14 concepts. Two didn't make it to sketching:</p>
+  <ul>
+    <li><strong>Pushing empty spots to skaters in the skater app.</strong> Only one rink said it had sessions that run underfilled, the demand is my guess, and it needs two other systems built first.</li>
+    <li><strong>A lobby TV display.</strong> Only one rink has a TV, a competitor already sells one, and it doesn't earn anything.</li>
+  </ul>
+
+  {% figure "img/rinkside/b2b/c8-round1.png",
+    "Crazy 8s round 1, the desk on game day: eight gray-box layouts. 1 Roster list, 2 Scan first, 3 Three columns, 4 Walk-up add, 5 Capacity first, 6 Group by wristband, 7 Today's sessions, 8 Problems only. Ideas 1 and 7 are marked as picks.",
+    "<strong>Round 1, the desk on game day.</strong> I picked the roster list (1) and today's sessions (7). The desk uses the roster to see missing waivers, unpaid bookings, and who's here. Today's sessions already shows how full each one is, so there's no separate capacity screen.",
+    "light" %}
+
+  <details class="more">
+    <summary>The other four rounds</summary>
+    {% figure "img/rinkside/b2b/c8-round2.png",
+      "Crazy 8s round 2, enter the schedule once: eight layouts for getting a rink's schedule in, including a weekly grid, a recurring-session form, dropping in a schedule, a flagged list, and a result-and-undo screen.",
+      "<strong>Round 2, enter the schedule once.</strong> I picked five: the weekly grid, the recurring-session form, dropping in a schedule, the flagged list, and result and undo. A manager fills in a calendar, adds one session or a series, keeps several calendars the way Google Calendar does, and can bring in a calendar from another site.",
+      "light" %}
+    {% figure "img/rinkside/b2b/c8-round3.png",
+      "Crazy 8s round 3, scoring at the bench: eight phone layouts for keeping score, including big score buttons, tap the player, and tonight's games.",
+      "<strong>Round 3, scoring at the bench.</strong> I picked big score buttons, tap the player, and tonight's games. Each team gets a Goal and a Penalty button. The app doesn't keep game time, so the scorekeeper types the time in. Standings are worked out from final scores.",
+      "light" %}
+    {% figure "img/rinkside/b2b/c8-round4.png",
+      "Crazy 8s round 4, the rink's money: eight layouts including checkout panels, today's money, payouts, fill by session, and who pays the booking fee.",
+      "<strong>Round 4, the rink's money.</strong> I picked payouts, fill by session, and who pays the booking fee. Rinks see weekly and monthly earnings and how full each session runs, so they can spot the sessions that lose money. I didn't redraw skater checkout, because the skater app already covers it.",
+      "light" %}
+    {% figure "img/rinkside/b2b/c8-round5.png",
+      "Crazy 8s round 5, tournament registration: eight layouts including an event page, a division picker, pay once or split, a captain checklist, a teams board, and a schedule preview.",
+      "<strong>Round 5, tournament registration.</strong> I picked four, and two became screens: the teams board and the schedule preview. The other two are captain screens the skater app already has. This round is provisional, because I haven't interviewed a tournament organizer yet.",
+      "light" %}
+  </details>
+</section>
+
+<section aria-labelledby="b2b-wireframes">
+  <h2 id="b2b-wireframes">Lo-fi wireframes: 47 screens for four kinds of staff</h2>
+  <p>The picks became 47 lo-fi screens in Figma, grouped by who uses them: the front desk, the rink manager, the scorekeeper at the bench, and a tournament organizer. They're gray boxes on purpose. Color comes later, from the skater app's design system. On November 8, I linked them into a clickable lo-fi prototype.</p>
+
+  <h3>Decisions with research behind them</h3>
+
+  <h4>Check-in: the desk marks you here</h4>
+  <p>All three rinks check people in on paper, and all three handle walk-ups at the desk. So the main action is a staff member tapping <strong>Mark here</strong> next to a name, with waiver and payment status on the same row. A QR code on the side lets walk-ins sign up and pay on their own phone.</p>
+  <p>Not asked yet: how long check-in can take at a busy start, like 51 people booked and one person at the desk. That's a question for the next round of interviews.</p>
+  {% figure "img/rinkside/b2b/wf-a2-roster.png",
+    "Lo-fi session roster for Stick and Puck, 7 to 8 PM: 42 checked in, 51 booked, 60 capacity, filters for All, Needs attention and Goalies, and a row per skater with role, checked-in status, a Mark here button, waiver and paid status, and Send link or Take payment where something's missing. A side panel shows a walk-in QR code with 9 spots left.",
+    "<strong>The session roster.</strong> Everything the desk needs on one row: here or not, waiver, paid.",
+    "light" %}
+  {% figure "img/rinkside/b2b/wf-a1-today.png",
+    "Lo-fi Today screen for the desk: four sessions in order, each with how many are checked in, booked, and the capacity, with a fill bar.",
+    "<strong>Today.</strong> Every session with how full it is, so the desk picks one and starts checking in.",
+    "light" %}
+
+  <h4>Enter the schedule once</h4>
+  <p>At two of the three rinks, the schedule is typed into more than one system by hand. So the manager builds it once in a calendar, or brings it in from a link or a screenshot, and checks what was found before anything goes public. Bringing it in from a link or a screenshot is my call. One caveat: no rink said the copies disagree, so the pitch is saving staff time, not fixing mistakes.</p>
+  {% figure "img/rinkside/b2b/wf-b1-calendar.png",
+    "Lo-fi week calendar for a rink: calendars for Sheet A, Sheet B, Leagues, Maintenance and Private events can be turned on or off, and sessions sit on a Monday-to-Sunday grid.",
+    "<strong>The week.</strong> One calendar per sheet of ice, plus leagues, maintenance, and private events, each one on or off.",
+    "light" %}
+  {% figure "img/rinkside/b2b/wf-b4-review-import.png",
+    "Lo-fi Review import screen: a list of sessions found in an imported schedule, with three flagged rows that need a check, such as a missing price or capacity, and buttons to cancel the import or accept the sure rows.",
+    "<strong>Review an import.</strong> Anything the import isn't sure about gets flagged, and nothing goes public until the manager accepts it.",
+    "light" %}
+
+  <h4>Score the game at the bench, once</h4>
+  <p>All three rinks type game results in a second time at the end of the night, and two keep paper score sheets. So the scorekeeper scores on a phone at the bench, in one flow: tonight's games, big Goal and Penalty buttons, then tap the player. Submitting the game updates the standings. Not asked yet: what device sits at the bench, and whether there's wifi.</p>
+  <ul class="compare" role="list">
+    <li>{% figure "img/rinkside/b2b/wf-c1-tonight.png", "Lo-fi phone screen, Tonight's games: four games with their times and sheets, one live and three not started.", "<strong>Tonight's games.</strong>", "phone" %}</li>
+    <li>{% figure "img/rinkside/b2b/wf-c2-score.png", "Lo-fi phone screen scoring Wolves vs Jets: each team's score with a Goal and a Penalty button, the last three events with Edit, and a Submit game button. A note says standings update on submit and edits are open for 24 hours.", "<strong>Score the game.</strong>", "phone" %}</li>
+    <li>{% figure "img/rinkside/b2b/wf-c3-goal.png", "Lo-fi phone screen for a Wolves goal: a keypad of jersey numbers, optional assists, the period, and the time typed in, with Save goal.", "<strong>Add a goal.</strong> Tap the player's number.", "phone" %}</li>
+  </ul>
+
+  <h4>See how full each session runs</h4>
+  <p>None of the three rinks can see how full their sessions run. So the earnings screen lists every session with how many came and the share of capacity used, lowest first, and flags the ones under 40%.</p>
+  {% figure "img/rinkside/b2b/wf-d1-earnings.png",
+    "Lo-fi Earnings screen for a week: earned, refunded, net and next payout, a bar chart of earnings per day, an average fill of 56% with 3 sessions under 40% full, and a table of sessions sorted lowest fill first.",
+    "<strong>Earnings and fill.</strong> The sessions that lose money are at the top.",
+    "light" %}
+
+  <h3>Calls I made without research yet</h3>
+  <ul>
+    <li><strong>Scorekeepers sign in with a short game ID and their own PIN,</strong> so the rink has a record of who kept score. I haven't asked rinks how staff sign in today.</li>
+    <li><strong>Whoever submits a game can edit it for 24 hours.</strong> After that, only a manager can, and a manager can undo changes back to the original submission. The 24 hours is my pick, not a number from research.</li>
+  </ul>
+  {% figure "img/rinkside/b2b/wf-c10-game-id.png",
+    "Lo-fi Games screen for staff: this week's games with the assigned scorekeeper, a short game ID for each, and buttons to resend or copy the ID, assign a scorekeeper, or submit. A note explains how game IDs work.",
+    "<strong>Games, for staff.</strong> Each game's ID and who's keeping score.",
+    "light" %}
+
+  <details class="more">
+    <summary>Two more screens: a walk-in payment and a tournament</summary>
+    {% figure "img/rinkside/b2b/wf-a5-walkin-pay.png", "Lo-fi walk-in payment, step 3 of 3: $12.00 total, cash or card, cash received and change due, and Record cash payment.", "<strong>Walk-in payment.</strong> Cash shows the change due.", "light" %}
+    {% figure "img/rinkside/b2b/wf-e1-teams.png", "Lo-fi tournament teams board: each team with its captain, whether it has paid, how many players joined and signed waivers, and a status, with buttons to send join codes and email teams.", "<strong>Tournament teams board.</strong> Who has paid and signed, at a glance. Provisional until I talk to an organizer.", "light" %}
+  </details>
+</section>
+
+<section aria-labelledby="b2b-roles">
+  <h2 id="b2b-roles">Who can do what</h2>
+  <p>There are three roles: manager, front desk, and scorekeeper. That split is my call more than the research's. The interviews showed a front desk and a manager, and only one rink mentioned a scorekeeper. Everyone gets their own login and PIN, so every check-in and every score change records who did it. A scorekeeper only needs the game in front of them, and a manager can do everything.</p>
+  <p>I listed 84 things staff do and set who can do each one. I decided every front desk action myself. For the rest, I reviewed and accepted Claude's suggestions.</p>
+  <div class="table-wrap" tabindex="0" role="region" aria-labelledby="roles-cap">
+    <table>
+      <caption id="roles-cap" class="visually-hidden">How many actions each role can take, by area</caption>
+      <thead>
+        <tr><th scope="col">Area</th><th scope="col">Actions</th><th scope="col">Manager</th><th scope="col">Front desk</th><th scope="col">Scorekeeper</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">The desk</th><td>19</td><td>19</td><td>18</td><td>2</td></tr>
+        <tr><th scope="row">Games</th><td>26</td><td>26</td><td>19</td><td>15</td></tr>
+        <tr><th scope="row">Calendar</th><td>14</td><td>14</td><td>2</td><td>0</td></tr>
+        <tr><th scope="row">Money</th><td>6</td><td>6</td><td>0</td><td>0</td></tr>
+        <tr><th scope="row">Events and seasons</th><td>8</td><td>8</td><td>0</td><td>0</td></tr>
+        <tr><th scope="row">Settings and staff</th><td>11</td><td>11</td><td>2</td><td>2</td></tr>
+        <tr><th scope="row">Total</th><td>84</td><td>84</td><td>41</td><td>19</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>74 of the 84 are drawn. The other 10, like refunds and canceling a session, aren't yet.</p>
+  {% figure "img/rinkside/b2b/wf-d3-staff.png",
+    "Lo-fi Staff and roles settings: a staff list with each person's role and PIN, buttons to add staff and reset a PIN, and a table of what each role can do, with check marks for manager, front desk and scorekeeper.",
+    "<strong>Staff and roles.</strong> Each person's role, and what each role can do.",
+    "light" %}
+</section>
+
 <section aria-labelledby="b2b-now">
   <h2 id="b2b-now">Where I am now</h2>
-  <p><strong>Done:</strong> the problem definition, an as-is journey map of a rink's week, 85 user stories ranked by priority, 15 success criteria, and 14 concepts scored.</p>
-  <p><strong>Next:</strong> a second round of interviews at three more rinks, then Crazy 8s and lo-fi wireframes.</p>
+  <p><strong>Done:</strong> the problem definition, an as-is journey map of a rink's week, 85 user stories ranked by priority, 15 success criteria, 14 concepts scored, 40 Crazy 8s sketches, 47 lo-fi screens linked into a clickable prototype, and who can do what across 84 actions.</p>
+  <p><strong>Not done yet:</strong> nobody outside me has seen or tested the wireframes. The second round of interviews hasn't happened either, so everything so far rests on three interviews, all at two-sheet rinks.</p>
+  <p><strong>Next:</strong></p>
+  <ul>
+    <li>Click through the prototype and fix what I find, then link the remaining flows.</li>
+    <li>A second round of interviews, including a single-sheet rink and tournament organizers.</li>
+    <li>Usability tests with rink staff.</li>
+    <li>Hi-fi screens in the skater app's design system.</li>
+  </ul>
 
   {% figure "img/rinkside/b2b-dashboard-concept.png",
     "Early operator dashboard concept: a sidebar with schedule, sessions, check-in and registrations, summary cards for registrations, revenue, sessions and waitlists, and today's schedule with capacity bars.",
-    "An early dashboard concept I made before the B2B research. It's a starting point, and it will change as I design from what rinks told me.",
+    "Where it started: a dashboard concept I made before the B2B research.",
     "", true %}
 </section>

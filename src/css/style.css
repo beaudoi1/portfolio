@@ -820,3 +820,6 @@ details.more[open] > summary { margin-bottom: 0.5rem; }
   .flow__steps > li + li::before { border-color: CanvasText; }
   .flow__steps > li + li::after { border-top-color: CanvasText; }
 }
+
+.table-wrap:focus-visible { outline: 3px solid var(--accent-strong); outline-offset: 2px; }
+.table-wrap { position: relative; }

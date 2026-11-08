@@ -22,8 +22,8 @@ export default [
     status: "progress",
     statusLabel: "In progress",
     platform: "Web dashboard + app for rink staff",
-    summary: "Scheduling, point of sale, inventory, stats, staff, finances, and the building, in one platform. Research in progress.",
-    image: "img/rinkside/b2b-dashboard-concept.png",
+    summary: "Scheduling, check-in, scoring, staff, and finances in one platform. Lo-fi wireframes done; testing next.",
+    image: "img/rinkside/b2b/wf-d1-earnings.png",
     imageAlt: "",
   },
   {
