@@ -21,14 +21,14 @@ glance:
   - label: The problem
     value: "Rinks run on a patchwork of tools: one system for bookings, another for leagues, paper at the front desk, and spreadsheets for the rest. Staff enter the same information two or three times."
   - label: What I've done
-    value: "Interviewed three rink staff and audited 11 operator systems. Then I sketched 40 ideas in Crazy 8s, drew 47 lo-fi screens, and set who can do what for three staff roles."
+    value: "Interviewed three rink staff and audited 11 operator systems. Then I sketched 40 ideas in Crazy 8s, drew 47 lo-fi screens and 20 more for settings and the office, checked them against my must-have user stories, and set who can do what for three staff roles."
   - label: Where it stands
     value: "Lo-fi wireframes and a clickable prototype are done. Nobody outside me has tested them yet. Next: a second round of interviews, then usability tests."
 stats:
   - { value: "3 of 3", label: "rinks re-key game results by hand at night" }
   - { value: "3 of 3", label: "check people in on paper" }
-  - { value: "47", label: "lo-fi screens, from 40 sketched ideas" }
-  - { value: "84", label: "staff actions, each set for three roles" }
+  - { value: "25 of 47", label: "must-have user stories fully drawn so far" }
+  - { value: "116", label: "staff actions, each set for three roles" }
 next:
   title: STiX Crafthouse
   url: /design/stix-crafthouse/
@@ -40,7 +40,12 @@ toc:
   - { id: b2b-research, label: Research }
   - { id: b2b-ideas, label: Crazy 8s }
   - { id: b2b-wireframes, label: Lo-fi wireframes }
+  - { id: b2b-coverage, label: Checking my own work }
+  - { id: b2b-settings, label: Settings and the office }
   - { id: b2b-roles, label: Who can do what }
+  - { id: b2b-decisions, label: Four decisions }
+  - { id: b2b-measure, label: Measuring success }
+  - { id: b2b-interviews, label: The next interviews }
   - { id: b2b-now, label: Where I am now }
 ---
 
@@ -91,7 +96,7 @@ toc:
   <p>Before this, I'd scored 14 concepts. Two didn't make it to sketching:</p>
   <ul>
     <li><strong>Pushing empty spots to skaters in the skater app.</strong> Only one rink said it had sessions that run underfilled, the demand is my guess, and it needs two other systems built first.</li>
-    <li><strong>A lobby TV display.</strong> Only one rink has a TV, a competitor already sells one, and it doesn't earn anything.</li>
+    <li><strong>A lobby TV display.</strong> Only one rink has a TV, a competitor already sells one, and it doesn't earn anything. I've since drawn a settings screen for it as a paid add-on, but it never went through Crazy 8s.</li>
   </ul>
 
   {% figure "img/rinkside/b2b/c8-round1.png",
@@ -181,40 +186,95 @@ toc:
   </details>
 </section>
 
-<section aria-labelledby="b2b-roles">
-  <h2 id="b2b-roles">Who can do what</h2>
-  <p>There are three roles: manager, front desk, and scorekeeper. That split is my call more than the research's. The interviews showed a front desk and a manager, and only one rink mentioned a scorekeeper. Everyone gets their own login and PIN, so every check-in and every score change records who did it. A scorekeeper only needs the game in front of them, and a manager can do everything.</p>
-  <p>I listed 84 things staff do and set who can do each one. I decided every front desk action myself. For the rest, I reviewed and accepted Claude's suggestions.</p>
-  <div class="table-wrap" tabindex="0" role="region" aria-labelledby="roles-cap">
+<section aria-labelledby="b2b-coverage">
+  <h2 id="b2b-coverage">Checking my own work: did the screens cover the stories?</h2>
+  <p>After the Crazy 8s picks became screens, I went back and mapped every pick to the user stories it serves and the screens built from it. Then I scored all 47 must-have stories, out of 85 in total.</p>
+  <div class="table-wrap" tabindex="0" role="region" aria-labelledby="coverage-cap">
     <table>
-      <caption id="roles-cap" class="visually-hidden">How many actions each role can take, by area</caption>
+      <caption id="coverage-cap">Where the 47 must-have user stories stand</caption>
       <thead>
-        <tr><th scope="col">Area</th><th scope="col">Actions</th><th scope="col">Manager</th><th scope="col">Front desk</th><th scope="col">Scorekeeper</th></tr>
+        <tr><th scope="col">Status</th><th scope="col">Stories</th></tr>
       </thead>
       <tbody>
-        <tr><th scope="row">The desk</th><td>19</td><td>19</td><td>18</td><td>2</td></tr>
-        <tr><th scope="row">Games</th><td>26</td><td>26</td><td>19</td><td>15</td></tr>
-        <tr><th scope="row">Calendar</th><td>14</td><td>14</td><td>2</td><td>0</td></tr>
-        <tr><th scope="row">Money</th><td>6</td><td>6</td><td>0</td><td>0</td></tr>
-        <tr><th scope="row">Events and seasons</th><td>8</td><td>8</td><td>0</td><td>0</td></tr>
-        <tr><th scope="row">Settings and staff</th><td>11</td><td>11</td><td>2</td><td>2</td></tr>
-        <tr><th scope="row">Total</th><td>84</td><td>84</td><td>41</td><td>19</td></tr>
+        <tr><th scope="row">Drawn</th><td>25</td></tr>
+        <tr><th scope="row">Partly drawn</th><td>6</td></tr>
+        <tr><th scope="row">Not drawn</th><td>7</td></tr>
+        <tr><th scope="row">In the skater app, or a behavior with no screen</th><td>9</td></tr>
+        <tr><th scope="row">Total</th><td>47</td></tr>
       </tbody>
     </table>
   </div>
-  <p>74 of the 84 are drawn. The other 10, like refunds and canceling a session, aren't yet.</p>
-  {% figure "img/rinkside/b2b/wf-d3-staff.png",
-    "Lo-fi Staff and roles settings: a staff list with each person's role and PIN, buttons to add staff and reset a PIN, and a table of what each role can do, with check marks for manager, front desk and scorekeeper.",
-    "<strong>Staff and roles.</strong> Each person's role, and what each role can do.",
+  <p>15 of the 47 came straight from a Crazy 8s pick. 12 more got drawn later, from competitor audits and my own decisions.</p>
+  <p><strong>The biggest gap is in my own work.</strong> The waitlist is a must-have rule, and every refund and tournament flow depends on it. Not one screen shows it.</p>
+  <p>Doing this gave me a chain I can trace from research to story to screen, and it showed me the holes before anyone tests it.</p>
+</section>
+
+<section aria-labelledby="b2b-settings">
+  <h2 id="b2b-settings">Twenty more screens: settings and the office</h2>
+  <p>The first 47 screens covered the daily jobs. The next 20 cover how a rink sets itself up and runs the office: check-in modes, waivers, refund rules, payments setup, party rooms, the shop and card reader, dispute evidence, connections to other tools, the lobby display, and help with the rink's website.</p>
+  <p>Each screen has two versions, with the side menu open and closed. They're linked, so you can click through the menu, the toggle that opens and closes it, and the settings submenu.</p>
+
+  <h3>Check-in became a setting</h3>
+  <p>Rinks check people in differently, so each rink picks how it works. By default, the skater taps Check in in the app and the desk checks the name against the list. A rink can skip the desk check, or scan a QR code if it can. Either way, check-in only works once the booking is paid and the waiver is signed, and staff can always check someone in by hand.</p>
+  <ul class="compare" role="list">
+    <li>{% figure "img/rinkside/b2b/wf-d7-checkin.png", "Lo-fi Check-in settings with the side menu open: three ways check-in can work (self check-in plus a desk check, the default; self check-in only; or the desk scans a QR code), an Always on box saying check-in needs a paid booking and a signed waiver and staff can always check someone in by hand, a wallet pass toggle, and instructions shown on the check-in page for each session type.", "<strong>Menu open.</strong>", "light" %}</li>
+    <li>{% figure "img/rinkside/b2b/wf-d7-checkin-navclosed.png", "The same Check-in settings screen with the side menu closed to a narrow strip of icons, leaving more room for the settings.", "<strong>Menu closed.</strong>", "light" %}</li>
+  </ul>
+
+  <h3>Party rooms</h3>
+  <p>A party room is its own calendar, and it doesn't include admission. The organizer gets a private link to send to parents, and each parent signs their own child up. The organizer's card is saved at booking, and spots nobody claims are charged at the end of the event.</p>
+  {% figure "img/rinkside/b2b/wf-b9-party-rooms.png",
+    "Lo-fi Party rooms calendar for one day, with Room A and Room B side by side and three bookings. A selected birthday party shows how many spots are reserved, signed up and unclaimed, a private guest link to copy, and a card-on-file note explaining that unclaimed spots are charged to the organizer at the session's regular price at the end of the event.",
+    "<strong>Party rooms.</strong> Reserved, signed up, and unclaimed, with the guest link beside them. The prices on the screen are examples.",
     "light" %}
+</section>
+
+<section aria-labelledby="b2b-roles">
+  <h2 id="b2b-roles">Who can do what</h2>
+  <p>There are three roles: manager, front desk, and scorekeeper. That split is my call more than the research's. The interviews showed a front desk and a manager, and only one rink mentioned a scorekeeper. Everyone gets their own login and PIN, so every check-in and every score change records who did it. A scorekeeper only needs the game in front of them, and a manager can do everything.</p>
+  <p>I started with 84 things staff do and set who can do each one. I decided every front desk action myself, and reviewed and accepted Claude's suggestions for the rest. The settings and office screens added more, and the list is now 116 actions.</p>
+  <p>116 rows is too many to read on a settings screen. So I grouped them by job into 25 rows, like "Take payments at the desk (cash or card)" or "Edit past games (after 24 hours)," each with a check or a dash for each role. The full list still sits behind it.</p>
+  {% figure "img/rinkside/b2b/wf-d3-roles.png",
+    "Lo-fi Staff and roles settings: a staff list with each person's role, PIN status and a Reset PIN button, then a table titled What each role can do, with 25 rows and a column each for manager, front desk and scorekeeper. Managers have every row. The front desk has the desk, payments, party rooms, the shop, scoring and assigning scorekeepers. The scorekeeper has only scoring games and their own PIN and settings.",
+    "<strong>Staff and roles.</strong> 116 actions, grouped into 25 rows.",
+    "light" %}
+</section>
+
+<section aria-labelledby="b2b-decisions">
+  <h2 id="b2b-decisions">Four decisions about paying</h2>
+  <ul>
+    <li><strong>No booking fee when someone pays by card at the desk.</strong> A skater who's already standing at the rink hasn't gotten anything from booking online, so they shouldn't pay for it.</li>
+    <li><strong>The customer pays the booking fee by default, and a rink can switch to paying it.</strong> That way the rink keeps more of what each booking brings in.</li>
+    <li><strong>One card reader at the desk instead of two terminals.</strong> Two would confuse both the person at the desk and the customer.</li>
+    <li><strong>Unclaimed party spots cost the session's regular price</strong> instead of a separate party rate, so a rink has one less price to set.</li>
+  </ul>
+  <p>None of these have been run past a rink yet.</p>
+</section>
+
+<section aria-labelledby="b2b-measure">
+  <h2 id="b2b-measure">How I'll know if it works</h2>
+  <p>This is a plan, not results. Before launch, I'll collect a starting point from the first rinks:</p>
+  <ul>
+    <li>the share of bookings made online</li>
+    <li>how full sessions run</li>
+    <li>minutes spent building a schedule</li>
+    <li>minutes spent re-keying scores</li>
+  </ul>
+  <p>After launch, I'll compare against the same months a year earlier, not the months right before. Demand for ice is seasonal, so a plain before and after would mislead.</p>
+</section>
+
+<section aria-labelledby="b2b-interviews">
+  <h2 id="b2b-interviews">The next interviews</h2>
+  <p>Two more rinks are next, and I still haven't talked to a tournament organizer. For those, I wrote 23 new questions and rebuilt the interview form. There are no findings from them yet.</p>
 </section>
 
 <section aria-labelledby="b2b-now">
   <h2 id="b2b-now">Where I am now</h2>
-  <p><strong>Done:</strong> the problem definition, an as-is journey map of a rink's week, 85 user stories ranked by priority, 15 success criteria, 14 concepts scored, 40 Crazy 8s sketches, 47 lo-fi screens linked into a clickable prototype, and who can do what across 84 actions.</p>
+  <p><strong>Done:</strong> the problem definition, an as-is journey map of a rink's week, 85 user stories ranked by priority, 15 success criteria, 14 concepts scored, 40 Crazy 8s sketches, 47 lo-fi screens linked into a clickable prototype, 20 settings and office screens, a check of the screens against the 47 must-have stories, who can do what across 116 actions, a plan for measuring success, and the questions for the next interviews.</p>
   <p><strong>Not done yet:</strong> nobody outside me has seen or tested the wireframes. The second round of interviews hasn't happened either, so everything so far rests on three interviews, all at two-sheet rinks.</p>
   <p><strong>Next:</strong></p>
   <ul>
+    <li>Draw the waitlist, then the other must-have stories that aren't drawn yet.</li>
     <li>Click through the prototype and fix what I find, then link the remaining flows.</li>
     <li>A second round of interviews, including a single-sheet rink and tournament organizers.</li>
     <li>Usability tests with rink staff.</li>
