@@ -666,9 +666,13 @@ details.more[open] > summary { margin-bottom: 0.5rem; }
 .hero__line { max-width: 52rem; }
 .carousel .section__head { margin-bottom: 1rem; }
 @media (min-width: 52rem) {
-  .carousel.is-enhanced .card--feature { height: 18.5rem; }
-  .carousel.is-enhanced .card--feature .card__media { min-height: 0; max-height: none; height: 100%; }
-  .carousel.is-enhanced .card--feature .card__body { padding: 1.5rem 2rem; overflow: hidden; }
+  /* Every slide is the same height unless the text needs more (large text sizes). */
+  .carousel.is-enhanced .card--feature { min-height: 21rem; }
+  .carousel.is-enhanced .card--feature .card__media { min-height: 0; max-height: none; position: relative; }
+  .carousel.is-enhanced .card--feature .card__media picture,
+  .carousel.is-enhanced .card--feature .card__media > img { position: absolute; inset: 0; }
+  .carousel.is-enhanced .card--feature .card__media--light picture { inset: 1rem; }
+  .carousel.is-enhanced .card--feature .card__body { padding: 1.5rem 2rem; }
 }
 .carousel__foot { margin-top: 0.75rem; }
 
