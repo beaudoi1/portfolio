@@ -1,0 +1,285 @@
+// Service blueprints, as text. The pictures on the page show the shape;
+// this is what screen readers and phones get, and what's searchable.
+// Source of truth:
+//   B2C: Rinkside-service-blueprint.pdf (Nov 19, 2026, alpha notes checked against code)
+//   B2B: b2b-service-blueprint.md (Nov 19, 2026)
+// A cell is a string, an { text, alpha } object (B2C: where the alpha differs),
+// or an array (B2B: a bullet list). Tags in brackets name the pain or fail point.
+
+const b2cLanes = ["Evidence (what the skater sees or touches)", "Skater actions", "Frontstage (what the app or rink shows or does in front of the skater)", "Backstage (what happens out of the skater's sight)", "Support processes (systems)"];
+const b2bLanes = ["Evidence", "Customer actions (skater unless named)", "Frontstage staff (front desk, scorekeeper)", "Backstage staff (manager)", "Support processes"];
+
+export default {
+  b2cAsis: {
+    lanes: b2cLanes,
+    stages: [
+      { name: "1. Trigger", cells: [
+        "Nothing yet; the need is in the skater's head",
+        "Decides they want ice time this week",
+        "—", "—", "—",
+      ] },
+      { name: "2. Discover", cells: [
+        "Google results page; the rink's website",
+        "Googles the rink by name",
+        "Shows a facility page, not a schedule [P1]",
+        "Not researched",
+        "Google search (not researched)",
+      ] },
+      { name: "3. Investigate", cells: [
+        `Rink site schedule as a PDF or accordion; "call to confirm" or "check for updated times" notices`,
+        "Hunts for when drop-in actually runs",
+        "Ice is one of 19–30+ categories; some sites say call or check for updates; at one rink two schedules disagree [P2]",
+        "Staff keep the same schedule in two systems by hand (2 of 3 operators) [F1]",
+        "Rink website; at one rink two booking systems (SportsEngine and EZFacility)",
+      ] },
+      { name: "4. Navigate", cells: [
+        "Rink site links out to a separate registration site that looks different",
+        "Digs through menus to reach a registration system",
+        "2–3 separate websites; a dead-end program page and a desktop-only layout at one rink [F2, P3]",
+        "Not researched",
+        "Registration platforms: CommunityPass, rec.us, EZFacility, DaySmart Dash",
+      ] },
+      { name: "5. Authenticate", cells: [
+        "Login, account and membership screens on the registration site",
+        "Runs into a login, account or membership requirement",
+        `Account demanded before availability is shown (one rink); "Create Account" looks like the way in but isn't (another) [F3, P4]`,
+        "Membership can only be bought in person at the desk (one rink, confirmed with staff)",
+        "The same platforms; a separate membership layer at one rink",
+      ] },
+      { name: "6. Select", cells: [
+        "Session list or calendar with internal codes, cut-off labels and listed prices",
+        "Finally sees a session with a date and a price",
+        "Closed or expired sessions listed as bookable; internal codes; two prices for one session; spots shown where booking is impossible [F4, P5]",
+        "Expired sessions left in the list (one rink); cause not known",
+        "The same platforms' session data",
+      ] },
+      { name: "7. Book", cells: [
+        `Cart, a "Members Only!" line, a closed button, or the rink's phone number`,
+        "Tries to pay and hold the spot, or gives up and phones",
+        `Season-only or members-only; no casual drop-in; no path from "Members Only!"; the failure path ends in "call the rink" [F5, P6]`,
+        "Front desk takes the calls; volume varies by rink (1 of 3 operators: a dozen or more a day)",
+        "Platform cart and payment (payment system behind each not researched); phone line",
+      ] },
+      { name: "8. Show up", cells: [
+        "Front desk, a paper sign-in list or a staff computer (differs by rink)",
+        "Arrives, gives a name at the desk or signs up in person",
+        "Desk staff tick a name on paper, key it into a computer, or do no check-in; none involve showing a phone. Session may be full, cancelled or different [F6]",
+        "Staff mark names on paper (3 of 3 operators). Cancellation notices: 1 of 3 sends none, 2 of 3 email [P7, P8]",
+        "Paper list or staff computer; link to the booking system not researched",
+      ] },
+    ],
+    points: [
+      { id: "F1", where: "3 Investigate · Backstage (shows in Frontstage)", what: "Two schedules for one rink disagree; neither is marked as the real one.", source: "Observed: screenshot audit, 1 of 4 rinks. Cause: staff re-enter the schedule in a second system by hand, 2 of 3 operator interviews." },
+      { id: "F2", where: "4 Navigate · Frontstage", what: "A program page ends with no link to registration; the browse layout is desktop-only, so the path cannot continue on a phone.", source: "Observed: screenshot audit, 1 of 4 rinks." },
+      { id: "F3", where: "5 Authenticate · Frontstage", what: `"Create Account" looks like the way in but isn't; the membership it needs can only be bought in person.`, source: `Observed: 1 of 4 rinks, confirmed with rink staff. Survey: 4 of 8 had been blocked from booking by a membership or season requirement they didn't want (1 more "not sure").` },
+      { id: "F4", where: "6 Select · Frontstage", what: "Closed registration shown as bookable (the button is disabled only after the tap); expired sessions listed as selectable.", source: "Observed: screenshot audit, 1 of 4 rinks for each (two different rinks)." },
+      { id: "F5", where: "7 Book · Frontstage", what: "No casual drop-in: season-only at one rink; members-only with no way to join at another.", source: "Observed: screenshot audit, 2 of 4 rinks." },
+      { id: "F6", where: "8 Show up · Frontstage", what: "Skater arrives and the session is full, cancelled or not as advertised.", source: "Survey: 4 of 8 had driven to a rink and found this at least once." },
+      { id: "P1", where: "2 Discover · Frontstage", what: "Searching the rink's name lands on a facility page, not a schedule.", source: "Observed: screenshot audit, composite of 3 rinks." },
+      { id: "P2", where: "3 Investigate · Frontstage", what: "Ice is one of 19–30+ categories; sites tell users to call to confirm or check for updated times.", source: `Observed: 2 district sites (category count); "call to confirm" at 1 rink, "check for updated times" at another. Survey: finding when a session happens rated 2.5 of 5 (n=8); 0 of 8 had never called a rink to confirm something.` },
+      { id: "P3", where: "4 Navigate · Frontstage", what: "2–3 separate websites per booking; 12–13+ taps to reach checkout.", source: `Observed: 4 of 4 rinks needed 2 or 3 domains; 12–13+ taps at 3 rinks, blocked at about 10 at the fourth. Survey: booking process rated 3.1 of 5 (n=8), the highest of six items. Interviews: 2 of 3 players called it "real effort".` },
+      { id: "P4", where: "5 Authenticate · Frontstage", what: "Account demanded before any availability is visible.", source: "Observed: 1 of 4 rinks before browsing, 1 of 4 at checkout." },
+      { id: "P5", where: "6 Select · Frontstage", what: "Internal codes and cut-off labels; two prices for one session; spots-left shown at a rink where booking is impossible.", source: "Observed: 1 of 4 rinks each (codes and prices at one, spots-left at another). Survey: accurate price info rated 2.8 of 5 and knowing if there is room 2.6 of 5 (both n=8)." },
+      { id: "P6", where: "7 Book · Frontstage", what: "When the booking path fails, the fallback is a phone call.", source: `Observed: 3 of 4 rinks' failure paths end in "call the rink". Call load behind the desk is not consistent: 1 of 3 operators said a dozen or more a day, the others a few or rarely.` },
+      { id: "P7", where: "8 Show up · Backstage", what: "Check-in is a paper list at the desk (an operator-side pain; no skater pain recorded here).", source: "Interviews: 3 of 3 operators." },
+      { id: "P8", where: "8 Show up · Backstage and Support", what: "Cancellation and schedule-change alerts do not reliably reach the skater.", source: "Survey: rated 2.8 of 5 (n=8). Interviews: 1 of 3 operators sends no cancellation notice (2 of 3 email)." },
+    ],
+  },
+
+  b2cTobe: {
+    lanes: b2cLanes,
+    stages: [
+      { name: "1. Trigger", cells: [
+        "Nothing yet; the need is in the skater's head",
+        "Decides they want ice time this week",
+        "—", "—", "—",
+      ] },
+      { name: "2. Discover", cells: [
+        { text: `Explore: every nearby session in one list, "happening now" first, with live spot counts`, alpha: "no spot counts yet; they show only for partner rinks' sessions, and none exist" },
+        "Opens the app and browses with no login",
+        "One list across rinks that leads with times; availability visible before any login [P1, P2, P4]",
+        { text: "Planned: partner rinks enter their schedule once; other rinks show read-only", alpha: "public listings only; no rink has signed on. Rinks with a free calendar feed are re-read daily; others are copied from the rink's website by hand and refreshed every week or two. Rink address, phone and hours are read from the rink's own website every 30 days" },
+        "Database and hosting; rinks' own websites and calendar feeds; Google Maps to find rinks (and as a fallback for rinks whose sites can't be read); non-partner rinks' own booking sites",
+      ] },
+      { name: "3. Decide", cells: [
+        { text: "Explore (Activities / Rinks toggle) and Session Detail; a full-session version shows waitlist length", alpha: "Leagues returns in v2; no waitlist" },
+        "Filters to stick and puck and taps a session",
+        "Shows only sessions the skater can act on; one price up front; a full session shows a waitlist, not a dead end; goalies see free [F4, F5, P5]",
+        { text: "Skater and goalie spots are separate pools; the rink sets the goalie limit. One schedule per rink [F1]", alpha: "the pools exist in the data but no partner session uses them yet; no screen for rinks to set limits; no waitlist" },
+        "Rink schedule data (public listings now; rink-entered for partners)",
+      ] },
+      { name: "4. Book", cells: [
+        "Checkout screen (goalie toggle, fee line, waiver) and a confirmation",
+        "Books as a guest or signed in; signs a waiver the first time at a rink; pays",
+        "Guest checkout for drop-in; no membership needed; account asked for only at payment; typed-name e-signature waiver (placeholder text, lawyer review pending) [F3, F5, P4]",
+        { text: "Waiver signature kept and not asked again at that rink; each rink needs its own waiver because state law differs", alpha: "no waivers collected; no checkout" },
+        `E-signature flow; payment processor (not in the alpha: booking happens on the rink's own site, then "add to my schedule")`,
+      ] },
+      { name: "5. Attend", cells: [
+        "Manage Booking screen with a check-in button; the rink's own desk",
+        "Checks in from the phone inside the time window and near the rink (prototype default)",
+        "Check-in works only in the time window and near the rink; the app says it does not replace the rink's own process [F6]",
+        { text: "The rink's own desk process stays (paper list at 3 of 3 operators); the check-in method is a per-rink setting, pending operator research [P7]", alpha: `check-in not built; the phone's location is used only for "near you"` },
+        "Phone location (GPS); in-app check-in only for partner rinks, others link out to the rink's page",
+      ] },
+      { name: "6. Repeat and change", cells: [
+        { text: "My Schedule, Saved Rinks, My Teams, Manage Booking, push alerts", alpha: "all built except Manage Booking" },
+        "Saves a home rink; cancels if plans change; reads alerts",
+        { text: "Cancel is always allowed and the refund rule is shown before confirming; push alert on any change [F6, P2, P8]", alpha: "alerts only for team chat and changed or cancelled team games; none when a rink's session changes" },
+        { text: "Session full: refund and waitlist promotion happen at once. Not full: refund held, paid later if the session fills, otherwise final. The admin fee is never refunded", alpha: "no cancel, refund or waitlist" },
+        `Push notifications from the server for team chat and changed or cancelled team games; game reminders and "sign-up is open" alerts are set on the phone itself. Calendar sync: a private subscription link the person's calendar app re-checks on its own schedule. Refund processing arrives with payments`,
+      ] },
+    ],
+  },
+
+  b2bAsis: {
+    lanes: b2bLanes,
+    stages: [
+      { name: "1. Set up the rink", cells: [
+        ["Not asked in the 3 interviews: how a rink picks, sets up or switches a system. Not sure."],
+        "—", "—",
+        ["Not sure. Who decides and who sets it up was not asked."],
+        ["Each rink already runs its own mix of tools (see stage 3). How they were set up: not sure."],
+      ] },
+      { name: "2. Build the schedule", cells: [
+        ["Rinks 1 and 2: most months repeat; the real check is whether maintenance or an event lands on a repeating session (2 of 3 rinks).", "Rink 3: adds a session when a new one becomes available.", "Minutes to build a month: not measured."],
+        "—", "—",
+        ["Block standing time for associations and teams.", "Fill in one-time sessions: public skate, figure skating, stick and puck, drop-in.", "Check for collisions with maintenance and events."],
+        ["The rink's own calendar or booking tool. Which one varies by rink."],
+      ] },
+      { name: "3. Publish and answer questions", cells: [
+        ["Session entered by hand in two places: Rinks 1 and 3 (2 of 3 rinks).", "Rinks 1 and 2 want one system (2 of 3).", "Questions a day: Rink 1 a few, Rink 2 a dozen or more, Rink 3 rarely.", "No rink tells customers to call and confirm (0 of 3)."],
+        ["Skater finds the session and signs up on the rink's registration page or site.", "Skater calls or asks at the desk: how to register and when (Rink 1), how membership works (Rink 2), how to rent ice (Rink 3).", "Parent, team captain, party organizer: not asked."],
+        ["Desk lead answers calls and in-person questions."],
+        ["Rink 1: updates the registration site and the website by hand.", "Rink 2: keeps one calendar for booking and runs a second system for leagues.", "Rink 3: adds the session to a shared calendar that feeds the site; league games go into a separate stats site."],
+        ["Registration or booking tool, website, shared calendar, league stats site. Kept in step by hand at Rinks 1 and 3."],
+      ] },
+      { name: "4. Change or cancel", cells: [
+        ["Removing it from the site or calendar: 3 of 3 rinks.", "Customer notice: Rink 1 none, Rink 2 credit plus email, Rink 3 email."],
+        ["Rink 2: skater who paid gets a credit and an email.", "Rink 3: gets an email.", "Rink 1: gets no notice."],
+        ["Not asked."],
+        ["Removes or changes the session on each site or calendar by hand."],
+        ["Same tools as stage 3."],
+      ] },
+      { name: "5. Check in at the desk", cells: [
+        ["Paper check-in at 3 of 3 rinks (printed list or sheet).", "First-timers handled at the desk at 3 of 3.", "Rink 2 hands out wristbands. Rink 1 has a TV over the desk with the rink and locker room schedule.", "Devices and wifi at the desk: not asked."],
+        ["Skater gives their name at the desk.", "First-timer: Rink 1 signs a paper waiver and pays at the desk; Rink 2 signs up and pays at the desk; Rink 3 scans a QR code and signs a digital waiver."],
+        ["Checks the printed list and marks it on paper.", "Hands out a wristband (Rink 2).", "Takes payment and waivers from first-timers.", "Tells people which locker room (Rinks 2 and 3); Rink 1 uses the TV."],
+        ["Not asked."],
+        ["Paper list or sheet.", "TV over the desk (Rink 1).", "QR waiver page (Rink 3)."],
+      ] },
+      { name: "6. Score the game, post results", cells: [
+        ["Results re-keyed at night: 3 of 3 rinks.", "Paper score sheets: Rinks 1 and 2 (2 of 3).", "Rink 1 enters scores and stats in two separate passes.", "Minutes it takes: not measured."],
+        ["Player or team captain sees results after someone types them in. Rink 2: they reach the website after the transfer."],
+        ["Scorekeeper writes the game on a paper sheet (Rinks 1 and 2).", "Rink 3: records stats; how is not stated."],
+        ["After the game: types scores and stats into the league system."],
+        ["Paper sheet.", "League stats site (Rinks 2 and 3).", "The rink's own system (Rink 1)."],
+      ] },
+      { name: "7. Payouts and refunds", cells: [
+        ["Not asked: what rinks pay, how money reaches the rink, how refunds work. Not sure.", "Known only: Rink 2 gives credits when it cancels; Rink 1 splits a season fee into 2 or 3 payments."],
+        ["Pays when registering or at the desk.", "Rink 1: season fee in 2 or 3 payments."],
+        ["Takes payment at the desk from first-timers (Rinks 1 and 2)."],
+        ["Not sure."],
+        ["Not asked."],
+      ] },
+      { name: "8. Look back", cells: [
+        ["No way to see how full sessions run: 3 of 3 rinks.", "Rink 2 knows by feel that early and late sessions run about 30% full.", "Revenue mix is a guess at all three."],
+        "—", "—",
+        ["No report. Goes by feel (Rink 2)."],
+        ["No tool named for this (3 of 3)."],
+      ] },
+    ],
+    points: [
+      { id: "P1", where: "2. Build the schedule · Backstage", what: "Checking by hand whether maintenance or an event lands on a repeating session.", source: `2 of 3 rinks describe the check; "by hand" is my assumption.` },
+      { id: "P2", where: "3. Publish and answer questions · Backstage", what: "Same session entered in two places by hand.", source: "2 of 3 rinks (1 and 3)." },
+      { id: "P3", where: "3. Publish and answer questions · Backstage", what: "Wants one system instead of two or more.", source: "2 of 3 rinks (1 and 2)." },
+      { id: "P4", where: "3. Publish and answer questions · Customer", what: "Membership needs a separate shopping page and customers get confused.", source: "1 of 3 rinks (2)." },
+      { id: "P5", where: "3. Publish and answer questions · Frontstage", what: "Heavy call volume: a dozen or more a day.", source: "1 of 3 rinks (2)." },
+      { id: "P6", where: "3. Publish and answer questions · Support", what: "Reviews of the booking tools these rinks use mention slow screens, forms that fail on phones and slow support.", source: "Competitor audit (small, old sample; reviews, not tests)." },
+      { id: "P7", where: "4. Change or cancel · Backstage", what: "Removing a cancelled session from every site or calendar by hand.", source: "3 of 3 rinks." },
+      { id: "F1", where: "4. Change or cancel · Customer", what: "No notice goes out when a session is cancelled.", source: "1 of 3 rinks (1)." },
+      { id: "P8", where: "5. Check in at the desk · Frontstage", what: "Paper check-in.", source: "3 of 3 rinks." },
+      { id: "P9", where: "5. Check in at the desk · Frontstage", what: "A line at the desk.", source: "1 of 3 rinks (2)." },
+      { id: "P10", where: "5. Check in at the desk · Frontstage", what: "First-timers all land on the desk, with different steps at each rink; the desk is the busiest, least forgiving point.", source: `3 of 3 rinks for first-timers; "busiest" is my assumption.` },
+      { id: "P11", where: "6. Score the game, post results · Backstage", what: "Retyping results at night; scores and stats in two passes at one rink.", source: "3 of 3 rinks; two passes: 1 of 3 (1)." },
+      { id: "P12", where: "8. Look back · Backstage", what: "No view of how full sessions run.", source: "3 of 3 rinks." },
+      { id: "G1", where: "1. Set up the rink · All lanes", what: "Evidence gap: how a rink sets up or switches was not asked.", source: "Not asked." },
+      { id: "G2", where: "7. Payouts and refunds · All lanes", what: "Evidence gap: payments, payouts and refunds were not asked.", source: "Not asked." },
+    ],
+  },
+
+  b2bTobe: {
+    lanes: b2bLanes,
+    stages: [
+      { name: "1. Set up the rink", cells: [
+        ["Rules differ by rink on waivers, membership, goalies, cancellation and payment plans (3 of 3 rinks), so they are settings, not a fixed flow (my decision).", "Individual staff logins with roles (my decision)."],
+        "—",
+        ["Signs in with their own login and a PIN at the desk (WF-A7)."],
+        ["Claims the rink's pre-filled listing (story A1, no screen yet).", "Invites staff and sets roles: manager, front desk, scorekeeper (WF-D3, D4).", "Picks check-in mode, waivers and refund rules (WF-D7, D8, D9).", "Connects the rink's own payments account (WF-D10, D11)."],
+        ["Rinkside settings pages.", "The rink's own payments account with a payment provider.", "Pre-filled rink listing."],
+      ] },
+      { name: "2. Build the schedule", answers: "P1", cells: [
+        ["Entering a session in two places: 2 of 3 rinks.", "Picks: weekly grid, recurring form, drop in your schedule, flagged list, result and undo (my decision)."],
+        "—", "—",
+        ["Adds one session or a repeating series (WF-B2).", "Drops in a schedule as a link, file or photo, reviews what the AI read, accepts the sure rows, can undo all of it (WF-B3 to B5).", "Sees conflict alerts; adds rentable ice and resurfacing blocks (WF-B7, B8).", "Keeps several calendars, like layers (WF-B1)."],
+        ["AI reads the schedule and marks fields it is unsure about.", "One calendar store for every layer.", "Conflict check."],
+      ] },
+      { name: "3. Publish and answer questions", answers: "P2, P3, P4", cells: [
+        ["Entered by hand in two places (2 of 3 rinks); wants one system (2 of 3).", "Competitor audit: other rink-specific products publish one-calendar booking and QR check-in that shows waiver status. Vendor claims, not tested."],
+        ["Skater books and pays on web or app, sees the refund rule and a 10-minute pay window, signs the waiver after paying (WF-S1, S2).", "Party organizer: gets a private guest link; parents sign up and pay (WF-B9, S5).", "Team captain: tournament sign-up lives in the consumer app (no frame here)."],
+        ["Finds a skater and sees waiver status, bookings, payments and visits (WF-A9 to A12)."],
+        ["Publishes once; Rinkside shows it on the rink's page and in the app.", "Two-way Google Calendar sync; Rinkside wins a conflict (my decision).", "Sets connections and the lobby display (WF-D18, D19)."],
+        ["Rinkside public page and skater app.", "Calendar sync.", "Email for confirmations.", "Payment provider at checkout."],
+      ] },
+      { name: "4. Change or cancel", answers: "P7, F1", cells: [
+        ["Removing it by hand: 3 of 3 rinks; notice differs by rink.", "If the rink cancels, the customer gets a full refund from the rink's account; Rinkside does not front it (my decision).", "Outdoor events: refunds automatic and full, or held for the organizer to decide (my decision)."],
+        ["Skater: gets a notice and a refund or credit under the rink's rule; sees that the refund depends on the rink (WF-S4).", "Team captain: after a cancelled event, a refund, credit or choice, set by the organizer (WF-E11).", "Party organizer: not sure, not decided."],
+        ["Not drawn: what the desk sees when a session is cancelled."],
+        ["Cancels in one action: notify registrants, refund or credit, move the waitlist, remove from every calendar (story E5; only whole-event cancel is drawn, WF-E11).", "Sets refund rules and cancellation windows (WF-D9)."],
+        ["Notifications.", "Waitlist promotion (no screen).", "Refund out of the rink's payments account.", "Calendar sync removes the session."],
+      ] },
+      { name: "5. Check in at the desk", answers: "P8, P10", cells: [
+        ["Paper check-in 3 of 3 rinks; first-timers at the desk 3 of 3.", "Decided: default is self check-in plus a desk check; QR scan is optional; staff can always check someone in by hand; check-in needs payment and a signed waiver (my decision)."],
+        ["Skater taps Check in in the app, or gives a name (WF-S3).", "Walk-in without the app: signs the waiver on the desk device, pays cash or card (WF-A4, A5).", "Parent signing for a child: not sure it is drawn."],
+        ["Marks each skater here on a live roster; sees a missing waiver or payment and fixes it on the spot (WF-A2).", "Adds a walk-in: who, waiver, payment (WF-A3 to A5).", "After the session, no-shows are logged; staff only (WF-A6)."],
+        ["Sets check-in mode and instructions per session type (WF-D7).", "Sees who changed a check-in (WF-A8)."],
+        ["Live roster on a desk tablet.", "Waiver records.", "One card reader at the desk.", "Lobby display."],
+      ] },
+      { name: "6. Score the game, post results", answers: "P11", cells: [
+        ["Re-keying at night: 3 of 3 rinks; paper sheets: 2 of 3.", "Picks: big score buttons, tap the player, tonight's games (my decision). No game clock; the scorekeeper types the time."],
+        ["Player or team captain sees standings and gets a notice when a game is final (WF-C6, C16)."],
+        ["Signs in with game ID and PIN (WF-C8, C9).", "Marks who played and no-shows (WF-C7).", "Taps goal or penalty, then the player (WF-C2 to C5).", "Submits the game; can fix it for 24 hours (WF-C15)."],
+        ["Assigns a scorekeeper or a substitute (WF-C10, D4).", "Can take over a live game; edits past games with history and revert (WF-C14).", "Gets an alert if a game is not submitted (WF-C17).", "Sets standings rules (WF-E6)."],
+        ["Bench phone or tablet app.", "Standings calculated from final scores.", "Notifications.", "Change history.", "Export for leagues that keep a stats site (story E7, not drawn)."],
+      ] },
+      { name: "7. Payouts and refunds", cells: [
+        ["Not asked in the 3 interviews. Everything here is my decision.", "The rink is the seller on its own payments account; refunds and disputes sit with the rink (my decision)."],
+        ["Skater: pays at checkout, cancels under the rink's window, sees a refund disclaimer (WF-S1, S4).", "Party organizer: card saved at booking; unclaimed spots charged at the end of the event at the session's regular price (WF-B9, S5).", "Team captain: sees refund, credit or choice after a cancelled event (WF-E11)."],
+        ["Takes cash or card at the desk on one reader (WF-A5).", "Sells items (WF-D16)."],
+        ["Sees money taken, the week's total and the next payout (WF-D6, D1).", "Exports a dispute evidence packet (WF-D17).", "Sets refund rules (WF-D9)."],
+        ["Payment provider pays out to the rink's bank.", "Receipts; refund out of the rink's balance.", "Accounting connection (WF-D18)."],
+      ] },
+      { name: "8. Look back", answers: "P12", cells: [
+        ["No way to see how full sessions run: 3 of 3 rinks.", "Fill by session was a pick (my decision)."],
+        "—", "—",
+        ["Reads attendance as a percent of capacity, lowest first (WF-D1).", "Sees today's money and what needs attention (WF-D6).", "Decides what to change. Whether they will: untested."],
+        ["Bookings and check-ins produce the numbers.", "Export for the accountant (story F4, not drawn)."],
+      ] },
+    ],
+    points: [
+      { id: "F1", where: "1. Set up the rink · Backstage", what: "Claim-your-listing has no screen (story A1, a must-have).", source: "My gap." },
+      { id: "F2", where: "1. Set up the rink · Backstage", what: "Who at a rink can connect the bank account and sign for it, and whether the rink already has a payments account: not asked.", source: "My assumption." },
+      { id: "F3", where: "2. Build the schedule · Backstage", what: "The AI reads a schedule wrong and the mistake reaches skaters. A review step and undo are drawn; untested.", source: "My assumption." },
+      { id: "F4", where: "2. Build the schedule · Backstage", what: "Which audience sees which calendar layer is not drawn. Reading another site's page may break its terms: not checked.", source: "My gap." },
+      { id: "F5", where: "3. Publish and answer questions · Customer", what: "Waitlist gap: no screen shows a waitlist (story C7, a must-have). A full session, cancel-in-one-action and tournament sign-up all depend on it. Also hits stage 4.", source: "My gap." },
+      { id: "F6", where: "4. Change or cancel · Backstage", what: "Cancelling one session in one action has no screen (only whole-event cancel). Cancelling while waitlist offers are open (story E10) has none either.", source: "My gap." },
+      { id: "F7", where: "5. Check in at the desk · Frontstage", what: "What happens when the desk tablet or wifi drops: not asked, not drawn.", source: "My assumption." },
+      { id: "F8", where: "5. Check in at the desk · Customer", what: "A parent signing for a child at check-in: not sure it is drawn.", source: "My gap." },
+      { id: "F9", where: "6. Score the game, post results · Frontstage", what: "Bench device, wifi, gloves, one hand: untested. Whether tapping at the bench beats paper: untested. Other scoring apps exist (vendor claims).", source: "My assumption; competitor audit." },
+      { id: "F10", where: "7. Payouts and refunds · Customer", what: "If the rink's balance is short, the refund waits and the customer is told it depends on the rink.", source: "My decision (a consequence of it)." },
+      { id: "F11", where: "7. Payouts and refunds · Backstage", what: "No per-payment view that matches the payment provider's records (story C3, partly drawn).", source: "My gap." },
+      { id: "F12", where: "8. Look back · Backstage", what: `Whether managers act on fill rate is untested; the "under 40%" flag is my line, not a decision.`, source: "My assumption." },
+      { id: "F13", where: "All stages", what: "Thin base: 3 rinks of one kind, front-line staff only, no tournament organizer interviewed.", source: "Limit of the evidence." },
+    ],
+  },
+};

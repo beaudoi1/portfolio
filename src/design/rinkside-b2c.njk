@@ -23,7 +23,7 @@ glance:
   - label: What I did
     value: "Researched it at real rinks, with interviews, a survey, and a competitive audit. Then I designed and prototyped a one-app fix and built a working alpha with Claude Code."
   - label: Methods
-    value: "Interviews · Survey · Competitive audit · Personas · Journey maps · Prototype"
+    value: "Interviews · Survey · Competitive audit · Personas · Journey maps · Service blueprint · Prototype"
   - label: Where it stands
     value: "Alpha on Android, iOS, and the web (step 1 of 4), being tested by two hockey teams. Results coming soon."
 stats:
@@ -44,7 +44,7 @@ links:
 toc:
   - { id: problem, label: The problem }
   - { id: research, label: Research }
-  - { id: personas, label: Personas & journey }
+  - { id: personas, label: "Personas, journey & blueprint" }
   - { id: ideation, label: Ideation }
   - { id: wireframes, label: Wireframes & prototype }
   - { id: testing, label: Usability testing }
@@ -53,6 +53,7 @@ toc:
   - { id: final, label: "Final design: the alpha" }
   - { id: takeaways, label: Takeaways }
 ---
+{% from "blueprint.njk" import blueprint %}
 
 
 <section aria-labelledby="problem">
@@ -228,6 +229,28 @@ toc:
     "To-be journey map for the same task in Rinkside: taps drop from 13 or more to 5, domains from 3 to 1, and the mood line rises steadily from trigger to repeat.",
     "<strong>To-be journey:</strong> the same task in 5 taps, in one place.",
     "", true %}
+
+  <h3>Service blueprint: what happens behind the screen</h3>
+  <p>The journey map only shows what the skater sees. A service blueprint adds what's underneath: what rink staff do, and the systems behind them. I made one for the same task, booking drop-in hockey, as it works today and as Rinkside is designed to work. It also adds a step the journey map left out: showing up at the rink.</p>
+  <p>I made it after the design, so it didn't shape the screens. It's a check on them. It's built from the survey (8 players), 3 player interviews, 3 operator interviews, and a screenshot audit of 4 rinks on 5 booking systems. Where it says "not researched," I have no data. That doesn't mean nothing happens there.</p>
+  <p>How to read it: each stage has five lanes. What the skater sees and does sits above the line of interaction. What the app or rink shows them sits above the line of visibility. Behind that is what staff do, and below the line of internal interaction are the systems. F marks a fail point, where the task is blocked or the skater is misled. P marks a pain point, where it works but badly.</p>
+
+  <h4>Today, without Rinkside</h4>
+  {% figure "img/rinkside/blueprint-as-is.png",
+    "As-is service blueprint for an adult drop-in skater booking ice, in eight stages from trigger to show up, with lanes for evidence, skater actions, frontstage, backstage and support processes, and fail and pain points marked in each stage. The full text is in the section below the picture.",
+    "<strong>As-is.</strong> Six fail points and eight pain points, almost all of them where the skater can see them.",
+    "light" %}
+  {{ blueprint(blueprints.b2cAsis, "Read the as-is blueprint as text", 5) }}
+  <p>Most of the failures happen in front of the skater, but at least one starts behind the line. One rink showed two schedules that disagree (F1), and the operator interviews explain why: at 2 of 3 rinks, staff keep the same schedule in two systems by hand. The skater's problem comes from the rink's workflow. That's the link between this app and <a href="/design/rinkside-b2b/">Rinkside for rinks</a>.</p>
+  <p>The new last step mattered too. 4 of 8 survey respondents had driven to a rink and found the session full, cancelled, or not as advertised (F6), and 1 of 3 rinks sends no notice when it cancels.</p>
+
+  <h4>With Rinkside</h4>
+  {% figure "img/rinkside/blueprint-to-be.png",
+    "To-be service blueprint for the same task in Rinkside, in six stages: trigger, discover, decide, book, attend, and repeat and change, with the same five lanes. Each stage is tagged with the as-is problems it answers, and notes marked Alpha show where today's build differs from the design. The full text is in the section below the picture.",
+    "<strong>To-be.</strong> Design intent, not tested with users. Alpha notes show where today's build differs.",
+    "light" %}
+  {{ blueprint(blueprints.b2cTobe, "Read the to-be blueprint as text", 5) }}
+  <p>I checked the to-be against the app's code. Wherever the alpha doesn't match the design, it says so. That check shows that most of what fixes the as-is fail points sits backstage, with the rink: one schedule per rink, spot counts, waitlists, and alerts when a rink's session changes. None of that is in the alpha, because no rink has signed on yet. Today the alpha only sends alerts for team chat and for changed or cancelled team games.</p>
 </section>
 
 <section aria-labelledby="ideation">

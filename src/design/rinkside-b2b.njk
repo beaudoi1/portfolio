@@ -23,7 +23,7 @@ glance:
   - label: What I've done
     value: "Interviewed three rink staff and audited 11 operator systems. Then I sketched 40 ideas in Crazy 8s, drew 47 lo-fi screens and 20 more for settings and the office, checked them against my must-have user stories, and set who can do what for three staff roles."
   - label: Methods
-    value: "Operator interviews · Competitor audit · Journey map · Sketching · Wireframes"
+    value: "Operator interviews · Competitor audit · Journey map · Service blueprint · Sketching · Wireframes"
   - label: Where it stands
     value: "Lo-fi wireframes and a clickable prototype are done. Nobody outside me has tested them yet. Next: a second round of interviews, then usability tests."
 stats:
@@ -43,6 +43,7 @@ toc:
   - { id: b2b-ideas, label: Crazy 8s }
   - { id: b2b-wireframes, label: Lo-fi wireframes }
   - { id: b2b-coverage, label: Checking my own work }
+  - { id: b2b-blueprint, label: Service blueprint }
   - { id: b2b-settings, label: Settings and the office }
   - { id: b2b-roles, label: Who can do what }
   - { id: b2b-decisions, label: Four decisions }
@@ -50,6 +51,7 @@ toc:
   - { id: b2b-interviews, label: The next interviews }
   - { id: b2b-now, label: Where I am now }
 ---
+{% from "blueprint.njk" import blueprint %}
 
 
 <section aria-labelledby="b2b-problem">
@@ -211,6 +213,31 @@ toc:
   <p>Doing this gave me a chain I can trace from research to story to screen, and it showed me the holes before anyone tests it.</p>
 </section>
 
+<section aria-labelledby="b2b-blueprint">
+  <h2 id="b2b-blueprint">Service blueprint: the whole rink, front to back</h2>
+  <p>The journey map shows a rink's week from the staff's side. A service blueprint lines up everyone involved at each stage: the customer, the front desk and scorekeeper, the manager, and the systems behind them. I made two versions, one for how the three rinks work today and one for how Rinkside is designed to work.</p>
+  <p>How to read it: the customer sits above the line of interaction, the front desk and scorekeeper above the line of visibility, and the manager above the line of internal interaction. The systems are below it. Every claim says where it came from: an interview count ("2 of 3 rinks"), the competitor audit, or "my decision" or "my assumption."</p>
+
+  <h3>Today</h3>
+  {% figure "img/rinkside/b2b/blueprint-as-is.png",
+    "As-is service blueprint for a rink in eight stages: set up the rink, build the schedule, publish and answer questions, change or cancel, check in at the desk, score the game and post results, payouts and refunds, and look back. Lanes for evidence, customer actions, frontstage staff, backstage staff and support processes, with a bottom row of pain points, fail points and evidence gaps. The full text is in the section below the picture.",
+    "<strong>As-is,</strong> from the three rink interviews. Two stages are mostly empty, because nobody was asked about them.",
+    "light" %}
+  {{ blueprint(blueprints.b2bAsis, "Read the as-is blueprint as text", 4, "Pain points, fail points and evidence gaps") }}
+  <p>Two stages have almost no evidence: setting up the rink, and payouts and refunds. Neither came up in the interviews. The blueprint marks them as gaps instead of filling them in.</p>
+
+  <h3>With Rinkside</h3>
+  {% figure "img/rinkside/b2b/blueprint-to-be.png",
+    "To-be service blueprint for the same eight stages with Rinkside, with the same lanes. Cells cite wireframe frame numbers, and a bottom row lists fail points and gaps in the design, with the as-is problems each stage answers. The full text is in the section below the picture.",
+    "<strong>To-be.</strong> Designed in wireframes, not built and not tested with anyone.",
+    "light" %}
+  {{ blueprint(blueprints.b2bTobe, "Read the to-be blueprint as text", 4, "Where the design can fail, or has holes") }}
+
+  <h3>What it found</h3>
+  <p>It didn't change any decision, because I made it after them. What it did was check the design from another direction. It found the same three holes as the story check: no waitlist screen, no way to cancel one session in one action, and no screen for a rink to claim its listing.</p>
+  <p>It also showed where the next interviews are thin. None of the 23 new questions covers the bench, where all three rinks re-key results, or looking back at the numbers, where none of them can see how full sessions run. My earlier questions cover the bench. Nothing asks yet whether a manager would act on fill rate.</p>
+</section>
+
 <section aria-labelledby="b2b-settings">
   <h2 id="b2b-settings">Twenty more screens: settings and the office</h2>
   <p>The first 47 screens covered the daily jobs. The next 20 cover how a rink sets itself up and runs the office: check-in modes, waivers, refund rules, payments setup, party rooms, the shop and card reader, dispute evidence, connections to other tools, the lobby display, and help with the rink's website.</p>
@@ -272,7 +299,7 @@ toc:
 
 <section aria-labelledby="b2b-now">
   <h2 id="b2b-now">Where I am now</h2>
-  <p><strong>Done:</strong> the problem definition, an as-is journey map of a rink's week, 85 user stories ranked by priority, 15 success criteria, 14 concepts scored, 40 Crazy 8s sketches, 47 lo-fi screens linked into a clickable prototype, 20 settings and office screens, a check of the screens against the 47 must-have stories, who can do what across 116 actions, a plan for measuring success, and the questions for the next interviews.</p>
+  <p><strong>Done:</strong> the problem definition, an as-is journey map of a rink's week, 85 user stories ranked by priority, 15 success criteria, 14 concepts scored, 40 Crazy 8s sketches, 47 lo-fi screens linked into a clickable prototype, 20 settings and office screens, a check of the screens against the 47 must-have stories, a service blueprint (as-is and to-be), who can do what across 116 actions, a plan for measuring success, and the questions for the next interviews.</p>
   <p><strong>Not done yet:</strong> nobody outside me has seen or tested the wireframes. The second round of interviews hasn't happened either, so everything so far rests on three interviews, all at two-sheet rinks.</p>
   <p><strong>Next:</strong></p>
   <ul>

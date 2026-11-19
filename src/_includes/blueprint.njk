@@ -1,0 +1,35 @@
+{#- Service blueprint as text, one stage at a time (reflows on a phone; no sideways scroll).
+    Use: {% from "blueprint.njk" import blueprint %}
+         {{ blueprint(blueprints.b2cAsis, "Read the as-is blueprint as text", 4) }}
+    h = heading level for the stage names inside. -#}
+{% macro cell(c) -%}
+  {%- if c is string -%}<p>{{ c }}</p>
+  {%- elif c.text -%}<p>{{ c.text }}</p><p class="bp__alpha"><strong>Alpha:</strong> {{ c.alpha }}</p>
+  {%- else -%}<ul>{% for li in c %}<li>{{ li }}</li>{% endfor %}</ul>
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro blueprint(bp, summary, h=4, pointsTitle="Fail points and pain points") %}
+<details class="more bp">
+  <summary>{{ summary }}</summary>
+  {%- for st in bp.stages %}
+  <h{{ h }} class="bp__stage">{{ st.name }}</h{{ h }}>
+  <dl class="bp__lanes">
+    {%- for c in st.cells %}
+    <div><dt>{{ bp.lanes[loop.index0] }}</dt><dd>{{ cell(c) }}</dd></div>
+    {%- endfor %}
+    {%- if st.answers %}
+    <div><dt>As-is problems this answers</dt><dd><p>{{ st.answers }}</p></dd></div>
+    {%- endif %}
+  </dl>
+  {%- endfor %}
+  {%- if bp.points %}
+  <h{{ h }} class="bp__stage">{{ pointsTitle }}</h{{ h }}>
+  <ul class="bp__points">
+    {%- for p in bp.points %}
+    <li><p><strong>{{ p.id }} · {{ p.where }}.</strong> {{ p.what }}</p><p class="bp__src">{{ p.source }}</p></li>
+    {%- endfor %}
+  </ul>
+  {%- endif %}
+</details>
+{% endmacro %}
