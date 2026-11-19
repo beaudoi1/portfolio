@@ -35,7 +35,7 @@ export default [
     status: "other",
     statusLabel: "Brand & marketing",
     platform: "Logo, event flyers, social media",
-    summary: "Branding and social media for the hockey bar I co-founded in Arvada, Colorado.",
+    summary: "Branding and social media for the hockey bar I owned and operated in Arvada, Colorado.",
     image: "img/stix/stix-logo.png",
     imageAlt: "",
     imageContain: true,

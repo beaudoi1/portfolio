@@ -1,15 +1,15 @@
 ---
 layout: page.njk
 title: STiX Crafthouse
-description: Branding and social media for STiX Crafthouse, the hockey bar Aaron Beaudoin co-founded in Olde Town Arvada, Colorado.
+description: Branding and social media for STiX Crafthouse, the hockey bar Aaron Beaudoin owned and operated in Olde Town Arvada, Colorado.
 eyebrow: Brand & marketing work
-lede: "Co-owner and founder · 2020–2024 · Logo, event flyers, and social media"
+lede: "Owner/operator · 2020–2024 · Logo, event flyers, and social media"
 next:
   title: "Rinkside: find ice, run your team"
   url: /design/rinkside-b2c/
 ---
 
-STiX Crafthouse was a sports bar I co-founded in Olde Town Arvada, just outside Denver. We built it as a home for Colorado Avalanche fans and anyone who loves hockey, with a rotating list of Colorado craft beers and food from our scratch kitchen.
+STiX Crafthouse was a sports bar I owned and operated in Olde Town Arvada, just outside Denver. We started planning it and formed the company in 2020, and opened the doors in 2022. Before we opened, I worked on all of it: contract and vendor negotiations, the renovation, marketing and the website, hiring, and the business plan. We built it as a home for Colorado Avalanche fans and anyone who loves hockey, with a rotating list of Colorado craft beers and food from our scratch kitchen.
 
 As an owner, I ran our whole online presence. I designed the logo and every flyer and post we put out. I also ran our Facebook, Instagram, X, and Untappd accounts: making the content, posting on a regular schedule, and talking with the people who followed us.
 
