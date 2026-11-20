@@ -30,3 +30,24 @@ As an owner, I ran our whole online presence. I designed the logo and every flye
   "Flyer: Celebrate Halloween at STiX! Trick or Treat Street on Friday, with candy and a kids' costume contest. Pumpkin carving contest from Friday the 27th through Tuesday the 31st, with voting on Instagram. Halloween party all day Saturday the 28th, with a costume contest, Halloween cocktails, and bar games. Beside a photo of glowing jack-o'-lanterns.",
   "Halloween weekend events." %}</li>
 </ul>
+
+## The website
+
+I built the bar's website myself on one.com, a drag-and-drop site builder. The layout, the photos, and the words were all mine. Looking at it now as a UX designer, I'd change a lot.
+
+<ul class="compare" role="list">
+<li>{% figure "img/stix/website-home-phone.jpg",
+  "The STiX Crafthouse homepage on a phone: the logo, a dark red mountain outline with STiX in blue, sits on a faded photo of a packed hockey arena. Below it, the headline Welcome all Hockey Freaks and Beer Geeks in dark red over the same photo, then the opening hours.",
+  "<strong>The homepage on a phone.</strong> Saved by the Internet Archive, October 2022.", "phone" %}</li>
+<li>{% figure "img/stix/website-signup-phone.jpg",
+  "A text-message sign-up box on the same site: Stay Connected! Sign-up to Receive Exclusive Text Promotions, a phone number field, a checkbox, and a light gray Sign Up button, with fine print from the texting service.",
+  "<strong>The text sign-up.</strong> The texting service's stock form.", "phone" %}</li>
+</ul>
+
+### What I'd change
+
+- **Let the logo stand on its own.** It sits on a busy arena photo, and the dark red mountain blends into the crowd. WCAG doesn't hold logos to a contrast ratio, but that doesn't make it easy to see. I'd put it on a plain background and move the photo down the page.
+- **Put the headline on something solid.** Against the photo it measures about 4 to 1. That passes for text this large, which needs 3 to 1, but the photo changes behind every letter, so it only just works.
+- **Proofread.** "11:PM" and "two hour after any Avalanche game" both went live.
+- **Make the sign-up form fit the brand.** I used the texting service's stock form. Its gray Sign Up button looks switched off before you've typed anything.
+- **Use the room on a laptop.** On a wide screen, the page stays a narrow column, and the menu hides behind a menu button.
