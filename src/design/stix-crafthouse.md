@@ -51,3 +51,56 @@ I built the bar's website myself on one.com, a drag-and-drop site builder. The l
 - **Proofread.** "11:PM" and "two hour after any Avalanche game" both went live.
 - **Make the sign-up form fit the brand.** I used the texting service's stock form. Its gray Sign Up button looks switched off before you've typed anything.
 - **Use the room on a laptop.** On a wide screen, the page stays a narrow column, and the menu hides behind a menu button.
+
+## A restaurant owner's journey with POS and payments
+
+**v1: my own experience only. Interviewing two more owners next.**
+
+I ran STiX on Toast for about two years, from picking a POS in spring 2022 to closing in March 2024. This map follows that whole stretch from my side as the owner: setting it up, running game nights, getting paid, borrowing money, and closing down. Staff show up where they were part of it.
+
+**How I made it.** This map is built from memory. I don't have the old statements or the contract anymore, and when the Toast account closed I lost access to it. I checked the facts about Toast features and Colorado's surcharge law against Toast's support docs and the state statute. Every box says where it came from: "Stated by Aaron," or a public source. Made in FigJam, November 2026.
+
+{% figure "img/stix/owner-journey-map.png",
+  "Journey map of a restaurant owner's experience with POS and payments at STiX Crafthouse, from picking a POS in spring 2022 to closing in March 2024, in 12 stages. Rows for goals, actions, touchpoints, feelings, an emotion curve, pain points, what worked, opportunities and evidence. The low point is the St. Patrick's Day 2023 internet outage. The full text is in the section below the picture.",
+  "<strong>The owner's journey, v1.</strong> 12 stages, from picking a POS to closing.",
+  "light" %}
+
+{% from "blueprint.njk" import blueprint %}{{ blueprint(stixJourney, "Read the map as text", 3) }}
+
+### What it says so far
+
+This is one owner's account, so these are things to test, not findings yet.
+
+1. **The product won the sale, but the money side caused the pain.** Toast's screens and search beat Aloha for my staff. Fees, deductions and cash timing are what hurt me as the owner.
+2. **The costs showed up after signing.** Payroll fees were the first surprise. Card fees, monthly fees and loan repayments all came out of one deposit, so I saw what landed in the bank, not why.
+3. **Busy nights are where it breaks.** Game nights meant 100+ tabs closing at once. One internet outage on St. Patrick's Day cost us about $5,000. We set the system up ourselves, and offline setup never came up.
+4. **Easy money, no way out.** The loan took days to get. When we closed, there was no wind-down path, and my records went dark.
+
+### The top pain points
+
+<div class="side-figure">
+<div class="side-figure__fig">
+{% figure "img/stix/owner-journey-closeup.jpg",
+  "Close-up of three stages: getting paid, payroll and taxes, and the St. Patrick's Day outage, with the feeling scores dropping to 2, 3 and 1.",
+  "<strong>Close-up:</strong> getting paid, payroll, and the outage.", "light" %}
+</div>
+<div class="side-figure__text">
+
+1. **St. Patrick's Day 2023.** Comcast took the internet down. Our devices couldn't see each other's tabs and some tickets got lost. About $5,000 gone on the busiest day of the year.
+2. **Deductions from deposits.** Fees, monthly charges and loan repayments came out of the money we needed for payroll and bills. It left us short exactly when we needed cash most.
+3. **Game nights.** 100+ tabs all needing to close at once when the game ended.
+
+</div>
+</div>
+
+The outage is the only one I can put a dollar figure on. The cash crunch probably cost more over those two years, but I can't prove it without the statements.
+
+### What I'd fix first: a payout breakdown before every deposit
+
+Show sales, card fees, monthly fees, loan holdback and anything else, then the amount that actually hits the bank, with a warning before any deduction that isn't routine. I never knew why a deposit was short until it already was.
+
+### What's next
+
+1. Ask Toast for my old statements and the Toast Capital loan records.
+2. Interview two more owners: my in-laws, who run a restaurant in rural Colorado, and one more, ideally on a different POS. I want to know whether my pain points hold up outside a suburban sports bar. Do they understand their deposits and fees? What happens on their busiest nights and during outages? Have they borrowed through their POS company, looked at switching, or thought about how they'd ever leave?
+3. Compare all three and update this map, marking what holds across owners and what was just STiX.
